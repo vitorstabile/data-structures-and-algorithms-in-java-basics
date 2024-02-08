@@ -108,3 +108,97 @@ Then the algorithm is written with the help of the above parameters such that it
   
 #### <a name="chapter2part1"></a>Chapter 2 - Part 1: The Big-O Notation
 
+How can we be able to compare the performance of one algorithm against another algorithm? One way we could do that is to implement one algorithm and then put a line of code that records the start time and then run the implementation
+and then have a line of code that records the end time and we can subtract the start time from the end time and we get the running time of the implementation of that algorithm. And then we do the same for another algorithm and we just compare the two.
+
+In theory but unfortunately that's not a good way to do it because of hardware. Hardware is going to influence the running time of these algorithms. If we were to run an implementation on a desktop computer that was built in 2017 and compare that
+to the running time of the exact same implementation on a desktop computer that was built 20 years ago and perhaps is an old Pentium computer, or we'll even go further than that and run the implementation on a Commodore 64 or something like that,
+obviously the implementations are going to run slower on the older hardware. And if we were to run an implementation on a super computer, it's going to run really, really fast even though it might be a really inefficient algorithm.
+
+So we need a more objective measure than just the straight running time. And so what we do is we look at the number of steps that it takes to execute an algorithm.
+
+And we call this the **time complexity**.
+
+There are two types of complexity:
+  - **Time complexity**: which is the number of steps involved to run an algorithm.
+  - **Memory complexity**: which is the amount of memory it takes to run an algorithm.
+
+So we're interested in how many steps does it take to run an algorithm?
+
+Now when we're doing we like to look at the worst case.
+
+Looking at the best case doesn't help us because you're rarely gonna have the best case.
+
+So if we wanna know what the upper bound is, like what is the absolute worst that we can expect from this algorithm, it's much more helpful to look at the worst case.
+
+So it's helpful to compare the worst case scenario for one algorithm against the worst case scenario for the other algorithm.
+
+We've already looked at an algorithm for making tea so now we're going to look at one little step.
+
+```
+1. Fetch the bowl containing the sugar
+2. Get a Spoon
+3. Scoop out sugar using the spoon
+4. Pour the sugar from the spoon into the tea
+5. Repeat steps 3 and 4 until you've added the desired amount of sugar
+```
+
+Now we can see from this that the number of steps that it's going to take to add sugar to your tea is going to depend on how many sugars you want.
+
+If you only want one sugar, then this algorithm will run taking four steps. (1x1,2x1,3x1 and 4x1)
+
+But if you want two sugars, it's going to take six steps because you're going to have to repeat steps three and four. (1x1,2x1,3x2 and 4x2)
+
+So as we can see the number of steps or the time complexity of our sugar algorithm depends on how many sugars someone wants in their tea.
+
+| Number of Sugars  | Steps Required  | 
+| :---------------- | :--------------:|
+| 1                 | 4               |
+| 2                 | 6               |
+| 3                 | 8               |
+| 4                 | 10              |
+
+If they only want one sugar, it just takes them four steps.
+
+But if they want four sugars, it's gonna take them 10 steps.
+
+So the time complexity gives us an idea of how an algorithm will perform as the number of items it has to deal with grows so as we can see as the number of sugars this algorithm has to add to tea increases, the number of steps required increases.
+
+Another way of saying this is it tells us how well an algorithm will scale.
+
+So how well will it do when it has to deal with 100 items, versus 1,00 items, versus a million items?
+
+And we'll see that some algorithm will scale really well and others not so well.
+
+The more items there are, the more algorithm's performance will degrade.
+
+Now the big O notation is a way of expressing the complexity related to the number of items that an algorithm has to deal with. And it's written as a capital O followed by an expression in parenthesis.
+
+So let's work out the big O value for our sugar algorithm.
+
+- Number of desired sugars = n
+- Total number of steps = 2n + 2
+- As n grows, the number of steps grows
+- The "2" in 2n and the "+2" reamin constant, so they don't factor into the time complexity. The value of n determines the growth rate
+- Time complexity is O(n)
+- Linear time complexity
+
+| Big-O       |                 | 
+| :---------- | :--------------:|
+| O(1)        | Constant        |
+| O(logn)     | Logarithmic     |
+| O(n)        | Linear          |
+| O(n.logn)   | n-log-star-n    |
+| O(n^2)      | Quadratic       |
+
+
+
+And so this is a graph of some of the big O values, and this represents how an algorithm would degrade.
+
+Along the X axis we have the input size, so the number of items; and along the Y axis we have the number of steps.
+
+<br>
+
+<div align="center"><img src="img/bigographic-w1024-h1024.png" width=1024 height=1024><br><sub>Graphs of functions commonly used in the analysis of algorithms, showing the number of operations N versus input size n for each function - (<a href='https://en.wikipedia.org/wiki/Big_O_notation#/media/File:Comparison_computational_complexity.svg'>Work by Cmglee</a>) </sub></div>
+
+<br>
