@@ -7,6 +7,10 @@
     - [Chapter 1 - Part 2: What is an Algorithm?](#chapter1part2)
 2. [Chapter 2: The Big-O Notation](#chapter2)
     - [Chapter 2 - Part 1: The Big-O Notation](#chapter2part1)
+3. [Chapter 3: Arrays in Java](#chapter3)
+    - [Chapter 3 - Part 1: Quick Review of Arrays in Java](#chapter3part1)
+    - [Chapter 3 - Part 2: Arrays in Memory](#chapter3part2)
+    - [Chapter 3 - Part 3: Big-O Values for Array Operations](#chapter3part3) 
 
 ## <a name="chapter1"></a>Chapter 1: Introducing
   
@@ -202,3 +206,253 @@ Along the X axis we have the input size, so the number of items; and along the Y
 <div align="center"><img src="img/bigographic-w1024-h1024.png" width=1024 height=1024><br><sub>Graphs of functions commonly used in the analysis of algorithms, showing the number of operations N versus input size n for each function - (<a href='https://en.wikipedia.org/wiki/Big_O_notation#/media/File:Comparison_computational_complexity.svg'>Work by Cmglee</a>) </sub></div>
 
 <br>
+
+## <a name="chapter3"></a>Chapter 3: Arrays in Java
+  
+#### <a name="chapter2part1"></a>Chapter 3 - Part 1: Quick Review of Arrays in Java
+
+How to create and access elements in a array?
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+	    int[] intArray = new int[7];
+
+	    intArray[0] = 20;
+	    intArray[1] = 35;
+	    intArray[2] = -15;
+	    intArray[3] = 7;
+	    intArray[4] = 55;
+	    intArray[5] = 1;
+	    intArray[6] = -22;
+
+	    for (int i = 0; i < intArray.length; i++) {
+	        System.out.println(intArray[i]);
+        }
+    }
+}
+```
+
+We create a array with 7 slots with the index go from 0 to 6.
+
+#### <a name="chapter3part2"></a>Chapter 3 - Part 2: Arrays in Memory
+
+Arrays is:
+
+- Contiguous block in memory
+- Every element occupies the same amount of space in memory
+- If a array starts at memory address x, and the size of each element in the array is y, we can calculate the memory address of the ith element by using the following expression: x + i*y
+- If we know the index of an element, the time to retrieve the element will be the same, no matter where it is in the array.
+
+For the array above of int
+
+```
+intArray[0] = 20;
+intArray[1] = 35;
+intArray[2] = -15;
+intArray[3] = 7;
+intArray[4] = 55;
+intArray[5] = 1;
+intArray[6] = -22;
+````
+
+Start address of array = 12, element size = 4 bytes
+
+```
+Address of array[0] = 12
+Address of array[1] = 12 + (1*4) = 16
+Address of array[2] = 12 + (2*4) = 20
+Address of array[3] = 12 + (3*4) = 24
+Address of array[4] = 12 + (4*4) = 28
+Address of array[5] = 12 + (5*4) = 32
+Address of array[6] = 12 + (6*4) = 36
+```
+
+This is because we begin with the index 0.
+
+Now this is why a array is so efficient to retrieve a element when you now the index of this element. This is because doesn't matter where the element is in the array, we do the same calculation to retrieve them (x + i*y).
+
+#### <a name="chapter3part3"></a>Chapter 3 - Part 3: Big-O Values for Array Operations
+
+**Retrieve an Element from an Array**
+- Multiply the size of the element by its index
+- Get the start address of the array
+- Add the start address to the result of the multiplication
+
+For an int array, assume element starts at address 12. Each int is 4 bytes.
+
+```
+Address of array[0] = 12 + (0*4) = 12
+Address of array[1] = 12 + (1*4) = 16
+Address of array[2] = 12 + (2*4) = 20
+Address of array[3] = 12 + (3*4) = 24
+```
+
+Doesn't matter how many elements we have, the number of the steps will be the same.
+
+| Number of Elements | Steps to retrieve  | 
+| :----------------- | :-----------------:|
+| 1                  | 3                  |
+| 1000               | 3                  |
+| 100000             | 3                  |
+| 1000000            | 3                  |
+| 1000000000         | 3                  |
+
+Now, let's see some operations in array and the time complexity
+
+| Operation                                        | Time Complexity        | 
+| :----------------------------------------------- | :---------------------:|
+| Retrieve with index                              | O(1) - Constant time   |
+| Retrieve without index                           | O(n) - Linear Time     |
+| Add an element to a full array                   | O(n)                   |
+| Add an element to the end of a array (has space) | O(1)                   |
+| Insert or update an element ar a specific index  | O(1)                   |
+| Delete an element by setting it to null          | O(1)                   |
+| Delete an element by shifting element            | O(n)                   |
+
+**Retrieve with index**
+
+```java
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        int[] intArray = new int[7];
+
+        intArray[0] = 20;
+        intArray[1] = 35;
+        intArray[2] = -15;
+        intArray[3] = 7;
+        intArray[4] = 55;
+        intArray[5] = 1;
+        intArray[6] = -22;
+
+        System.out.println(intArray[3]);
+    }
+}
+```
+
+**Retrieve without index**
+
+```java
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        int[] intArray = new int[7];
+
+	    intArray[0] = 20;
+	    intArray[1] = 35;
+	    intArray[2] = -15;
+	    intArray[3] = 7;
+	    intArray[4] =55;
+	    intArray[5] = 1;
+	    intArray[6] = -22;
+
+	    int index = -1;
+	    for (int i = 0; i < intArray.length; i++) {
+	        if (intArray[i] == 7) {
+	            index = i;
+	            break;
+            }
+        }
+
+        System.out.println("index = " + index);
+    }
+}
+```
+
+**Add an element to a full array**
+
+```java
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        int[] intArray = new int[7];
+
+        intArray[0] = 20;
+        intArray[1] = 35;
+        intArray[2] = -15;
+        intArray[3] = 7;
+        intArray[4] =55;
+        intArray[5] = 1;
+        intArray[6] = -22;
+
+        int newElement = 30;
+        int[] intNewArray = new int[8];
+
+        for (int i = 0; i < intArray.length; i++) {
+            intNewArray[i] = intArray[i];
+        }
+        intNewArray[7] = newElement;
+
+        System.out.println(Arrays.toString(intNewArray));
+    }
+}
+```
+**Add an element to the end of a array (has space)**
+
+```java
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        int[] intArray = new int[8];
+
+        intArray[0] = 20;
+        intArray[1] = 35;
+        intArray[2] = -15;
+        intArray[3] = 7;
+        intArray[4] =55;
+        intArray[5] = 1;
+        intArray[6] = -22;
+
+        int newElement = 30;
+        intArray[7] = newElement;
+
+        System.out.println(Arrays.toString(intArray));
+    }
+}
+```
+
+**Insert or update an element ar a specific index**
+
+```java
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        int[] intArray = new int[7];
+
+        intArray[0] = 20;
+        intArray[1] = 35;
+        intArray[2] = -15;
+        intArray[3] = 7;
+        intArray[4] =55;
+        intArray[5] = 1;
+        intArray[6] = -22;
+
+        int newElement = 30;
+        intArray[1] = newElement;
+
+        System.out.println(Arrays.toString(intArray));
+    }
+}
+```
+
+**Delete an element by setting it to null**
+
+```java
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        Integer[] intArray = new Integer[7];
+
+        intArray[0] = 20;
+        intArray[1] = 35;
+        intArray[2] = -15;
+        intArray[3] = 7;
+        intArray[4] =55;
+        intArray[5] = 1;
+        intArray[6] = -22;
+
+        intArray[1] = null;
+
+        System.out.println(Arrays.toString(intArray));
+    }
+}
+```
+
+**Delete an element by shifting element**
+
