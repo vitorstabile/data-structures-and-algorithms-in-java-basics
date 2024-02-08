@@ -5,12 +5,10 @@
 1. [Chapter 1: Introducing](#chapter1)
     - [Chapter 1 - Part 1: What is a Data Structure?](#chapter1part1)
     - [Chapter 1 - Part 2: What is an Algorithm?](#chapter1part2)
-2. [Chapter 2: Knowing JUnit](#chapter2)
-    - [Chapter 2 - Part 1: First Project](#chapter2part1)
+2. [Chapter 2: The Big-O Notation](#chapter2)
+    - [Chapter 2 - Part 1: The Big-O Notation](#chapter2part1)
 
 ## <a name="chapter1"></a>Chapter 1: Introducing
-
-
   
 #### <a name="chapter1part1"></a>Chapter 1 - Part 1: What is a Data Structure?
 
@@ -42,14 +40,71 @@ Examples of non-linear data structures are trees and graphs.
 
 #### <a name="chapter1part2"></a>Chapter 1 - Part 1: What is an Algorithm?
 
-Testing is the process of checking the functionality of an application to ensure it runs as per requirements. Unit testing comes into picture at the developers’ level; it is the testing of single entity (class or method). Unit testing plays a critical role in helping a software company deliver quality products to its customers.
+An algorithm describes the steps you have to perform to accomplish a specific task.
 
-Unit testing can be done in two ways − manual testing and automated testing.
+Example of Making a Tea
 
-| Manual Testing                                                                                                                    | Automated Testing                                                                                                                    | 
-| :-------------------------------------------------------------------------------------------------------------------------------- | :-----------------------------------------------------------------------------------------------------------------------------------:|
-| Executing a test cases manually without any tool support is known as manual testing.                                              | Taking tool support and executing the test cases by using an automation tool is known as automation testing.                         |
-| **Time-consuming and tedious** − Since test cases are executed by human resources, it is very slow and tedious.                   | **Fast** − Automation runs test cases significantly faster than human resources.                                                     |
-| **Huge investment in human resources** − As test cases need to be executed manually, more testers are required in manual testing. | **Less investment in human resources** − Test cases are executed using automation tools, so less number of testers are required in automation testing.|
-| **Less reliable** − Manual testing is less reliable, as it has to account for human errors.                                       | **More reliable** − Automation tests are precise and reliable.                                                                       |
-| **Non-programmable** − No programming can be done to write sophisticated tests to fetch hidden information.                       | **Programmable** − Testers can program sophisticated tests to bring out hidden information.                                          |
+1- Boil Water
+2- Add a teabag to a cup
+3- Pour the boiling water into the cup
+4- Remove the teabag when tea is ready
+5- Add the desired amount of milk to the cup
+6- Add the desired amount of sugar to the cup
+7- Stir the contents of the cup with a spoon
+
+In this example, this is one algorithm to make a Tea. There is many ways to make tea, in this case, not just one algorithm to do the same thing.
+
+For example, there many types of sort algorithm to sort data.
+
+- There can be many algorithms that accomplish the same task
+- There can be  many implementations of the same algorithm
+
+**Types of Algorithms**
+
+- Brute Force Algorithm
+  - It is the simplest approach to a problem. A brute force algorithm is the first approach that comes to finding when we see a problem.
+
+- Recursive Algorithm
+  - A recursive algorithm is based on recursion. In this case, a problem is broken into several sub-parts and called the same function again and again.
+
+- Backtracking Algorithm
+  - The backtracking algorithm builds the solution by searching among all possible solutions. Using this algorithm, we keep on building the solution following criteria. Whenever a solution fails we trace back to the failure point build on the next solution and continue this process till we find the solution or all possible solutions are looked after.
+ 
+- Searching Algorithm
+  - Searching algorithms are the ones that are used for searching elements or groups of elements from a particular data structure. They can be of different types based on their approach or the data structure in which the element should be found.
+ 
+- Sorting Algorithm
+  - Sorting is arranging a group of data in a particular manner according to the requirement. The algorithms which help in performing this function are called sorting algorithms. Generally sorting algorithms are used to sort groups of data in an increasing or decreasing manner.
+ 
+- Hashing Algorithm
+  - Hashing algorithms work similarly to the searching algorithm. But they contain an index with a key ID. In hashing, a key is assigned to specific data.
+ 
+- Divide and Conquer Algorithm
+  - This algorithm breaks a problem into sub-problems, solves a single sub-problem, and merges the solutions to get the final solution. It consists of the following three steps:
+    - Divide
+    - Solve
+    - Combine
+   
+- Greedy Algorithm
+  - In this type of algorithm, the solution is built part by part. The solution for the next part is built based on the immediate benefit of the next part. The one solution that gives the most benefit will be chosen as the solution for the next part.
+ 
+- Dynamic Programming Algorithm
+  - This algorithm uses the concept of using the already found solution to avoid repetitive calculation of the same part of the problem. It divides the problem into smaller overlapping subproblems and solves them.
+ 
+- Randomized Algorithm
+  - In the randomized algorithm, we use a random number so it gives immediate benefit. The random number helps in deciding the expected outcome.
+ 
+**How to Design an Algorithm?**
+
+1- The problem that is to be solved by this algorithm i.e. clear problem definition.
+2- The constraints of the problem must be considered while solving the problem.
+3- The input to be taken to solve the problem.
+4- The output is to be expected when the problem is solved.
+5- The solution to this problem is within the given constraints.
+
+Then the algorithm is written with the help of the above parameters such that it solves the problem.
+
+## <a name="chapter2"></a>Chapter 2: The Big-O Notation
+  
+#### <a name="chapter2part1"></a>Chapter 2 - Part 1: The Big-O Notation
+
