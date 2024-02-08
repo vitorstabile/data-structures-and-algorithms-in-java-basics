@@ -26,7 +26,7 @@ Each data structure do somethings well and others not so well. Ex: A array is gr
 
 <br>
 
-<div align="center"><img src="img/typesofdatastructure-w660-h347.png" width=660 height=347><br><sub>Classification of Data Structure - (<a href='https://www.geeksforgeeks.org/data-structures/'>Work by Geeks for Geeks</a>) </sub></div>
+<div align="center"><img src="img/typesofdatastructure-w660-h347.jpg" width=660 height=347><br><sub>Classification of Data Structure - (<a href='https://www.geeksforgeeks.org/data-structures/'>Work by Geeks for Geeks</a>) </sub></div>
 
 <br>
 
