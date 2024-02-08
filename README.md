@@ -311,6 +311,8 @@ Now, let's see some operations in array and the time complexity
 | Delete an element by setting it to null          | O(1)                   |
 | Delete an element by shifting element            | O(n)                   |
 
+In resume, every time there is a For loop, will be a O(n) complexity
+
 **Retrieve with index**
 
 ```java
