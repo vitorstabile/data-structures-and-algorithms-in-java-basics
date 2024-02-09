@@ -823,11 +823,11 @@ The dataset is now sorted according to sections, but not according to names. In 
 
 **Which sorting algorithms are stable?**
 
-Some Sorting Algorithms are stable by nature, such as Bubble Sort, Insertion Sort, Merge Sort, Count Sort, etc. Comparison-based stable sorts such as Merge Sort and Insertion Sort maintain stability by ensuring that Element A[j]  comes before A[i]  if and only if A[j] < A[i] , here i, j are indices, and i < j . The relative order is preserved if A[i] \equiv A[j]  i.e. A[i]  comes before A[j] 
+Some Sorting Algorithms are stable by nature, such as Bubble Sort, Insertion Sort, Merge Sort, Count Sort, etc. Comparison-based stable sorts such as Merge Sort and Insertion Sort maintain stability by ensuring that Element A[j]  comes before A[i]  if and only if A[j] < A[i] , here i, j are indices, and i < j . The relative order is preserved if A[i] == A[j]  i.e. A[i]  comes before A[j] 
 
 **Which sorting algorithms are unstable?**
 
-Quick Sort, Heap Sort etc., can be made stable by also taking the position of the elements into consideration. This change may be done in a way that does not compromise a lot on the performance and takes some extra space, possibly \theta(n).
+Quick Sort, Heap Sort etc., can be made stable by also taking the position of the elements into consideration. This change may be done in a way that does not compromise a lot on the performance and takes some extra space.
 
 #### <a name="chapter3part6"></a>Chapter 4 - Part 6: Selection Sort
 
