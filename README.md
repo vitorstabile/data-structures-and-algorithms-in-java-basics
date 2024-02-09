@@ -767,6 +767,68 @@ public class Main {
 
 #### <a name="chapter3part5"></a>Chapter 4 - Part 5: Stable vs Unstable Sort Algorithms
 
+The stability of a sorting algorithm is concerned with how the algorithm treats equal (or repeated) elements. Stable sorting algorithms preserve the relative order of equal elements, while unstable sorting algorithms don’t. In other words, stable sorting maintains the position of two equals elements relative to one another.
+
+<br>
+
+<div align="center"><img src="img/stableunstable-w1380-h390.png" width=1380 height=390><br><sub>Stable and Unstable Sort Algorithms  - (<a href='https://www.baeldung.com/cs/stable-sorting-algorithms'>Work by Baeldung</a>) </sub></div>
+
+<br>
+
+Stable sorting maintains the order of the two equal balls numbered 8, whereas unstable sorting may invert the relative order of the two 8s.
+
+When equal elements are indistinguishable, such as with integers, or more generally, any data where the entire element is the key, stability is not an issue. Stability is also not an issue if all keys are different.
+
+**Where stable sorting algorithms are useful?**
+
+Consider the following dataset of Student Names and their respective class sections.
+
+```
+(Dave,A)
+(Alice,B)
+(Ken,A)
+(Eric,B)
+(Carol,A)
+```
+
+If we sort this data according to name only, then it is highly unlikely that the resulting dataset will be grouped according to sections as well. 
+
+```
+(Alice,B)
+(Carol,A)
+(Dave,A)
+(Eric,B)
+(Ken,A)
+```
+
+So we might have to sort again to obtain the list of students section-wise too. But in doing so, if the sorting algorithm is not stable, we might get a result like this:
+
+```
+(Carol,A)
+(Dave,A)
+(Ken,A)
+(Eric,B)
+(Alice,B)
+```
+
+The dataset is now sorted according to sections, but not according to names. In the name-sorted dataset, the tuple (Alice, B) was before (Eric, B) , but since the sorting algorithm is not stable, the relative order is lost. If on the other hand, we used a stable sorting algorithm, the result would be:
+
+```
+(Carol,A)
+(Dave,A)
+(Ken,A)
+(Alice,B)
+(Eric,B)
+```
+
+**Which sorting algorithms are stable?**
+
+Some Sorting Algorithms are stable by nature, such as Bubble Sort, Insertion Sort, Merge Sort, Count Sort, etc. Comparison-based stable sorts such as Merge Sort and Insertion Sort maintain stability by ensuring that Element A[j]  comes before A[i]  if and only if A[j] < A[i] , here i, j are indices, and i < j . The relative order is preserved if A[i] \equiv A[j]  i.e. A[i]  comes before A[j] 
+
+**Which sorting algorithms are unstable?**
+
+Quick Sort, Heap Sort etc., can be made stable by also taking the position of the elements into consideration. This change may be done in a way that does not compromise a lot on the performance and takes some extra space, possibly \theta(n).
+
 #### <a name="chapter3part6"></a>Chapter 4 - Part 6: Selection Sort
 
 #### <a name="chapter3part7"></a>Chapter 4 - Part 7: Insertion Sort
