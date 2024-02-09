@@ -765,6 +765,38 @@ public class Main {
 }
 ```
 
+other solution
+
+```java
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        Integer[] intArray = new Integer[7];
+
+        intArray[0] = 20;
+        intArray[1] = 35;
+        intArray[2] = -15;
+        intArray[3] = 7;
+        intArray[4] = 55;
+        intArray[5] = 35;
+        intArray[6] = -22;
+
+
+        for(int j = intArray.length -1; j > 0; j--) {
+            for(int i = 0; i < j; i++) {
+                if(intArray[i] > intArray[i+1]) {
+                    int temp = intArray[i];
+                    intArray[i] = intArray[i+1];
+                    intArray[i+1] = temp;
+                }
+            }
+        }
+
+        System.out.println(Arrays.toString(intArray));
+
+    }
+}
+```
+
 If we look at this Bubble Sort, he is a Stable algorithm, because we just make the swap, if ```intArray[i] > intArray[i + 1]```
 
 #### <a name="chapter3part5"></a>Chapter 4 - Part 5: Stable vs Unstable Sort Algorithms
@@ -934,6 +966,46 @@ public class Main {
 
 }
 ```
+
+Other Solution
+
+```java
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        Integer[] intArray = new Integer[7];
+
+        intArray[0] = 20;
+        intArray[1] = 35;
+        intArray[2] = -15;
+        intArray[3] = 7;
+        intArray[4] = 55;
+        intArray[5] = 35;
+        intArray[6] = -22;
+
+
+        for(int j = intArray.length -1; j > 0; j--) {
+            int largestIndex = 0;
+            for(int i = 1; i <= j; i++) {
+                if(intArray[largestIndex] < intArray[i]) {
+                    largestIndex = i;
+                }
+            }
+            int temp = intArray[j];
+            intArray[j] = intArray[largestIndex];
+            intArray[largestIndex] = temp;
+        }
+
+        System.out.println(Arrays.toString(intArray));
+
+    }
+}
+```
+
+- It is a In-Place algorithm
+- O(n^2) - time complexity-quadratic
+- it will take 100 steps to sort 10 items, 10000 steps to sort 100 items, 1000000 steps to sort 1000 itens
+- Doesn't require as much swapping as bubble sort
+- Unstable algorithm
 
 #### <a name="chapter3part7"></a>Chapter 4 - Part 7: Insertion Sort
 
