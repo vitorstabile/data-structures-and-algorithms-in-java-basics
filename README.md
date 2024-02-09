@@ -425,7 +425,7 @@ In this example, the nested loops iterate over the array elements, printing out 
 
 ## <a name="chapter3"></a>Chapter 3: Arrays in Java
   
-#### <a name="chapter2part1"></a>Chapter 3 - Part 1: Quick Review of Arrays in Java
+#### <a name="chapter3part1"></a>Chapter 3 - Part 1: Quick Review of Arrays in Java
 
 How to create and access elements in a array?
 
