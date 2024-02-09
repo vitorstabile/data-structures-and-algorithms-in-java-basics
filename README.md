@@ -52,7 +52,7 @@ Examples of this data structure are queue, stack, etc.
 - **Non-linear data structure**: Data structures where data elements are not placed sequentially or linearly are called non-linear data structures. In a non-linear data structure, we can’t traverse all the elements in a single run only. 
 Examples of non-linear data structures are trees and graphs.
 
-#### <a name="chapter1part2"></a>Chapter 1 - Part 1: What is an Algorithm?
+#### <a name="chapter1part2"></a>Chapter 1 - Part 2: What is an Algorithm?
 
 An algorithm describes the steps you have to perform to accomplish a specific task.
 
