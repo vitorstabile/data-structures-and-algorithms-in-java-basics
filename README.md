@@ -10,7 +10,8 @@
 3. [Chapter 3: Arrays in Java](#chapter3)
     - [Chapter 3 - Part 1: Quick Review of Arrays in Java](#chapter3part1)
     - [Chapter 3 - Part 2: Arrays in Memory](#chapter3part2)
-    - [Chapter 3 - Part 3: Big-O Values for Array Operations](#chapter3part3) 
+    - [Chapter 3 - Part 3: Big-O Values for Array Operations](#chapter3part3)
+    - [Chapter 3 - Part 4: Bubble Sort](#chapter3part4)
 
 ## <a name="chapter1"></a>Chapter 1: Introducing
   
@@ -690,3 +691,6 @@ public class Solution {
     }
 }
 ```
+
+#### <a name="chapter3part4"></a>Chapter 4 - Part 3: Bubble Sort
+
