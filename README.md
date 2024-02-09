@@ -207,6 +207,180 @@ Along the X axis we have the input size, so the number of items; and along the Y
 
 <br>
 
+Examples of each time complexity
+
+- **O(1)**: Constant Time Execution
+
+```java
+int getFirst(int[] array) {
+    return array[0];
+}
+```
+
+In this case, we are returning the first element of the array, no matter the size of the array, the time to execute this function will always be the same.
+
+- **O(logn)**: Logarithmic Time Execution
+
+```java
+boolean binarySearch(int[] array, int x) {
+    int left = 0, right = array.length - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (array[mid] == x) {
+            return true;
+        }
+        if (array[mid] < x) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return false;
+}
+```
+
+This is an example of binary search. At each step, we eliminate half of the elements. Therefore, the runtime increases logarithmically with the size of the array.
+
+- **O(n)**: Linear Time Execution
+
+```java
+boolean contains(int[] array, int element) {
+    for (int i = 0; i < array.length; i++) {
+        if (array[i] == element) {
+            return true;
+        }
+    }
+    return false;
+}
+```
+
+In this case, in the worst scenario, we have to traverse the whole array to find out if an element is present or not. Therefore, the execution time increases linearly with the size of the array.
+
+- **O(n.logn)**: Linearithmic Time Execution
+
+```java
+class MergeSort { 
+    // Merges two subarrays of arr[]. 
+    // First subarray is arr[l..m] 
+    // Second subarray is arr[m+1..r] 
+    void merge(int arr[], int l, int m, int r) 
+    { 
+        // Find sizes of two subarrays to be merged 
+        int n1 = m - l + 1; 
+        int n2 = r - m; 
+  
+        // Create temp arrays 
+        int L[] = new int[n1]; 
+        int R[] = new int[n2]; 
+  
+        // Copy data to temp arrays 
+        for (int i = 0; i < n1; ++i) 
+            L[i] = arr[l + i]; 
+        for (int j = 0; j < n2; ++j) 
+            R[j] = arr[m + 1 + j]; 
+  
+        // Merge the temp arrays 
+        // Initial indexes of first and second subarrays 
+        int i = 0, j = 0; 
+  
+        // Initial index of merged subarray array 
+        int k = l; 
+        while (i < n1 && j < n2) { 
+            if (L[i] <= R[j]) { 
+                arr[k] = L[i]; 
+                i++; 
+            } 
+            else { 
+                arr[k] = R[j]; 
+                j++; 
+            } 
+            k++; 
+        } 
+  
+        // Copy remaining elements of L[] if any 
+        while (i < n1) { 
+            arr[k] = L[i]; 
+            i++; 
+            k++; 
+        } 
+  
+        // Copy remaining elements of R[] if any 
+        while (j < n2) { 
+            arr[k] = R[j]; 
+            j++; 
+            k++; 
+        } 
+    } 
+  
+    // Main function that sorts arr[l..r] using 
+    // merge() 
+    void sort(int arr[], int l, int r) 
+    { 
+        if (l < r) { 
+            // Find the middle point 
+            int m = (l + r) / 2; 
+  
+            // Sort first and second halves 
+            sort(arr, l, m); 
+            sort(arr, m + 1, r); 
+  
+            // Merge the sorted halves 
+            merge(arr, l, m, r); 
+        } 
+    } 
+  
+    // A utility function to print array of size n 
+    static void printArray(int arr[]) 
+    { 
+        int n = arr.length; 
+        for (int i = 0; i < n; ++i) 
+            System.out.print(arr[i] + " "); 
+        System.out.println(); 
+    } 
+  
+    // Driver method 
+    public static void main(String args[]) 
+    { 
+        int arr[] = { 12, 11, 13, 5, 6, 7 }; 
+  
+        System.out.println("Given Array"); 
+        printArray(arr); 
+  
+        // Calling of Merge Sort 
+        MergeSort ob = new MergeSort(); 
+        ob.sort(arr, 0, arr.length - 1); 
+  
+        System.out.println("\nSorted array"); 
+        printArray(arr); 
+    } 
+}
+
+```
+
+Merge Sort is a divide-and-conquer algorithm. It divides the input array into two halves, calls itself the two halves, and then merges the two sorted halves. The merge() function is used for merging two halves. The merge(arr, l, m, r) is a key process that assumes that arr[l..m] and arr[m+1..r] are sorted and merges the two sorted sub-arrays into one. 
+
+Step 1 : Divide Array into Two Parts
+Step 2: Merge Sort the first part of the array
+Step 3: Merge Sort the second part of the array
+Step 4: Merge Both the parts
+Step 5: Return the Sorted Array
+
+- **O(n^2)**: Quadratic Time Execution
+
+```java
+void printPairs(int[] array) {
+    for (int i = 0; i < array.length; i++) {
+        for (int j = 0; j < array.length; j++) {
+            System.out.println(array[i] + ", " + array[j]);
+        }
+    }
+}
+```
+
+In this case, for each element in the array, we are traversing the whole array again. This gives us a runtime that is the square of the size of the array.
+
+
+
 ## <a name="chapter3"></a>Chapter 3: Arrays in Java
   
 #### <a name="chapter2part1"></a>Chapter 3 - Part 1: Quick Review of Arrays in Java
