@@ -379,7 +379,39 @@ void printPairs(int[] array) {
 
 In this case, for each element in the array, we are traversing the whole array again. This gives us a runtime that is the square of the size of the array.
 
+- **O(2^n)**: Exponential Time Execution
 
+```java
+int fibonacci(int n) {
+    if (n <= 1) {
+       return n;
+    }
+    return fibonacci(n-1) + fibonacci(n-2);
+}
+```
+
+This is an example of computing Fibonacci using recursion. For each number, we compute the two previous numbers, leading to an exponential runtime complexity.
+
+- **O(n!)**: Fatorial Time Execution
+```java
+public class FactorialExample {
+
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3}; // Sample array
+
+        // Nested loops with O(n!) time complexity
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                for (int k = 0; k < array.length; k++) {
+                    System.out.println(array[i] + ", " + array[j] + ", " + array[k]);
+                }
+            }
+        }
+    }
+}
+```
+
+In this example, the nested loops iterate over the array elements, printing out all possible combinations of three elements from the array. This results in a time complexity of O(n!), where n is the number of elements in the array.
 
 ## <a name="chapter3"></a>Chapter 3: Arrays in Java
   
