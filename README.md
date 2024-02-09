@@ -765,6 +765,8 @@ public class Main {
 }
 ```
 
+If we look at this Bubble Sort, he is a Stable algorithm, because we just make the swap, if ```intArray[i] > intArray[i + 1]```
+
 #### <a name="chapter3part5"></a>Chapter 4 - Part 5: Stable vs Unstable Sort Algorithms
 
 The stability of a sorting algorithm is concerned with how the algorithm treats equal (or repeated) elements. Stable sorting algorithms preserve the relative order of equal elements, while unstable sorting algorithms don’t. In other words, stable sorting maintains the position of two equals elements relative to one another.
@@ -830,6 +832,62 @@ Some Sorting Algorithms are stable by nature, such as Bubble Sort, Insertion Sor
 Quick Sort, Heap Sort etc., can be made stable by also taking the position of the elements into consideration. This change may be done in a way that does not compromise a lot on the performance and takes some extra space.
 
 #### <a name="chapter3part6"></a>Chapter 4 - Part 6: Selection Sort
+
+Selection sort is a simple and efficient sorting algorithm that works by repeatedly selecting the smallest (or largest) element from the unsorted portion of the list and moving it to the sorted portion of the list. 
+
+The algorithm repeatedly selects the smallest (or largest) element from the unsorted portion of the list and swaps it with the first element of the unsorted part. This process is repeated for the remaining unsorted portion until the entire list is sorted. 
+
+Lets consider the following array as an example: arr[] = {64, 25, 12, 22, 11}
+
+- For the first position in the sorted array, the whole array is traversed from index 0 to 4 sequentially. The first position where 64 is stored presently, after traversing whole array it is clear that 11 is the lowest value.
+
+- Thus, replace 64 with 11. After one iteration 11, which happens to be the least value in the array, tends to appear in the first position of the sorted list.
+
+<br>
+
+<div align="center"><img src="img/selectionsort1-w1000-h370.png" width=1000 height=370><br><sub>Selection Sort Algorithm | Swapping 1st element with the minimum in array  - (<a href='https://www.geeksforgeeks.org/selection-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- For the second position, where 25 is present, again traverse the rest of the array in a sequential manner.
+
+- After traversing, we found that 12 is the second lowest value in the array and it should appear at the second place in the array, thus swap these values.
+
+<br>
+
+<div align="center"><img src="img/selectionsort2-w1000-h370.png" width=1000 height=370><br><sub>Selection Sort Algorithm | swapping i=1 with the next minimum element  - (<a href='https://www.geeksforgeeks.org/selection-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- Now, for third place, where 25 is present again traverse the rest of the array and find the third least value present in the array.
+
+- While traversing, 22 came out to be the third least value and it should appear at the third place in the array, thus swap 22 with element present at third position.
+
+<br>
+
+<div align="center"><img src="img/selectionsort3-w1000-h370.png" width=1000 height=370><br><sub>Selection Sort Algorithm | swapping i=2 with the next minimum element  - (<a href='https://www.geeksforgeeks.org/selection-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- Similarly, for fourth position traverse the rest of the array and find the fourth least element in the array
+
+- As 25 is the 4th lowest value hence, it will place at the fourth position.
+
+<br>
+
+<div align="center"><img src="img/selectionsort4-w1000-h370.png" width=1000 height=370><br><sub>Selection Sort Algorithm | swapping i=3 with the next minimum element  - (<a href='https://www.geeksforgeeks.org/selection-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- At last the largest value present in the array automatically get placed at the last position in the array
+
+- The resulted array is the sorted array.
+
+<br>
+
+<div align="center"><img src="img/selectionsort5-w1000-h370.png" width=1000 height=370><br><sub>Selection Sort Algorithm | Required sorted array  - (<a href='https://www.geeksforgeeks.org/selection-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
 
 #### <a name="chapter3part7"></a>Chapter 4 - Part 7: Insertion Sort
 
