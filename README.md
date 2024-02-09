@@ -889,6 +889,52 @@ Lets consider the following array as an example: arr[] = {64, 25, 12, 22, 11}
 
 <br>
 
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+
+        int[] intArray = { 20, 35, -15, 7, 55, 1, -22 };
+
+        for (int lastUnsortedIndex = intArray.length - 1; lastUnsortedIndex > 0;
+                lastUnsortedIndex--) {
+
+            int largest = 0;
+
+            for (int i = 1; i <= lastUnsortedIndex; i++) {
+                if (intArray[i] > intArray[largest]) {
+                    largest = i;
+                }
+            }
+
+            swap(intArray, largest, lastUnsortedIndex);
+
+        }
+
+
+        for (int i = 0; i < intArray.length; i++) {
+            System.out.println(intArray[i]);
+        }
+
+
+    }
+
+    public static void swap(int[] array, int i, int j) {
+
+        if (i == j) {
+            return;
+        }
+
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+
+    }
+
+}
+```
+
 #### <a name="chapter3part7"></a>Chapter 4 - Part 7: Insertion Sort
 
 #### <a name="chapter3part8"></a>Chapter 4 - Part 8: Shell Sort
