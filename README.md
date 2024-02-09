@@ -703,6 +703,68 @@ public class Solution {
 
 #### <a name="chapter3part4"></a>Chapter 4 - Part 4: Bubble Sort
 
+In Bubble Sort algorithm
+
+- traverse from left and compare adjacent elements and the higher one is placed at right side
+- In this way, the largest element is moved to the rightmost end at first.
+- This process is then continued to find the second largest and place it and so on until the data is sorted.
+
+<br>
+
+<div align="center"><img src="img/bubblesort1-w1000-h470.png" width=1000 height=470><br><sub>Bubble Sort Algorithm : Placing the largest element at correct position  - (<a href='https://www.geeksforgeeks.org/bubble-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+<div align="center"><img src="img/bubblesort2-w1000-h470.png" width=1000 height=470><br><sub>Bubble Sort Algorithm : Placing the second largest element at correct position - (<a href='https://www.geeksforgeeks.org/bubble-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+<div align="center"><img src="img/bubblesort3-w1000-h470.png" width=1000 height=470><br><sub>Bubble Sort Algorithm : Placing the remaining elements at their correct positions - (<a href='https://www.geeksforgeeks.org/bubble-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- It is a In-Place algorithm
+- O(n^2) - time complexity-quadratic
+- it will take 100 steps to sort 10 items, 10000 steps to sort 100 items, 1000000 steps to sort 1000 itens
+- Algorithm degrades quickly
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        int[] intArray = { 20, 35, -15, 7, 55, 1, -22 };
+
+        for (int lastUnsortedIndex = intArray.length - 1; lastUnsortedIndex > 0;
+                lastUnsortedIndex--) {
+            for (int i = 0; i < lastUnsortedIndex; i++) {
+                if (intArray[i] > intArray[i + 1]) {
+                    swap(intArray, i, i + 1);
+                }
+            }
+        }
+
+        for (int i = 0; i < intArray.length; i++) {
+            System.out.println(intArray[i]);
+        }
+
+
+    }
+
+    public static void swap(int[] array, int i, int j) {
+
+        if (i == j) {
+            return;
+        }
+
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+
+    }
+}
+```
+
 #### <a name="chapter3part5"></a>Chapter 4 - Part 5: Stable vs Unstable Sort Algorithms
 
 #### <a name="chapter3part6"></a>Chapter 4 - Part 6: Selection Sort
