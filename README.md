@@ -12,6 +12,15 @@
     - [Chapter 3 - Part 2: Arrays in Memory](#chapter3part2)
     - [Chapter 3 - Part 3: Big-O Values for Array Operations](#chapter3part3)
     - [Chapter 3 - Part 4: Bubble Sort](#chapter3part4)
+    - [Chapter 3 - Part 5: Stable vs Unstable Sort Algorithms](#chapter3part5)
+    - [Chapter 3 - Part 6: Selection Sort](#chapter3part6)
+    - [Chapter 3 - Part 7: Insertion Sort](#chapter3part7)
+    - [Chapter 3 - Part 8: Shell Sort](#chapter3part8)
+    - [Chapter 3 - Part 9: Recursion](#chapter3part9)
+    - [Chapter 3 - Part 10: Merge Sort](#chapter3part10)
+    - [Chapter 3 - Part 11: Quick Sort](#chapter3part11)
+    - [Chapter 3 - Part 12: Counting Sort](#chapter3part12)
+    - [Chapter 3 - Part 13: Radix Sort](#chapter3part13)
 
 ## <a name="chapter1"></a>Chapter 1: Introducing
   
@@ -692,5 +701,22 @@ public class Solution {
 }
 ```
 
-#### <a name="chapter3part4"></a>Chapter 4 - Part 3: Bubble Sort
+#### <a name="chapter3part4"></a>Chapter 4 - Part 4: Bubble Sort
 
+#### <a name="chapter3part5"></a>Chapter 4 - Part 5: Stable vs Unstable Sort Algorithms
+
+#### <a name="chapter3part6"></a>Chapter 4 - Part 6: Selection Sort
+
+#### <a name="chapter3part7"></a>Chapter 4 - Part 7: Insertion Sort
+
+#### <a name="chapter3part8"></a>Chapter 4 - Part 8: Shell Sort
+
+#### <a name="chapter3part9"></a>Chapter 4 - Part 9: Recursion
+
+#### <a name="chapter3part10"></a>Chapter 4 - Part 10: Merge Sort
+
+#### <a name="chapter3part11"></a>Chapter 4 - Part 11: Quick Sort
+
+#### <a name="chapter3part12"></a>Chapter 4 - Part 12: Counting Sort
+
+#### <a name="chapter3part13"></a>Chapter 4 - Part 13: Radix Sort
