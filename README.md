@@ -1223,6 +1223,69 @@ public class Main {
 
 #### <a name="chapter3part9"></a>Chapter 4 - Part 9: Recursion
 
+**Factorial Algorithm**
+
+- If num is equal to 0, the factorial is 1. Stop. We have the result.
+Otherwise...
+
+- set multiplier to 1
+- set factorial to 1
+- while multiplier is not equal to num, do steps 5 and 6
+- multiply factorial by multiplier and assign the result to factorial
+- add 1 to multiplier
+- Step. The result is factorial
+
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        System.out.println(iterativeFactorial(3));
+        System.out.println(recursiveFactorial(3));
+    }
+
+    // 1! = 1 * 0! = 1
+    // 2! = 2 * 1 = 2 * 1!
+    // 3! = 3 * 2 * 1 = 3 * 2!
+    // 4! = 4 * 3 * 2 * 1 = 4 * 3!
+
+    // n! = n *(n - 1)!
+
+
+
+
+
+
+
+
+    public static int recursiveFactorial(int num) {
+
+        if (num == 0) {
+            return 1;
+        }
+
+        return num * recursiveFactorial(num - 1);
+
+    }
+
+    public static int iterativeFactorial(int num) {
+
+        if (num == 0) {
+            return 1;
+        }
+
+        int factorial = 1;
+        for (int i = 1; i <= num; i++) {
+            factorial *= i;
+        }
+
+        return factorial;
+
+    }
+}
+```
+
 #### <a name="chapter3part10"></a>Chapter 4 - Part 10: Merge Sort
 
 #### <a name="chapter3part11"></a>Chapter 4 - Part 11: Quick Sort
