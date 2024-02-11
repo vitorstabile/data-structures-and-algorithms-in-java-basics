@@ -1181,6 +1181,46 @@ public class Main {
 
 <br>
 
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+	    int[] intArray = { 20, 35, -15, 7, 55, 1, -22 };
+
+        for (int gap = intArray.length / 2; gap > 0; gap /= 2) {
+
+
+            for (int i = gap; i < intArray.length; i++) {
+                int newElement = intArray[i];
+
+                int j = i;
+
+                while (j >= gap && intArray[j - gap] > newElement) {
+                    intArray[j] = intArray[j - gap];
+                    j -= gap;
+                }
+
+                intArray[j] = newElement;
+
+
+            }
+
+        }
+
+        for (int i = 0; i < intArray.length; i++) {
+            System.out.println(intArray[i]);
+        }
+    }
+
+}
+```
+
+- In-Place algorithm
+- Dificult to nail down the time complexity because it will depend on the gap. Worst case: O(n^2), but it can perform much better than that
+- Doesn't require as much shifting as insertion sort, so it usuaaly performs better
+- Unstable algorithm
+
 #### <a name="chapter3part9"></a>Chapter 4 - Part 9: Recursion
 
 #### <a name="chapter3part10"></a>Chapter 4 - Part 10: Merge Sort
