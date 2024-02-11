@@ -1053,7 +1053,6 @@ Consider an example: arr[]: {12, 11, 13, 5, 6}
   - | 5 | **6** | **11** | 12 | 13 |
   - Finally, the array is completely sorted.
 
-
 ```java
 public class Main {
 
@@ -1091,6 +1090,96 @@ public class Main {
 - Stable algorithm
 
 #### <a name="chapter3part8"></a>Chapter 4 - Part 8: Shell Sort
+
+- Variation of Insertion Sort
+- Insertion sort chooses which element to insert using a gap of 1
+- Shell Sort starts out using a larger gap value
+- As the algorithm runs, the gap is reduced
+- Goal is to reduce the amount of shifting required
+
+- As the algorithm progresses, the gap is reduced
+- The last gap value is always 1
+- A gap value of 1 is equivalent to insertion sort
+- So, the algorithm does some preliminary work (using gap values greater than 1), and then becomes insertion sort
+- By the time we get to insertion sort, the array has been partially sorted, so there's less shifting required
+
+**Knuth Sequence**
+
+| k   | Gap (interval)  | 
+| :-- | :--------------:|
+| 1   | 1               |
+| 2   | 4               |
+| 3   | 13              |
+| 4   | 40              |
+| 5   | 121             |
+
+- Gap is calculated using ((3^k) - 1)/2
+- We set k based on the length of the array
+- We want the gap to be as close as possible to the length of the array we want to sort, without being greater than the length
+
+**Working of Shell Sort**
+
+- Suppose, we need to sort the following array.
+
+<br>
+
+<div align="center"><img src="img/shellsort1-w1144-h196.png" width=1144 height=196><br><sub>Initial array  - (<a href='https://www.programiz.com/dsa/shell-sort'>Work by Programiz</a>) </sub></div>
+
+<br>
+
+- We are using the shell's original sequence (N/2, N/4, ...1) as intervals in our algorithm.
+  - In the first loop, if the array size is N = 8 then, the elements lying at the interval of N/2 = 4 are compared and swapped if they are not in order.
+  - The 0th element is compared with the 4th element.
+  - If the 0th element is greater than the 4th one then, the 4th element is first stored in temp variable and the 0th element (ie. greater element) is stored in the 4th position and the element stored in temp is stored in the 0th position.
+  
+<br>
+
+<div align="center"><img src="img/shellsort2-w1292-h590.png" width=1292 height=590><br><sub>Rearrange the elements at n/2 interval  - (<a href='https://www.programiz.com/dsa/shell-sort'>Work by Programiz</a>) </sub></div>
+
+<br>
+
+- This process goes on for all the remaining elements.
+
+<br>
+
+<div align="center"><img src="img/shellsort3-w1144-h640.png" width=1144 height=640><br><sub>Rearrange all the elements at n/2 interval  - (<a href='https://www.programiz.com/dsa/shell-sort'>Work by Programiz</a>) </sub></div>
+
+<br>
+
+- In the second loop, an interval of N/4 = 8/4 = 2 is taken and again the elements lying at these intervals are sorted.
+
+
+<br>
+
+<div align="center"><img src="img/shellsort4-w1144-h344.png" width=1144 height=344><br><sub>Rearrange the elements at n/4 interval  - (<a href='https://www.programiz.com/dsa/shell-sort'>Work by Programiz</a>) </sub></div>
+
+<br>
+
+- You might get confused at this point.
+
+<br>
+
+<div align="center"><img src="img/shellsort5-w1144-h344.png" width=1144 height=344><br><sub>All the elements in the array lying at the current interval are compared.  - (<a href='https://www.programiz.com/dsa/shell-sort'>Work by Programiz</a>) </sub></div>
+
+<br>
+
+- The elements at 4th and 2nd position are compared. The elements at 2nd and 0th position are also compared. All the elements in the array lying at the current interval are compared.
+
+- The same process goes on for remaining elements
+
+<br>
+
+<div align="center"><img src="img/shellsort6-w1144-h788.png" width=1144 height=788><br><sub>Rearrange all the elements at n/4 interval  - (<a href='https://www.programiz.com/dsa/shell-sort'>Work by Programiz</a>) </sub></div>
+
+<br>
+
+- Finally, when the interval is N/8 = 8/8 =1 then the array elements lying at the interval of 1 are sorted. The array is now completely sorted.
+
+<br>
+
+<div align="center"><img src="img/shellsort7-w1144-h1380.png" width=1144 height=1380><br><sub>Rearrange the elements at n/8 interval  - (<a href='https://www.programiz.com/dsa/shell-sort'>Work by Programiz</a>) </sub></div>
+
+<br>
 
 #### <a name="chapter3part9"></a>Chapter 4 - Part 9: Recursion
 
