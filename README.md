@@ -1053,7 +1053,42 @@ Consider an example: arr[]: {12, 11, 13, 5, 6}
   - | 5 | **6** | **11** | 12 | 13 |
   - Finally, the array is completely sorted.
 
-  
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        int[] intArray = { 20, 35, -15, 7, 55, 1, -22 };
+
+        for (int firstUnsortedIndex = 1; firstUnsortedIndex < intArray.length;
+                firstUnsortedIndex++) {
+            int newElement = intArray[firstUnsortedIndex];
+
+            int i;
+
+            for (i = firstUnsortedIndex; i > 0 && intArray[i - 1] > newElement; i--) {
+                intArray[i] = intArray[i - 1];
+            }
+
+            intArray[i] = newElement;
+        }
+
+        for (int i = 0; i < intArray.length; i++) {
+            System.out.println(intArray[i]);
+        }
+
+    }
+
+}
+```
+
+
+
+- It is a In-Place algorithm
+- O(n^2) - time complexity-quadratic
+- it will take 100 steps to sort 10 items, 10000 steps to sort 100 items, 1000000 steps to sort 1000 itens
+- Stable algorithm
 
 #### <a name="chapter3part8"></a>Chapter 4 - Part 8: Shell Sort
 
