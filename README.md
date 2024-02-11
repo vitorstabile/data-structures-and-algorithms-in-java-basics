@@ -1040,6 +1040,18 @@ Consider an example: arr[]: {12, 11, 13, 5, 6}
   - Here, again 11 and 5 are not sorted, hence swap again
   - | **5** | **11** | 12 | 13 | 6 |
   - Here, 5 is at its correct position
+  
+- **Fourth Pass**:
+  - Now, the elements which are present in the sorted sub-array are 5, 11 and 12
+  - Moving to the next two elements 13 and 6
+  - | 5 | 11 | 12 | **13** | **6** |
+  - Clearly, they are not sorted, thus perform swap between both
+  - | 5 | 11 | 12 | **6** | **13** |
+  - Now, 6 is smaller than 12, hence, swap again
+  - | 5 | 11 | **6** | **12** | 13 |
+  - Here, also swapping makes 11 and 6 unsorted hence, swap again
+  - | 5 | **6** | **11** | 12 | 13 |
+  - Finally, the array is completely sorted.
 
   
 
