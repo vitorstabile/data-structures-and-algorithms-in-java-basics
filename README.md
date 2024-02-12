@@ -1818,3 +1818,23 @@ public class Main {
 - Stable algorithm
 
 #### <a name="chapter3part14"></a>Chapter 4 - Part 14: Sorting Arrays using JDK
+
+A useful class to use to make operations in Arrays in Java is the Arrays.class
+
+We can see the operations in the [Java Doc][https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html]
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        int[] intArray = { 20, 35, -15, 7, 55, 1, -22 };
+		
+		
+        Arrays.parallelSort(intArray);
+
+        for (int i = 0; i < intArray.length; i++) {
+            System.out.println(intArray[i]);
+        }
+    }
+}
+```
