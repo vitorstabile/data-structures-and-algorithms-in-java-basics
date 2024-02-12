@@ -1863,17 +1863,17 @@ public class Main {
   
 #### <a name="chapter5part1"></a>Chapter 5 - Part 1: Introduction to Stacks
 
-## <a name="chapter6"></a>Chapter 1: Queues in Java
+## <a name="chapter6"></a>Chapter 6: Queues in Java
   
 #### <a name="chapter6part1"></a>Chapter 6 - Part 1: Introduction to Queues
 
-## <a name="chapter7"></a>Chapter 1: Hashtables in Java
+## <a name="chapter7"></a>Chapter 7: Hashtables in Java
   
 #### <a name="chapter7part1"></a>Chapter 7 - Part 1: Introduction to Hashtables
 
 ## <a name="chapter8"></a>Chapter 8: Search Algorithms
   
-#### <a name="chapter8part1"></a>Chapter 1 - Part 1: Introduction to Search Algorithms
+#### <a name="chapter8part1"></a>Chapter 8 - Part 1: Introduction to Search Algorithms
 	
 ## <a name="chapter9"></a>Chapter 9: Trees in Java
   
@@ -1883,6 +1883,6 @@ public class Main {
   
 #### <a name="chapter10part1"></a>Chapter 10 - Part 1: Introduction to Heaps
 
-## <a name="chapter11"></a>Chapter 10: Sets in Java
+## <a name="chapter11"></a>Chapter 11: Sets in Java
   
 #### <a name="chapter11part1"></a>Chapter 11 - Part 1: Introduction to Sets
