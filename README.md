@@ -1401,6 +1401,141 @@ public class Main {
 
 #### <a name="chapter3part11"></a>Chapter 4 - Part 11: Quick Sort
 
+- Divide and conquer algorithm
+- Recursive algorithm
+- Uses a pivot element to partition the array into two parts
+- Elements < pivot to its left, elements > pivot to its right
+- Pivot will then be in its correct sorted position
+
+- Process is now repeated fot the left array and right array
+- Eventually, every element has been the pivot, so every element will be in its correct sorted position
+- As with merge sort, we'll end up partitioning the array into a series of 1-element arrays
+- Does this in-place(unlike merge sort)
+
+- Compare 10 with the pivot and as it is less than pivot arrange it accrodingly.
+
+<br>
+
+<div align="center"><img src="img/quicksort1-w1000-h370.png" width=1000 height=370><br><sub>Partition in QuickSort: Compare pivot with 10 - (<a href='https://www.geeksforgeeks.org/quick-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- Compare 80 with the pivot. It is greater than pivot.
+
+<br>
+
+<div align="center"><img src="img/quicksort2-w1000-h370.png" width=1000 height=370><br><sub>Partition in QuickSort: Compare pivot with 80 - (<a href='https://www.geeksforgeeks.org/quick-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- Compare 30 with pivot. It is less than pivot so arrange it accordingly.
+
+<br>
+
+<div align="center"><img src="img/quicksort3-w1000-h370.png" width=1000 height=370><br><sub>Partition in QuickSort: Compare pivot with 30 - (<a href='https://www.geeksforgeeks.org/quick-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- Compare 90 with the pivot. It is greater than the pivot.
+
+<br>
+
+<div align="center"><img src="img/quicksort4-w1000-h370.png" width=1000 height=370><br><sub>Partition in QuickSort: Compare pivot with 90 - (<a href='https://www.geeksforgeeks.org/quick-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- Arrange the pivot in its correct position.
+
+<br>
+
+<div align="center"><img src="img/quicksort5-w1000-h370.png" width=1000 height=370><br><sub>Partition in QuickSort: Place pivot in its correct position - (<a href='https://www.geeksforgeeks.org/quick-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+**Illustration of Quicksort:**
+
+As the partition process is done recursively, it keeps on putting the pivot in its actual position in the sorted array. Repeatedly putting pivots in their actual position makes the array sorted.
+
+Follow the below images to understand how the recursive implementation of the partition algorithm helps to sort the array.
+
+- Initial partition on the main array:
+
+<br>
+
+<div align="center"><img src="img/quicksort6-w1000-h370.png" width=1000 height=370><br><sub>Quicksort: Performing the partition - (<a href='https://www.geeksforgeeks.org/quick-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- Partitioning of the subarrays:
+
+<br>
+
+<div align="center"><img src="img/quicksort7-w1000-h370.png" width=1000 height=370><br><sub>Quicksort: Performing the partition - (<a href='https://www.geeksforgeeks.org/quick-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        int[] intArray = { 20, 35, -15, 7, 55, 1, -22 };
+
+        quickSort(intArray, 0, intArray.length);
+
+        for (int i = 0; i < intArray.length; i++) {
+            System.out.println(intArray[i]);
+        }
+    }
+
+    public static void quickSort(int[] input, int start, int end) {
+        if (end - start < 2) {
+            return;
+        }
+
+        int pivotIndex = partition(input, start, end);
+        quickSort(input, start, pivotIndex);
+        for (int i = 0; i < input.length; i++) {
+            System.out.println(input[i]);
+        }
+        quickSort(input, pivotIndex + 1, end);
+    }
+
+    public static int partition(int[] input, int start, int end) {
+        // This is using the first element as the pivot
+        int pivot = input[start];
+        int i = start;
+        int j = end;
+
+        while (i < j) {
+
+            // NOTE: empty loop body
+            while (i < j && input[--j] >= pivot);
+            if (i < j) {
+                input[i] = input[j];
+            }
+
+            // NOTE: empty loop body
+            while (i < j && input[++i] <= pivot);
+            if (i < j) {
+                input[j] = input[i];
+            }
+
+        }
+
+        input[j] = pivot;
+        return j;
+
+    }
+}
+```
+
+- In-place algorithm 
+
+- O(nlog.n) - base 2.We're repeatedly partioning the array into two halves
+
+- Unstable algorithm
+
 #### <a name="chapter3part12"></a>Chapter 4 - Part 12: Counting Sort
 
 #### <a name="chapter3part13"></a>Chapter 4 - Part 13: Radix Sort
