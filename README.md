@@ -1700,4 +1700,68 @@ public class Main {
 
 #### <a name="chapter3part13"></a>Chapter 4 - Part 13: Radix Sort
 
+- Makes assumptions about the data
+- Data must have same radix and width
+- Because of this, data must be integers or strings
+- Sort based on each individual digit or letter position
+- Start at the rightmost position
+- Must use a stable sort algorithm at each stage
+
+<br>
+
+<div align="center"><img src="img/radixsort1-w1000-h400.png" width=1000 height=400><br><sub>How does Radix Sort Algorithm work | Step 1 - (<a href='https://www.geeksforgeeks.org/radix-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- Find the largest element in the array, which is 802. It has three digits, so we will iterate three times, once for each significant place.
+
+- Sort the elements based on the unit place digits (X=0). We use a stable sorting technique, such as counting sort, to sort the digits at each significant place.
+
+- Sorting based on the unit place:
+  - Perform counting sort on the array based on the unit place digits.
+  - The sorted array based on the unit place is [170, 90, 802, 2, 24, 45, 75, 66].
+  
+<br>
+
+<div align="center"><img src="img/radixsort2-w1000-h400.png" width=1000 height=400><br><sub>How does Radix Sort Algorithm work | Step 2 - (<a href='https://www.geeksforgeeks.org/radix-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- Sort the elements based on the tens place digits.
+- Sorting based on the tens place:
+  - Perform counting sort on the array based on the tens place digits.
+  - The sorted array based on the tens place is [802, 2, 24, 45, 66, 170, 75, 90].
+  
+<br>
+
+<div align="center"><img src="img/radixsort3-w1000-h400.png" width=1000 height=400><br><sub>How does Radix Sort Algorithm work | Step 3 - (<a href='https://www.geeksforgeeks.org/radix-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- Sort the elements based on the hundreds place digits.
+- Sorting based on the hundreds place:
+  - Perform counting sort on the array based on the hundreds place digits.
+  - The sorted array based on the hundreds place is [2, 24, 45, 66, 75, 90, 170, 802].
+  
+<br>
+
+<div align="center"><img src="img/radixsort4-w1000-h400.png" width=1000 height=400><br><sub>How does Radix Sort Algorithm work | Step 4 - (<a href='https://www.geeksforgeeks.org/radix-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- The array is now sorted in ascending order.
+- The final sorted array using radix sort is [2, 24, 45, 66, 75, 90, 170, 802].
+
+<br>
+
+<div align="center"><img src="img/radixsort5-w1000-h400.png" width=1000 height=400><br><sub>How does Radix Sort Algorithm work | Step 5 - (<a href='https://www.geeksforgeeks.org/radix-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- Counting sort is often used as the sort algorithm ofr radix sort - must be stable counting sort
+- O(n) - can achieve this because we're making assumptions about the data we're sorting
+- Even so, it often runs slower than O(n.log.n) algorithms because of the overhead involved 
+- In-place depends on which sort algorithm you use
+- Stable algorithm
+
 #### <a name="chapter3part14"></a>Chapter 4 - Part 14: Sorting Arrays using JDK
