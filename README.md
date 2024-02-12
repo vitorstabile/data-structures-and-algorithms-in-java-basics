@@ -22,6 +22,22 @@
     - [Chapter 3 - Part 12: Counting Sort](#chapter3part12)
     - [Chapter 3 - Part 13: Radix Sort](#chapter3part13)
 	- [Chapter 3 - Part 14: Sorting Arrays using JDK](#chapter3part14)
+4. [Chapter 4: Lists in Java](#chapter4)
+    - [Chapter 4 - Part 1: Introduction to Lists](#chapter4part1)
+5. [Chapter 5: Stacks in Java](#chapter5)
+    - [Chapter 5 - Part 1: Introduction to Stacks](#chapter5part1)
+6. [Chapter 6: Queues in Java](#chapter6)
+    - [Chapter 6 - Part 1: Introduction to Queues](#chapter6part1)
+7. [Chapter 7: Hashtables in Java](#chapter7)
+    - [Chapter 7 - Part 1: Introduction to Hashtables](#chapter7part1)
+8. [Chapter 8: Search Algorithms](#chapter8)
+    - [Chapter 8 - Part 1: Introduction to Search Algorithms](#chapter8part1)
+9. [Chapter 9: Trees in Java](#chapter9)
+    - [Chapter 9 - Part 1: Introduction to Trees](#chapter9part1)
+10. [Chapter 10: Heaps in Java](#chapter10)
+    - [Chapter 10 - Part 1: Introduction to Heaps](#chapter10part1)
+11. [Chapter 11: Sets in Java](#chapter11)
+    - [Chapter 11 - Part 1: Introduction to Sets](#chapter11part1)
 
 ## <a name="chapter1"></a>Chapter 1: Introducing
   
@@ -1821,7 +1837,7 @@ public class Main {
 
 A useful class to use to make operations in Arrays in Java is the Arrays.class
 
-We can see the operations in the [Java Doc][https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html]
+We can see the operations in the [Java Doc](https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html)
 
 ```java
 public class Main {
@@ -1838,3 +1854,35 @@ public class Main {
     }
 }
 ```
+
+## <a name="chapter4"></a>Chapter 4: Lists in Java
+  
+#### <a name="chapter4part1"></a>Chapter 4 - Part 1: Introduction to Lists
+
+## <a name="chapter5"></a>Chapter 5: Stacks in Java
+  
+#### <a name="chapter5part1"></a>Chapter 5 - Part 1: Introduction to Stacks
+
+## <a name="chapter6"></a>Chapter 1: Queues in Java
+  
+#### <a name="chapter6part1"></a>Chapter 6 - Part 1: Introduction to Queues
+
+## <a name="chapter7"></a>Chapter 1: Hashtables in Java
+  
+#### <a name="chapter7part1"></a>Chapter 7 - Part 1: Introduction to Hashtables
+
+## <a name="chapter8"></a>Chapter 8: Search Algorithms
+  
+#### <a name="chapter8part1"></a>Chapter 1 - Part 1: Introduction to Search Algorithms
+	
+## <a name="chapter9"></a>Chapter 9: Trees in Java
+  
+#### <a name="chapter9part1"></a>Chapter 9 - Part 1: Introduction to Trees
+
+## <a name="chapter10"></a>Chapter 10: Heaps in Java
+  
+#### <a name="chapter10part1"></a>Chapter 10 - Part 1: Introduction to Heaps
+
+## <a name="chapter11"></a>Chapter 10: Sets in Java
+  
+#### <a name="chapter11part1"></a>Chapter 11 - Part 1: Introduction to Sets
