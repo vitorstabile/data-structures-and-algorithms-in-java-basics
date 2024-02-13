@@ -2224,7 +2224,7 @@ Now, let's see some operations in List and the time complexity
 
 Java ArrayList is a part of the Java collection framework and it is a class of java.util package. It provides us with dynamic arrays in Java. Though, it may be slower than standard arrays but can be helpful in programs where lots of manipulation in the array is needed. This class is found in java.util package. The main advantage of Java ArrayList is, if we declare an array then we need to mention the size, but in ArrayList, it is not needed to mention the size of ArrayList. If you want to mention the size then you can do it.
 
-[Java ArrayList Doc]https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html
+[Java ArrayList Doc](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html)
 
 ArrayList is a Java class implemented using the List interface. Java ArrayList, as the name suggests, provides the functionality of a dynamic array where the size is not fixed as an array. Also, as a part of the Collection framework, it has many features not available with arrays.
 
