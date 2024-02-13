@@ -2486,12 +2486,15 @@ Employee{firstName='Mike', lastName='Wilson', id=3245}
 
 Now, let's see some operations in ArrayList and the time complexity
 
-| Operation                                        | Time Complexity        | 
-| :----------------------------------------------- | :---------------------:|
-| Inserting Element in ArrayList                   | O(1) - Constant time   |
-| Removing Element from ArrayList                  | O(n) - Linear Time     |
-| Replacing Elements in ArrayList                  | O(1)                   |
-| Traversing Elements in ArrayList                 | O(n)                   |
+| Operation                 | Time Complexity        | Why                                                                                                                                              |
+| :------------------------ | :---------------------:| :-----------------------------------------------------------------------------------------------------------------------------------------------:|
+| add()                     | O(1) - Constant time   |  takes O(1) time; however, worst-case scenario, when a new array has to be created (exced 10) and all the elements copied to it, it’s O(n)       |
+| add(index, element)       | O(n) - Linear Time     |  on average runs in O(n) time. Have to iterate over the array and create a new space                                                             |
+| get()                     | O(1)                   |  is always a constant time O(1) operation, because you have to pass the index                                                                    |
+| remove()                  | O(n)                   |  runs in linear O(n) time. We have to iterate the entire array to find the element qualifying for removal.                                       |
+| set()                     | O(1)                   |  The “set” method only replaces the element at the given position, so it does not resize the underlying array nor move other elements around it. |
+| indexOf()                 | O(n)                   |  It iterates through the internal array and checks each element one by one, so the time complexity for this operation always requires O(n) time. |
+| contains()                | O(n)                   |  implementation is based on indexOf(), so it’ll also run in O(n) time.                                                                           |
 
 **Advantages of Java ArrayList**
 - Dynamic size: ArrayList can dynamically grow and shrink in size, making it easy to add or remove elements as needed.
