@@ -1874,7 +1874,14 @@ The List interface is found in ```java.util``` package and inherits the ```Colle
 <br>
 
 The list is an abstract data type. A list isn't a concrete data structure, it's an abstract data type nnd when it comes to abstract data types, normally there's an interface involved and list is no exception.
-Some the lists that we're gonna look all implement the ```java.util.list interface```. Classes that implement the list interface represent an ordered collection also known as a sequence. Some of them is Array List, Linked List, Vector. 
+Some the lists that we're gonna look all implement the ```java.util.list interface```. Classes that implement the list interface represent an ordered collection also known as a sequence. Some of them is Array List, Linked List, Vector.
+
+**Abstract Data Type**
+
+- Doesn´t dictate how the data is organized
+- Dictates the operations you can perform
+- Concrete data structure is usually a concrete class
+- Abstract data type is usually an interface
 
 If you want to implement the list interface, you want to create a custom implementation rather than starting with list itself and implementing that, it's a good idea to instead extend abstract list and abstract sequential list because there are scoledo implementations of the list interface and so they kind of give you a head start and all you have to do is override the methods that you specifically want to implement if you want custom behaviour. So if you are going to implement a custom list, its a good idea to extend one of these two classes.
 
@@ -1960,6 +1967,253 @@ class GFG {
     }
 } 
 ```
+
+**Operations in a Java List Interface**
+
+- Adding elements to List class using add() method
+- In order to add an element to the list, we can use the add() method. This method is overloaded to perform multiple operations based on different parameters.
+  - **add(Object)**: This method is used to add an element at the end of the List.
+  - **add(int index, Object)**: This method is used to add an element at a specific index in the List
+
+```java
+// Java Program to Add Elements to a List
+ 
+// Importing all utility classes
+import java.util.*;
+ 
+// Main class
+class GFG {
+ 
+    // Main driver method
+    public static void main(String args[])
+    {
+        // Creating an object of List interface,
+        // implemented by ArrayList class
+        List<String> al = new ArrayList<>();
+ 
+        // Adding elements to object of List interface
+        // Custom elements
+        al.add("Geeks");
+        al.add("Geeks");
+        al.add(1, "For");
+ 
+        // Print all the elements inside the
+        // List interface object
+        System.out.println(al);
+    }
+}
+```
+
+- Updating elements in List class using set() method
+- After adding the elements, if we wish to change the element, it can be done using the set() method. Since List is indexed, the element which we wish to change is referenced by the index of the element. Therefore, this method takes an index and the updated element which needs to be inserted at that index. 
+
+```java
+// Java Program to Update Elements in a List
+ 
+// Importing utility classes
+import java.util.*;
+ 
+// Main class
+class GFG {
+ 
+    // Main driver method
+    public static void main(String args[])
+    {
+        // Creating an object of List interface
+        List<String> al = new ArrayList<>();
+ 
+        // Adding elements to object of List class
+        al.add("Geeks");
+        al.add("Geeks");
+        al.add(1, "Geeks");
+ 
+        // Display theinitial elements in List
+        System.out.println("Initial ArrayList " + al);
+ 
+        // Setting (updating) element at 1st index
+        // using set() method
+        al.set(1, "For");
+ 
+        // Print and display the updated List
+        System.out.println("Updated ArrayList " + al);
+    }
+}
+```
+
+- Searching for elements using indexOf(), lastIndexOf methods
+- Searching for elements in the List interface is a common operation in Java programming. The List interface provides several methods to search for elements, such as the indexOf(), lastIndexOf() methods.
+- The indexOf() method returns the index of the first occurrence of a specified element in the list, while the lastIndexOf() method returns the index of the last occurrence of a specified element.
+  - **indexOf(element)**: Returns the index of the first occurrence of the specified element in the list, or -1 if the element is not found
+  - **lastIndexOf(element)**: Returns the index of the last occurrence of the specified element in the list, or -1 if the element is not found
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+ 
+public class ListExample {
+    public static void main(String[] args)
+    {
+        // create a list of integers
+        List<Integer> numbers = new ArrayList<>();
+ 
+        // add some integers to the list
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(2);
+ 
+        // use indexOf() to find the first occurrence of an
+        // element in the list
+        int index = numbers.indexOf(2);
+        System.out.println(
+            "The first occurrence of 2 is at index "
+            + index);
+ 
+        // use lastIndexOf() to find the last occurrence of
+        // an element in the list
+        int lastIndex = numbers.lastIndexOf(2);
+        System.out.println(
+            "The last occurrence of 2 is at index "
+            + lastIndex);
+    }
+}
+```
+
+- Removing elements using remove() method
+- In order to remove an element from a list, we can use the remove() method. This method is overloaded to perform multiple operations based on different parameters. They are:
+  - **remove(Object)**: This method is used to simply remove an object from the List. If there are multiple such objects, then the first occurrence of the object is removed.
+  - **remove(int index)**: Since a List is indexed, this method takes an integer value which simply removes the element present at that specific index in the List. After removing the element, all the elements are moved to the left to fill the space and the indices of the objects are updated.
+
+```java
+   
+// Java Program to Remove Elements from a List
+ 
+// Importing List and ArrayList classes
+// from java.util package
+import java.util.ArrayList;
+import java.util.List;
+ 
+// Main class
+class GFG {
+ 
+    // Main driver method
+    public static void main(String args[])
+    {
+ 
+        // Creating List class object
+        List<String> al = new ArrayList<>();
+ 
+        // Adding elements to the object
+        // Custom inputs
+        al.add("Geeks");
+        al.add("Geeks");
+ 
+        // Adding For at 1st indexes
+        al.add(1, "For");
+ 
+        // Print the initialArrayList
+        System.out.println("Initial ArrayList " + al);
+ 
+        // Now remove element from the above list
+        // present at 1st index
+        al.remove(1);
+ 
+        // Print the List after removal of element
+        System.out.println("After the Index Removal " + al);
+ 
+        // Now remove the current object from the updated
+        // List
+        al.remove("Geeks");
+ 
+        // Finally print the updated List now
+        System.out.println("After the Object Removal "
+                           + al);
+    }
+}
+```
+
+- Accessing Elements in List class using get() method
+- In order to access an element in the list, we can use the get() method, which returns the element at the specified index
+  - **get(int index)**: This method returns the element at the specified index in the list.
+
+```java
+// Java Program to Access Elements of a List
+ 
+// Importing all utility classes
+import java.util.*;
+ 
+// Main class
+class GFG {
+    // Main driver method
+    public static void main(String args[])
+    {
+        // Creating an object of List interface,
+        // implemented by ArrayList class
+        List<String> al = new ArrayList<>();
+ 
+        // Adding elements to object of List interface
+        al.add("Geeks");
+        al.add("For");
+        al.add("Geeks");
+ 
+        // Accessing elements using get() method
+        String first = al.get(0);
+        String second = al.get(1);
+        String third = al.get(2);
+ 
+        // Printing all the elements inside the
+        // List interface object
+        System.out.println(first);
+        System.out.println(second);
+        System.out.println(third);
+        System.out.println(al);
+    }
+}
+```
+
+- Checking if an element is present in the List class using contains() method
+- In order to check if an element is present in the list, we can use the contains() method. This method returns true if the specified element is present in the list, otherwise, it returns false.
+  - **contains(Object)**: This method takes a single parameter, the object to be checked if it is present in the list.
+
+```java
+// Java Program to Check if an Element is Present in a List
+ 
+// Importing all utility classes
+import java.util.*;
+ 
+// Main class
+class GFG {
+    // Main driver method
+    public static void main(String args[])
+    {
+        // Creating an object of List interface,
+        // implemented by ArrayList class
+        List<String> al = new ArrayList<>();
+ 
+        // Adding elements to object of List interface
+        al.add("Geeks");
+        al.add("For");
+        al.add("Geeks");
+ 
+        // Checking if element is present using contains()
+        // method
+        boolean isPresent = al.contains("Geeks");
+ 
+        // Printing the result
+        System.out.println("Is Geeks present in the list? "
+                           + isPresent);
+    }
+}
+```
+
+Now, let's see some operations in List and the time complexity
+
+| Operation                                        | Time Complexity        | 
+| :----------------------------------------------- | :---------------------:|
+| Adding Element in List Interface                 | O(1) - Constant time   |
+| Remove Element from List Interface               | O(n) - Linear Time     |
+| Replace Element in List Interface                | O(n)                   |
+| Traversing List Interface                        | O(n)                   |   
 
 ## <a name="chapter5"></a>Chapter 5: Stacks in Java
   
