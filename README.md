@@ -2302,6 +2302,8 @@ public class Employee {
 
 No, let´s make operations using the ArrayList
 
+**Add Elements**
+
 ```java
 import java.util.ArrayList;
 import java.util.List;
@@ -2316,33 +2318,153 @@ public class Main {
         employeeList.add(new Employee("Mary", "Smith", 22));
         employeeList.add(new Employee("Mike", "Wilson", 3245));
 
-//        employeeList.forEach(employee -> System.out.println(employee));
-//
-//        System.out.println(employeeList.get(1));
-//
-//        System.out.println(employeeList.isEmpty());
+        employeeList.forEach(employee -> System.out.println(employee)); // print all elements using Lambda
 
-        employeeList.set(1, new Employee("John", "Adams", 4568));
-        //employeeList.forEach(employee -> System.out.println(employee));
+        System.out.println(employeeList.get(1)); // constant time complexity
 
-        //System.out.println(employeeList.size());
+        System.out.println(employeeList.isEmpty()); // verify if the list is empty - return boolean
+   }
+}
+```
 
-        employeeList.add(3, new Employee("John", "Doe", 4567));
-        //employeeList.forEach(employee -> System.out.println(employee));
+output
+```
+Employee{firstName='Jane', lastName='Jones', id=123}
+Employee{firstName='John', lastName='Doe', id=4567}
+Employee{firstName='Mary', lastName='Smith', id=22}
+Employee{firstName='Mike', lastName='Wilson', id=3245}
+Employee{firstName='John', lastName='Doe', id=4567}
+false
+```
 
-//        Employee[] employeeArray = employeeList.toArray(new Employee[employeeList.size()]);
-//        for (Employee employee: employeeArray) {
-//            System.out.println(employee);
-//        }
+OBS: If we not specify the default capacity of a ArrayList, the default will be 10. If the capacity exceed when we are adding elements, the ArrayList will be automatically resize
 
-        System.out.println(employeeList.contains(new Employee("Mary", "Smith", 22)));
-        System.out.println(employeeList.indexOf(new Employee("John", "Doe", 4567)));
+**Updating elements**
 
-        employeeList.remove(2);
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+
+    public static void main(String[] args) {
+	List<Employee> employeeList = new ArrayList<>();
+        employeeList.add(new Employee("Jane", "Jones", 123));
+        employeeList.add(new Employee("John", "Doe", 4567));
+        employeeList.add(new Employee("Mary", "Smith", 22));
+        employeeList.add(new Employee("Mike", "Wilson", 3245));
+
+        employeeList.set(1, new Employee("John", "Adams", 4568)); // add in a specific position and update the value
+        employeeList.add(new Employee("June", "Homes", 2234)); // add in the end of the list
+        employeeList.add(3,new Employee("Lily", "Will", 3356)); // add in a specific position in the middle of values
         employeeList.forEach(employee -> System.out.println(employee));
 
+        System.out.println(employeeList.size()); // prints the total number of elements in the list
+   }
+}
+```
+
+output
+```
+Employee{firstName='Jane', lastName='Jones', id=123}
+Employee{firstName='John', lastName='Adams', id=4568}
+Employee{firstName='Mary', lastName='Smith', id=22}
+Employee{firstName='Lily', lastName='Will', id=3356}
+Employee{firstName='Mike', lastName='Wilson', id=3245}
+Employee{firstName='June', lastName='Homes', id=2234}
+```
+
+**Return a array from a List**
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+
+    public static void main(String[] args) {
+	List<Employee> employeeList = new ArrayList<>();
+        employeeList.add(new Employee("Jane", "Jones", 123));
+        employeeList.add(new Employee("John", "Doe", 4567));
+        employeeList.add(new Employee("Mary", "Smith", 22));
+        employeeList.add(new Employee("Mike", "Wilson", 3245));
+
+        Employee[] employeeArray = employeeList.toArray(new Employee[employeeList.size()]); // creates a array of Employee from the size of the Array list
+        for (Employee employee: employeeArray) {
+            System.out.println(employee);
+        }
     }
 }
+```
+
+output
+```
+Employee{firstName='Jane', lastName='Jones', id=123}
+Employee{firstName='John', lastName='Doe', id=4567}
+Employee{firstName='Mary', lastName='Smith', id=22}
+Employee{firstName='Mike', lastName='Wilson', id=3245}
+```
+
+**Verifying if the List contains a element**
+-OBS: By Default, the contains method in array list implements the equals. If the element we are looking for not implement the equals and use the default, what will be compared will be the reference
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+
+    public static void main(String[] args) {
+	List<Employee> employeeList = new ArrayList<>();
+        employeeList.add(new Employee("Jane", "Jones", 123));
+        employeeList.add(new Employee("John", "Doe", 4567));
+        employeeList.add(new Employee("Mary", "Smith", 22));
+        employeeList.add(new Employee("Mike", "Wilson", 3245));
+
+        // without equals method implemented in the Employee class
+        System.out.println(employeeList.contains(new Employee("John", "Doe", 4567)));
+        System.out.println(employeeList.indexOf(new Employee("John", "Doe", 4567)));
+        // after equals method implemented in the Employee class
+        System.out.println(employeeList.contains(new Employee("John", "Doe", 4567)));
+        System.out.println(employeeList.indexOf(new Employee("John", "Doe", 4567)));
+    }
+}
+```
+
+output
+```
+false
+false
+true
+true
+```
+
+**Remove element**
+
+```java
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+
+    public static void main(String[] args) {
+	List<Employee> employeeList = new ArrayList<>();
+        employeeList.add(new Employee("Jane", "Jones", 123));
+        employeeList.add(new Employee("John", "Doe", 4567));
+        employeeList.add(new Employee("Mary", "Smith", 22));
+        employeeList.add(new Employee("Mike", "Wilson", 3245));
+
+        employeeList.remove(2);
+        employeeList.forEach(employee -> System.out.println(employee));	
+    }
+}
+```
+
+output
+```
+Employee{firstName='Jane', lastName='Jones', id=123}
+Employee{firstName='John', lastName='Doe', id=4567}
+Employee{firstName='Mike', lastName='Wilson', id=3245}
 ```
 
 **Important Features of ArrayList in Java**
@@ -2375,11 +2497,16 @@ Now, let's see some operations in ArrayList and the time complexity
 - Dynamic size: ArrayList can dynamically grow and shrink in size, making it easy to add or remove elements as needed.
 - Easy to use: ArrayList is simple to use, making it a popular choice for many Java developers.
 - Fast access: ArrayList provides fast access to elements, as it is implemented as an array under the hood.
+- Good for random access if you have the index
+- Good for random access if you have the index
 - Ordered collection: ArrayList preserves the order of elements, allowing you to access elements in the order they were added.
 - Supports null values: ArrayList can store null values, making it useful in cases where the absence of a value needs to be represented.
 
 **Disadvantages of Java ArrayList**
 - Slower than arrays: ArrayList is slower than arrays for certain operations, such as inserting elements in the middle of the list.
+- Not so good for inserting items into the list in any position other than the end.
+- It's not so good for deletions, removals.
+- It's not so good for accessing an item in the list when you don't have it's index.
 - Increased memory usage: ArrayList requires more memory than arrays, as it needs to maintain its dynamic size and handle resizing.
 - Not thread-safe: ArrayList is not thread-safe, meaning that multiple threads may access and modify the list concurrently, leading to potential race conditions and data corruption.
 - Performance degradation: ArrayList’s performance may degrade as the number of elements in the list increases, especially for operations such as searching for elements or inserting elements in the middle of the list.
