@@ -2516,6 +2516,24 @@ Now, let's see some operations in ArrayList and the time complexity
 
 #### <a name="chapter4part3"></a>Chapter 4 - Part 3: Vectors
 
+- They are very similar to ArrayList, but Vector is **synchronized** and has some legacy methods that the collection framework does not contain.
+- Vector implements a dynamic array which means it can grow or shrink as required. Like an array, it contains components that can be accessed using an integer index.
+- It also maintains an insertion order like an ArrayList. Still, it is rarely used in a non-thread environment as it is synchronized, and due to this, it gives a poor performance in adding, searching, deleting, and updating its elements.
+- The Iterators returned by the Vector class are fail-fast. In the case of concurrent modification, it fails and throws the ConcurrentModificationException.
+
+Synchronization in Java is the capability to control the access of multiple threads to any shared resource. Java Synchronization is better option where we want to allow only one thread to access the shared resource. If you declare any method as synchronized, it is known as synchronized method. Synchronized method is used to lock an object for any shared resource.
+
+Vector Implementation Add Example
+
+```java
+public synchronized boolean add(E e) {
+        modCount++;
+        ensureCapacityHelper(elementCount + 1);
+        elementData[elementCount++] = e;
+        return true;
+    }
+```
+
 #### <a name="chapter4part4"></a>Chapter 4 - Part 4: Singly Linked Lists
 
 #### <a name="chapter4part5"></a>Chapter 4 - Part 5: Doubly Linked Lists
