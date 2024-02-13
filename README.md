@@ -21,9 +21,14 @@
     - [Chapter 3 - Part 11: Quick Sort](#chapter3part11)
     - [Chapter 3 - Part 12: Counting Sort](#chapter3part12)
     - [Chapter 3 - Part 13: Radix Sort](#chapter3part13)
-	- [Chapter 3 - Part 14: Sorting Arrays using JDK](#chapter3part14)
+    - [Chapter 3 - Part 14: Sorting Arrays using JDK](#chapter3part14)
 4. [Chapter 4: Lists in Java](#chapter4)
     - [Chapter 4 - Part 1: Introduction to Lists](#chapter4part1)
+    - [Chapter 4 - Part 2: Array Lists](#chapter4part2)
+    - [Chapter 4 - Part 3: Vectors](#chapter4part3)
+    - [Chapter 4 - Part 4: Singly Linked Lists](#chapter4part4)
+    - [Chapter 4 - Part 5: Doubly Linked Lists](#chapter4part5)
+    - [Chapter 4 - Part 6: JDK LinkedList Class](#chapter4part6)
 5. [Chapter 5: Stacks in Java](#chapter5)
     - [Chapter 5 - Part 1: Introduction to Stacks](#chapter5part1)
 6. [Chapter 6: Queues in Java](#chapter6)
@@ -2214,6 +2219,16 @@ Now, let's see some operations in List and the time complexity
 | Remove Element from List Interface               | O(n) - Linear Time     |
 | Replace Element in List Interface                | O(n)                   |
 | Traversing List Interface                        | O(n)                   |   
+
+#### <a name="chapter4part2"></a>Chapter 4 - Part 2: Array Lists
+
+#### <a name="chapter4part3"></a>Chapter 4 - Part 3: Vectors
+
+#### <a name="chapter4part4"></a>Chapter 4 - Part 4: Singly Linked Lists
+
+#### <a name="chapter4part5"></a>Chapter 4 - Part 5: Doubly Linked Lists
+
+#### <a name="chapter4part6"></a>Chapter 4 - Part 6: JDK LinkedList Class
 
 ## <a name="chapter5"></a>Chapter 5: Stacks in Java
   
