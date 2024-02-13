@@ -2222,6 +2222,57 @@ Now, let's see some operations in List and the time complexity
 
 #### <a name="chapter4part2"></a>Chapter 4 - Part 2: Array Lists
 
+Java ArrayList is a part of the Java collection framework and it is a class of java.util package. It provides us with dynamic arrays in Java. Though, it may be slower than standard arrays but can be helpful in programs where lots of manipulation in the array is needed. This class is found in java.util package. The main advantage of Java ArrayList is, if we declare an array then we need to mention the size, but in ArrayList, it is not needed to mention the size of ArrayList. If you want to mention the size then you can do it.
+
+[Java ArrayList Doc]https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html
+
+ArrayList is a Java class implemented using the List interface. Java ArrayList, as the name suggests, provides the functionality of a dynamic array where the size is not fixed as an array. Also, as a part of the Collection framework, it has many features not available with arrays.
+
+**Java ArrayList Example**
+
+```java
+
+```
+
+**Important Features of ArrayList in Java**
+
+- ArrayList inherits AbstractList class and implements the List interface.
+- ArrayList is initialized by size. However, the size is increased automatically if the collection grows or shrinks if the objects are removed from the collection.
+- Java ArrayList allows us to randomly access the list.
+- ArrayList can not be used for primitive types, like int, char, etc. We need a wrapper class for such cases.
+- ArrayList in Java can be seen as a vector in C++.
+- ArrayList is not Synchronized. Its equivalent synchronized class in Java is Vector.
+
+**Some Key Points of ArrayList**
+
+- ArrayList is Underlined data Structure Resizable Array or Growable Array.
+- ArrayList Duplicates Are Allowed.
+- Insertion Order is Preserved.
+- Heterogeneous objects are allowed.
+- Null insertion is possible.
+
+Now, let's see some operations in ArrayList and the time complexity
+
+| Operation                                        | Time Complexity        | 
+| :----------------------------------------------- | :---------------------:|
+| Inserting Element in ArrayList                   | O(1) - Constant time   |
+| Removing Element from ArrayList                  | O(n) - Linear Time     |
+| Replacing Elements in ArrayList                  | O(1)                   |
+| Traversing Elements in ArrayList                 | O(n)                   |
+
+**Advantages of Java ArrayList**
+- Dynamic size: ArrayList can dynamically grow and shrink in size, making it easy to add or remove elements as needed.
+- Easy to use: ArrayList is simple to use, making it a popular choice for many Java developers.
+- Fast access: ArrayList provides fast access to elements, as it is implemented as an array under the hood.
+- Ordered collection: ArrayList preserves the order of elements, allowing you to access elements in the order they were added.
+- Supports null values: ArrayList can store null values, making it useful in cases where the absence of a value needs to be represented.
+
+**Disadvantages of Java ArrayList**
+- Slower than arrays: ArrayList is slower than arrays for certain operations, such as inserting elements in the middle of the list.
+- Increased memory usage: ArrayList requires more memory than arrays, as it needs to maintain its dynamic size and handle resizing.
+- Not thread-safe: ArrayList is not thread-safe, meaning that multiple threads may access and modify the list concurrently, leading to potential race conditions and data corruption.
+- Performance degradation: ArrayList’s performance may degrade as the number of elements in the list increases, especially for operations such as searching for elements or inserting elements in the middle of the list.
+
 #### <a name="chapter4part3"></a>Chapter 4 - Part 3: Vectors
 
 #### <a name="chapter4part4"></a>Chapter 4 - Part 4: Singly Linked Lists
