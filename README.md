@@ -426,24 +426,19 @@ This is an example of computing Fibonacci using recursion. For each number, we c
 
 - **O(n!)**: Fatorial Time Execution
 ```java
-public class FactorialExample {
-
-    public static void main(String[] args) {
-        int[] array = {1, 2, 3}; // Sample array
-
-        // Nested loops with O(n!) time complexity
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length; j++) {
-                for (int k = 0; k < array.length; k++) {
-                    System.out.println(array[i] + ", " + array[j] + ", " + array[k]);
-                }
-            }
+public class Solution {
+    static void nFacRuntimeFunc(int n) {
+        for(int i=0; i<n; i++) {
+            nFacRuntimeFunc(n-1);
         }
+    }
+    public static void main(String[] args) {
+        nFacRuntimeFunc(3);
     }
 }
 ```
 
-In this example, the nested loops iterate over the array elements, printing out all possible combinations of three elements from the array. This results in a time complexity of O(n!), where n is the number of elements in the array.
+The time complexity of a function called in a loop affects the time complexity of the loop. If the loop is executed n times and the function in the loop executes (n-1)! steps, then a total of n * (n-1)! = n! steps will be performed. 
 
 ## <a name="chapter3"></a>Chapter 3: Arrays in Java
   
