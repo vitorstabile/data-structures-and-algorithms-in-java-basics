@@ -1837,7 +1837,7 @@ public class Main {
 
 A useful class to use to make operations in Arrays in Java is the Arrays.class
 
-We can see the operations in the [Java Doc](https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html)
+We can see the operations in the [Java Arrays Doc](https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html)
 
 ```java
 public class Main {
@@ -1858,6 +1858,108 @@ public class Main {
 ## <a name="chapter4"></a>Chapter 4: Lists in Java
   
 #### <a name="chapter4part1"></a>Chapter 4 - Part 1: Introduction to Lists
+
+The List interface is found in ```java.util``` package and inherits the ```Collection interface```. It is a factory of the ListIterator interface. Through the ListIterator, we can iterate the list in forward and backward directions. The implementation classes of the List interface are ```ArrayList```, ```LinkedList```, ```Stack```, and ```Vector```. ```ArrayList``` and ```LinkedList``` are widely used in Java programming. The Vector class is deprecated since Java 5.
+
+[Java List Doc](https://docs.oracle.com/javase/8/docs/api/java/util/List.html)
+
+<br>
+
+<div align="center"><img src="img/listcollection-w768-h384.png" width=768 height=384><br><sub>List and ArrayList in Java Collection Framework - (<a href='https://www.geeksforgeeks.org/list-interface-java-examples/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+<div align="center"><img src="img/listimplementation-w768-h384.png" width=768 height=384><br><sub> - (<a href='https://www.geeksforgeeks.org/list-interface-java-examples/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+The list is an abstract data type. A list isn't a concrete data structure, it's an abstract data type nnd when it comes to abstract data types, normally there's an interface involved and list is no exception.
+Some the lists that we're gonna look all implement the ```java.util.list interface```. Classes that implement the list interface represent an ordered collection also known as a sequence. Some of them is Array List, Linked List, Vector. 
+
+If you want to implement the list interface, you want to create a custom implementation rather than starting with list itself and implementing that, it's a good idea to instead extend abstract list and abstract sequential list because there are scoledo implementations of the list interface and so they kind of give you a head start and all you have to do is override the methods that you specifically want to implement if you want custom behaviour. So if you are going to implement a custom list, its a good idea to extend one of these two classes.
+
+**Declaration of Java List Interface**
+
+```java
+public interface List<E> extends Collection<E> ; 
+```
+
+Since List is an interface, objects cannot be created of the type list. We always need a class that implements this List in order to create an object. And also, after the introduction of Generics in Java 1.5, it is possible to restrict the type of object that can be stored in the List. Just like several other user-defined ‘interfaces’ implemented by user-defined ‘classes’, List is an ‘interface’, implemented by the ArrayList class, pre-defined in java.util package.
+
+**Syntax of Java List**
+
+This type of safelist can be defined as:
+
+```java
+List<Obj> list = new ArrayList<Obj> (); 
+```
+
+Obj is the type of the object to be stored in List
+
+**Example of Java List**
+
+```java
+// Java program to Demonstrate List Interface
+ 
+// Importing all utility classes
+import java.util.*;
+ 
+// Main class
+// ListDemo class
+class GFG {
+ 
+    // Main driver method
+    public static void main(String[] args)
+    {
+ 
+        // Creating an object of List interface
+        // implemented by the ArrayList class
+        List<Integer> l1 = new ArrayList<Integer>();
+ 
+        // Adding elements to object of List interface
+        // Custom inputs
+ 
+        l1.add(0, 1);
+        l1.add(1, 2);
+ 
+        // Print the elements inside the object
+        System.out.println(l1);
+ 
+        // Now creating another object of the List
+        // interface implemented ArrayList class
+        // Declaring object of integer type
+        List<Integer> l2 = new ArrayList<Integer>();
+ 
+        // Again adding elements to object of List interface
+        // Custom inputs
+        l2.add(1);
+        l2.add(2);
+        l2.add(3);
+ 
+        // Will add list l2 from 1 index
+        l1.addAll(1, l2);
+ 
+        System.out.println(l1);
+ 
+        // Removes element from index 1
+        l1.remove(1);
+ 
+        // Printing the updated List 1
+        System.out.println(l1);
+ 
+        // Prints element at index 3 in list 1
+        // using get() method
+        System.out.println(l1.get(3));
+ 
+        // Replace 0th element with 5
+        // in List 1
+        l1.set(0, 5);
+ 
+        // Again printing the updated List 1
+        System.out.println(l1);
+    }
+} 
+```
 
 ## <a name="chapter5"></a>Chapter 5: Stacks in Java
   
