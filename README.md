@@ -2590,10 +2590,6 @@ Now, let's see some operations in Singly and Double Linked List and the time com
 
 #### <a name="chapter4part5"></a>Chapter 4 - Part 5: Singly Linked Lists
 
-**Linked List**
-
-In a linked list, each item in the list is aware of another item in the list, because each item in the list contains a link to the next item in the list.
-
 <br>
 
 <div align="center"><img src="img/singlelinkedlist1-w1013-h252.png" width=1013 height=252><br><sub>Single Linked List - (<a href='https://www.geeksforgeeks.org/what-is-linked-list/'>Work by Geeks for Geeks</a>) </sub></div>
@@ -2682,22 +2678,7 @@ In a singly linked list, each node contains a reference to the next node in the 
 
 When you're working with a singly linked list, you want to insert and delete items at the front of the list because you only have a reference to the head of the list, and so if you want to insert and delete items anywhere else, you'd have to start at head and you've got to traverse the entire list to find what you're looking for.
 
-**Why linked list data structure needed?**
-
-Here are a few advantages of a linked list that is listed below, it will help you understand why it is necessary to know.
-
-- **Dynamic Data structure**: The size of memory can be allocated or de-allocated at run time based on the operation insertion or deletion.
-- **Ease of Insertion/Deletion**: The insertion and deletion of elements are simpler than arrays since no elements need to be shifted after insertion and deletion, Just the address needed to be updated.
-- **Efficient Memory Utilization**: As we know Linked List is a dynamic data structure the size increases or decreases as per the requirement so this avoids the wastage of memory. 
-- **Implementation**: Various advanced data structures can be implemented using a linked list like a stack, queue, graph, hash maps, etc.
-
-In a system, if we maintain a sorted list of IDs in an array id[] = [1000, 1010, 1050, 2000, 2040]. 
-
-If we want to insert a new ID 1005, then to maintain the sorted order, we have to move all the elements after 1000 (excluding 1000). 
-
-Deletion is also expensive with arrays until unless some special techniques are used. For example, to delete 1010 in id[], everything after 1010 has to be moved due to this so much work is being done which affects the efficiency of the code.
-
-No, let´s make operations using the SingleLinked List
+Now, let´s make operations using the SingleLinked List
 
 Let's create our class that we will store
 
