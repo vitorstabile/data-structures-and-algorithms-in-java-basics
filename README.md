@@ -3638,6 +3638,72 @@ Now, let's see some operations in Doubly Linked List and the time complexity
 
 #### <a name="chapter4part7"></a>Chapter 4 - Part 7: JDK LinkedList Class
 
+We can see the operations in the [Java LinkedList Doc](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html)
+
+The implementation of Linked List in Java is Doubly Linked List
+
+- addFirst - Add in the head
+- addLast - Add in the tail
+- removeFirst - remove in the head
+- removeLast - remove in the tail
+
+```java
+public class Solution {
+    public static void main(String[] args) {
+        Employee janeJones = new Employee("Jane", "Jones", 123);
+        Employee johnDoe = new Employee("John", "Doe", 4567);
+        Employee marySmith = new Employee("Mary", "Smith", 22);
+        Employee mikeWilson = new Employee("Mike", "Wilson", 3245);
+        Employee billEnd = new Employee("Bill", "End", 78);
+
+        LinkedList<Employee> list = new LinkedList<>();
+        list.addFirst(janeJones);
+        list.addFirst(johnDoe);
+        list.addFirst(marySmith);
+        list.addFirst(mikeWilson);
+
+        Iterator iter = list.iterator();
+        System.out.print("HEAD -> ");
+        while (iter.hasNext()) {
+            System.out.print(iter.next());
+            System.out.print("<=>");
+        }
+        System.out.println("null");
+
+        list.addLast(billEnd);
+        iter = list.iterator();
+        System.out.print("HEAD -> ");
+        while (iter.hasNext()) {
+            System.out.print(iter.next());
+            System.out.print("<=>");
+        }
+        System.out.println("null");
+
+        list.removeFirst();
+        iter = list.iterator();
+        System.out.print("HEAD -> ");
+        while (iter.hasNext()) {
+            System.out.print(iter.next());
+            System.out.print("<=>");
+        }
+        System.out.println("null");
+
+        list.removeLast();
+        iter = list.iterator();
+        System.out.print("HEAD -> ");
+        while (iter.hasNext()) {
+            System.out.print(iter.next());
+            System.out.print("<=>");
+        }
+        System.out.println("null");
+
+//        for (Employee employee: list) {
+//            System.out.println(employee);
+//        }
+    }
+}
+```
+
 ## <a name="chapter5"></a>Chapter 5: Stacks in Java
   
 #### <a name="chapter5part1"></a>Chapter 5 - Part 1: Introduction to Stacks
