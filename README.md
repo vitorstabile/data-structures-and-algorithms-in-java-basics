@@ -2533,6 +2533,79 @@ public synchronized boolean add(E e) {
 
 **Linked List**
 
+In a linked list, each item in the list is aware of another item in the list, because each item in the list contains a link to the next item in the list.
+
+Now this is different from arrays and lists that are backed by arrays. With an array, each item in the list is completely unaware of other items in the array, but items in a linked list know which item comes after them, and that means that we have to store some extra information with each item.
+
+When we have an array of integers, we just have to store the integer value in each position, but when it comes to a linked list, we have to store the integer value and we have to store a reference to the next integer in the list.
+
+<br>
+
+<div align="center"><img src="img/linkedlist1-w1180-h180.png" width=1180 height=180><br><sub>Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+ - Each item in the list is called a node
+ - The first item in the list is the head of the list
+
+So if you have a reference to the head, you can traverse the entire list. You would start at the head and then you'd go to head.next, and then you'd go to that next field, that next one, until you hit null.
+
+**Insert**
+
+<br>
+
+<div align="center"><img src="img/linkedlist2-w1180-h280.png" width=1180 height=280><br><sub>Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+- Create a new node "Bill"
+- Assign "Jane" to the next field
+- Assign head to "Bill"
+- Will be O(1) time complexity
+
+So let's say we wanted to insert Bill. Well, the first thing we're gonna have to do is create a new node for Bill. So we'd have a box somewhere that has Bill in it. When it comes to linked lists, you always insert a new element at the front of the list.
+And you can understand why. We only ever store a reference to the first element, and so if we wanted to insert an item anywhere other than the front, then we'd have to traverse the list to get there.
+
+And one of the advantages of using a linked list is that if you insert items at the front of the list, you can do it in constant time complexity, because the steps you have to do don't depend on the number of items in the list.
+You're always gonna do the same number of steps. 
+
+So we create a new node for Bill, and we're gonna wanna put Bill here, or up here in front. Bill is gonna wanna point to Jane. So after we've created the new node, we'll assign the next field Jane, and then we're gonna assign head to Bill, because Bill will be the new head of the list, and so that's all we have to do to insert a node.
+
+We create the actual node instance. We point the next field at the current head of the list because the new node is gonna become the new head, and then we point the head field at the new node. And that's gonna always be constant time complexity, because it doesn't matter. You could have three items in the list or a million items in the list, and you're just gonna do the same number of steps, **as long as you're inserting at the front of the list**.
+
+And so after the insertion, this is what the list would look like. Bill's next field points to Jane, and the head field now points to Bill because he's at the front of the list.
+
+<br>
+
+<div align="center"><img src="img/linkedlist3-w1400-h280.png" width=1400 height=280><br><sub>Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+**Delete**
+
+<br>
+
+<div align="center"><img src="img/linkedlist3-w1400-h280.png" width=1400 height=280><br><sub>Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+- Assign "Bill" to a temporary variable "removedNode"
+- Assign "head" to "Jane"
+- Return "removedNode"
+- Will be O(1) time complexity
+
+So how about deleting? Now what if we wanted to pull Bill off? And once again, we'll want to delete from the front of the list. Otherwise, we're gonna have to traverse the list looking for the node we want to delete.
+
+Now in the implementation, I'll show you, when we do a deletion, we return the node that we deleted. So we're first gonna assign Bill to a temporary variable called removedNode, and then what do we wanna do? Well, all we're gonna do is move the head to Jane, because that effectively removes Bill from the list. Because for a linked list, the only sort of information that we're holding is this head field. And so if we break this link to Bill and we change heads so it's pointing to Jane, Bill has effectively been removed from the list. There's no way we can get from head to Bill. And then at that point, we would return the removedNode, which we previously stored Bill into that field. And that's all we have to do to delete a node from the front of the list. Once again, this will be constant time complexity, because it doesn't matter how many items are in the list. You're gonna do the same number of steps.
+
+<br>
+
+<div align="center"><img src="img/linkedlist3-w1400-h280.png" width=1400 height=280><br><sub>Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+We have, Bill will be hanging off here. He'll still be pointing to Jane, but there's no way for us to reach him from the head of the list. And if we wanted to do clean out, we could set Bill's next field to null if we wanted to.
+
 In a singly linked list, each node contains a reference to the next node in the sequence. Traversing a singly linked list is done in a forward direction.
 
 <br>
@@ -2560,6 +2633,8 @@ In a system, if we maintain a sorted list of IDs in an array id[] = [1000, 1010,
 If we want to insert a new ID 1005, then to maintain the sorted order, we have to move all the elements after 1000 (excluding 1000). 
 
 Deletion is also expensive with arrays until unless some special techniques are used. For example, to delete 1010 in id[], everything after 1010 has to be moved due to this so much work is being done which affects the efficiency of the code.
+
+
 
 #### <a name="chapter4part5"></a>Chapter 4 - Part 5: Doubly Linked Lists
 
