@@ -2532,11 +2532,80 @@ public synchronized boolean add(E e) {
 
 #### <a name="chapter4part4"></a>Chapter 4 - Part 4: Linked Lists
 
+Linked List is a linear data structure, in which elements are not stored at a contiguous location, rather they are linked using pointers. Linked List forms a series of connected nodes, where each node stores the data and the address of the next node.
+
+<br>
+
+<div align="center"><img src="img/singlelinkedlist1-w1013-h252.png" width=1013 height=252><br><sub>Single Linked List - (<a href='https://www.geeksforgeeks.org/what-is-linked-list/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- **Node Structure**: A node in a linked list typically consists of two components:
+- **Data**: It holds the actual value or data associated with the node.
+- **Next Pointer**: It stores the memory address (reference) of the next node in the sequence.
+- **Head and Tail**: The linked list is accessed through the head node, which points to the first node in the list. The last node in the list points to NULL or nullptr, indicating the end of the list. This node is known as the tail node.
+
+**Why linked list data structure needed?**
+
+Here are a few advantages of a linked list that is listed below, it will help you understand why it is necessary to know.
+
+- **Dynamic Data structure**: The size of memory can be allocated or de-allocated at run time based on the operation insertion or deletion.
+- **Ease of Insertion/Deletion**: The insertion and deletion of elements are simpler than arrays since no elements need to be shifted after insertion and deletion, Just the address needed to be updated.
+- **Efficient Memory Utilization**: As we know Linked List is a dynamic data structure the size increases or decreases as per the requirement so this avoids the wastage of memory. 
+- **Implementation**: Various advanced data structures can be implemented using a linked list like a stack, queue, graph, hash maps, etc.
+
+There are mainly three types of linked lists:
+- Single-linked list
+- Double linked list
+- Circular linked list
+
+**Operations on Linked Lists**
+- **Insertion**: Adding a new node to a linked list involves adjusting the pointers of the existing nodes to maintain the proper sequence. Insertion can be performed at the beginning, end, or any position within the list
+- **Deletion**: Removing a node from a linked list requires adjusting the pointers of the neighboring nodes to bridge the gap left by the deleted node. Deletion can be performed at the beginning, end, or any position within the list.
+- **Searching**: Searching for a specific value in a linked list involves traversing the list from the head node until the value is found or the end of the list is reached.
+
+**Advantages of Linked Lists**
+
+- **Dynamic Size**: Linked lists can grow or shrink dynamically, as memory allocation is done at runtime.
+- **Insertion and Deletion**: Adding or removing elements from a linked list is efficient, especially for large lists.
+- **Flexibility**: Linked lists can be easily reorganized and modified without requiring a contiguous block of memory.
+
+**Disadvantages of Linked Lists**
+
+- **Random Access**: Unlike arrays, linked lists do not allow direct access to elements by index. Traversal is required to reach a specific node.
+- **Extra Memory**: Linked lists require additional memory for storing the pointers, compared to arrays.
+
+Now, let's see some operations in Singly and Double Linked List and the time complexity
+
+| Operation                     | Time Complexity Singly Linked List  | Time Complexity Doubly Linked List   |
+| :---------------------------- | :----------------------------------:| :-----------------------------------:|
+| Accessing by Index            | O(n) - Linear Time                  |  O(n) - Linear Time                  |
+| Insertion at Beginning        | O(1) - Constant time                |  O(1) - Constant time                |
+| Insertion at End              | O(n)                                |  O(1)                                |
+| Insertion at Given Position   | O(n)                                |  O(n)                                |
+| Deletion at Beginning         | O(1)                                |  O(1)                                |
+| Deletion at End               | O(n)                                |  O(1)                                |
+| Deletion at Given Position    | O(n)                                |  O(n)                                |
+| Searching                     | O(n)                                |  O(n)                                |
+
 #### <a name="chapter4part5"></a>Chapter 4 - Part 5: Singly Linked Lists
 
 **Linked List**
 
 In a linked list, each item in the list is aware of another item in the list, because each item in the list contains a link to the next item in the list.
+
+<br>
+
+<div align="center"><img src="img/singlelinkedlist1-w1013-h252.png" width=1013 height=252><br><sub>Single Linked List - (<a href='https://www.geeksforgeeks.org/what-is-linked-list/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+**Characteristics of a Singly Linked List:**
+
+- Each node holds a single value and a reference to the next node in the list.
+- The list has a head, which is a reference to the first node in the list, and a tail, which is a reference to the last node in the list.
+- The nodes are not stored in a contiguous block of memory, but instead, each node holds the address of the next node in the list.
+- Accessing elements in a singly linked list requires traversing the list from the head to the desired node, as there is no direct access to a specific node in memory.
 
 Now this is different from arrays and lists that are backed by arrays. With an array, each item in the list is completely unaware of other items in the array, but items in a linked list know which item comes after them, and that means that we have to store some extra information with each item.
 
@@ -2612,17 +2681,6 @@ We have, Bill will be hanging off here. He'll still be pointing to Jane, but the
 In a singly linked list, each node contains a reference to the next node in the sequence. Traversing a singly linked list is done in a forward direction.
 
 When you're working with a singly linked list, you want to insert and delete items at the front of the list because you only have a reference to the head of the list, and so if you want to insert and delete items anywhere else, you'd have to start at head and you've got to traverse the entire list to find what you're looking for.
-
-<br>
-
-<div align="center"><img src="img/singlelinkedlist1-w1013-h252.png" width=1013 height=252><br><sub>Single Linked List - (<a href='https://www.geeksforgeeks.org/what-is-linked-list/'>Work by Geeks for Geeks</a>) </sub></div>
-
-<br>
-
-- **Node Structure**: A node in a linked list typically consists of two components:
-- **Data**: It holds the actual value or data associated with the node.
-- **Next Pointer**: It stores the memory address (reference) of the next node in the sequence.
-- **Head and Tail**: The linked list is accessed through the head node, which points to the first node in the list. The last node in the list points to NULL or nullptr, indicating the end of the list. This node is known as the tail node.
 
 **Why linked list data structure needed?**
 
@@ -3001,6 +3059,40 @@ public class EmployeeLinkedList {
 
 }
 ```
+
+**Application of Singly Linked Lists:**
+
+- **Memory management**: Singly linked lists can be used to implement memory pools, in which memory is allocated and deallocated as needed.
+- **Database indexing**: Singly linked lists can be used to implement linked lists in databases, allowing for fast insertion and deletion operations.
+- **Representing polynomials and sparse matrices**: Singly linked lists can be used to efficiently represent polynomials and sparse matrices, where most elements are zero.
+- **Operating systems**: Singly linked lists are used in operating systems for tasks such as scheduling processes and managing system resources.
+
+**Advantages of Singly Linked Lists:**
+
+- **Dynamic memory allocation**: Singly linked lists allow for dynamic memory allocation, meaning that the size of the list can change at runtime as elements are added or removed.
+- **Cache friendliness**: Singly linked lists can be cache-friendly as nodes can be stored in separate cache lines, reducing cache misses and improving performance.
+- **Space-efficient**: Singly linked lists are space-efficient, as they only need to store a reference to the next node in each element, rather than a large block of contiguous memory.
+
+**Disadvantages of Singly Linked Lists:**
+
+- **Poor random access performance**: Accessing an element in a singly linked list requires traversing the list from the head to the desired node, making it slow for random access operations compared to arrays.
+- **Increased memory overhead**: Singly linked lists require additional memory for storing the pointers to the next node in each element, resulting in increased memory overhead compared to arrays.
+- **Vulnerability to data loss**: Singly linked lists are vulnerable to data loss if a node’s next pointer is lost or corrupted, as there is no way to traverse the list and access other elements.
+- **Not suitable for parallel processing**: Singly linked lists are not suitable for parallel processing, as updating a node requires exclusive access to its next pointer, which cannot be easily done in a parallel environment.
+- **Backward traversing not possible**: In singly linked list does not support backward traversing.
+
+Now, let's see some operations in Singly Linked List and the time complexity
+
+| Operation                     | Time Complexity Singly Linked List  | Why                                                                       |
+| :---------------------------- | :----------------------------------:| :------------------------------------------------------------------------:|
+| Accessing by Index            | O(n) - Linear Time                  |  We have to transverse the intere list to access the node                 |
+| Insertion at Beginning        | O(1) - Constant time                |  Because we know the location of head and insert befor the head           |
+| Insertion at End              | O(n)                                |  We have to transverse the list to find the null and insert in the end    |
+| Insertion at Given Position   | O(n)                                |  We have to transverse the list to find the given position and insert     |
+| Deletion at Beginning         | O(1)                                |  Because we know the location of head and delete the head                 |
+| Deletion at End               | O(n)                                |  We have to transverse the list to find the null and delete in the last   |
+| Deletion at Given Position    | O(n)                                |  We have to transverse the list to find the given position and delete     |
+| Searching                     | O(n)                                |  We have to transverse the list to find the element                       |
 
 #### <a name="chapter4part6"></a>Chapter 4 - Part 6: Doubly Linked Lists
 
