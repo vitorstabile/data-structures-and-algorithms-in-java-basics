@@ -2600,7 +2600,7 @@ Now in the implementation, I'll show you, when we do a deletion, we return the n
 
 <br>
 
-<div align="center"><img src="img/linkedlist3-w1400-h280.png" width=1400 height=280><br><sub>Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+<div align="center"><img src="img/linkedlist2-w1180-h280.png" width=1180 height=280><br><sub>Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
 
 <br>
 
