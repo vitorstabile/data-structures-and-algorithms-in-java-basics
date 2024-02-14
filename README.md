@@ -2865,6 +2865,140 @@ output
 4
 ```
 
+Now, let's implement a way if the LinkedList is empty. A way is see if head is null
+
+```java
+public class EmployeeLinkedList {
+	// same code
+
+	public boolean isEmpty() {
+        return head == null;
+    }
+```
+
+Let's test
+
+```java
+public class Solution {
+    public static void main(String[] args) {
+        Employee janeJones = new Employee("Jane", "Jones", 123);
+        Employee johnDoe = new Employee("John", "Doe", 4567);
+        Employee marySmith = new Employee("Mary", "Smith", 22);
+        Employee mikeWilson = new Employee("Mike", "Wilson", 3245);
+
+        EmployeeLinkedList list = new EmployeeLinkedList();
+        list.addToFront(janeJones);
+        list.addToFront(johnDoe);
+        list.addToFront(marySmith);
+        list.addToFront(mikeWilson);
+	System.out.println(list.isEmpty());
+    }
+}
+```
+
+output
+```
+false
+```
+
+So, the last method we'll look at is how do we remove items from the front?
+
+```java
+public class EmployeeLinkedList {
+	// same code
+
+	public EmployeeNode removeFromFront() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        EmployeeNode removedNode = head;
+        head = head.getNext();
+        size--;
+        removedNode.setNext(null);
+        return removedNode;
+    }
+```
+
+Let's test
+
+```java
+public class Solution {
+    public static void main(String[] args) {
+        Employee janeJones = new Employee("Jane", "Jones", 123);
+        Employee johnDoe = new Employee("John", "Doe", 4567);
+        Employee marySmith = new Employee("Mary", "Smith", 22);
+        Employee mikeWilson = new Employee("Mike", "Wilson", 3245);
+
+        EmployeeLinkedList list = new EmployeeLinkedList();
+        list.addToFront(janeJones);
+        list.addToFront(johnDoe);
+        list.addToFront(marySmith);
+        list.addToFront(mikeWilson);
+	System.out.println(list.getSize());
+        list.removeFromFront();
+        list.removeFromFront();
+        System.out.println(list.getSize());
+	list.printList();
+    }
+}
+```
+output
+```
+4
+2
+HEAD -> Employee{firstName='John', lastName='Doe', id=4567} -> Employee{firstName='Jane', lastName='Jones', id=123} -> null
+```
+
+The class EmployeeLinkedList
+
+```java
+public class EmployeeLinkedList {
+
+    private EmployeeNode head;
+    private int size;
+
+    public void addToFront(Employee employee) {
+        EmployeeNode node = new EmployeeNode(employee);
+        node.setNext(head);
+        head = node;
+        size++;
+    }
+
+    public EmployeeNode removeFromFront() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        EmployeeNode removedNode = head;
+        head = head.getNext();
+        size--;
+        removedNode.setNext(null);
+        return removedNode;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return head == null;
+    }
+
+    public void printList() {
+        EmployeeNode current = head;
+        System.out.print("HEAD -> ");
+        while (current != null) {
+            System.out.print(current);
+            System.out.print(" -> ");
+            current = current.getNext();
+        }
+        System.out.println("null");
+    }
+
+}
+```
+
 #### <a name="chapter4part5"></a>Chapter 4 - Part 5: Doubly Linked Lists
 
 #### <a name="chapter4part6"></a>Chapter 4 - Part 6: JDK LinkedList Class
