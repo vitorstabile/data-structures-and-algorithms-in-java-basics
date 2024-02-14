@@ -2764,7 +2764,6 @@ public class EmployeeLinkedList {
         EmployeeNode node = new EmployeeNode(employee);
         node.setNext(head);
         head = node;
-        size++;
     }
 
 }
@@ -2818,16 +2817,53 @@ output
 HEAD -> Employee{firstName='Mike', lastName='Wilson', id=3245} -> Employee{firstName='Mary', lastName='Smith', id=22} -> Employee{firstName='John', lastName='Doe', id=4567} -> Employee{firstName='Jane', lastName='Jones', id=123} -> null
 ```
 
+Now, let's create a method to count the size of the list. Let's create a variable size in the EmployeeLinkedList and add to addToFront method
 
-| Operation                 | Time Complexity        | Why                                                                                                                                              |
-| :------------------------ | :---------------------:| :-----------------------------------------------------------------------------------------------------------------------------------------------:|
-| add()                     | O(1) - Constant time   |  That’s because the new element just need to be chained with the last element of the Linked List.                                                |
-| add(index, element)       | O(n) - Linear Time     |  on average runs in O(n) time                                                                                                                    |
-| get()                     | O(1)                   |  searching for an element takes O(n) time.                                                                                                       |
-| remove()                  | O(n)                   |  to remove an element, we first need to find it. This operation is O(n). if is the first, .deleteFirst(), is O(1)                                                                        |
-| set()                     | O(1)                   |  The “set” method only replaces the element at the given position, so it does not resize the underlying array nor move other elements around it. |
-| indexOf()                 | O(n)                   |  It iterates through the internal array and checks each element one by one, so the time complexity for this operation always requires O(n) time. |
-| contains()                | O(n)                   |  implementation is based on indexOf(), so it’ll also run in O(n) time.                                                                           |
+```java
+public class EmployeeLinkedList {
+
+    private EmployeeNode head;
+
+    private int size;
+
+   public void addToFront(Employee employee) {
+        EmployeeNode node = new EmployeeNode(employee);
+        node.setNext(head);
+        head = node;
+	size++
+    }
+
+}
+
+public int getSize() {
+        return size;
+    }
+```
+
+Now, let's count
+
+```java
+public class Solution {
+    public static void main(String[] args) {
+        Employee janeJones = new Employee("Jane", "Jones", 123);
+        Employee johnDoe = new Employee("John", "Doe", 4567);
+        Employee marySmith = new Employee("Mary", "Smith", 22);
+        Employee mikeWilson = new Employee("Mike", "Wilson", 3245);
+
+        EmployeeLinkedList list = new EmployeeLinkedList();
+        list.addToFront(janeJones);
+        list.addToFront(johnDoe);
+        list.addToFront(marySmith);
+        list.addToFront(mikeWilson);
+	System.out.println(list.getSize());
+    }
+}
+```
+
+output
+```
+4
+```
 
 #### <a name="chapter4part5"></a>Chapter 4 - Part 5: Doubly Linked Lists
 
