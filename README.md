@@ -2608,6 +2608,8 @@ We have, Bill will be hanging off here. He'll still be pointing to Jane, but the
 
 In a singly linked list, each node contains a reference to the next node in the sequence. Traversing a singly linked list is done in a forward direction.
 
+When you're working with a singly linked list, you want to insert and delete items at the front of the list because you only have a reference to the head of the list, and so if you want to insert and delete items anywhere else, you'd have to start at head and you've got to traverse the entire list to find what you're looking for.
+
 <br>
 
 <div align="center"><img src="img/singlelinkedlist1-w1013-h252.png" width=1013 height=252><br><sub>Single Linked List - (<a href='https://www.geeksforgeeks.org/what-is-linked-list/'>Work by Geeks for Geeks</a>) </sub></div>
@@ -2634,7 +2636,198 @@ If we want to insert a new ID 1005, then to maintain the sorted order, we have t
 
 Deletion is also expensive with arrays until unless some special techniques are used. For example, to delete 1010 in id[], everything after 1010 has to be moved due to this so much work is being done which affects the efficiency of the code.
 
+No, let´s make operations using the SingleLinked List
 
+Let's create our class that we will store
+
+```java
+public class Employee {
+
+    private String firstName;
+    private String lastName;
+    private int id;
+
+    public Employee(String firstName, String lastName, int id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        if (id != employee.id) return false;
+        if (!firstName.equals(employee.firstName)) return false;
+        return lastName.equals(employee.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = firstName.hashCode();
+        result = 31 * result + lastName.hashCode();
+        result = 31 * result + id;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", id=" + id +
+                '}';
+    }
+}
+```
+
+So, the first class we'll work on is the node class and this class is going to need two variables, one for the employee instance and one for the next node in the list because remember, when we're working with a linked list, every node knows about the next node in the list and so, we need a field that contains a reference to the next node in the list
+
+In Java, by contains a link, we mean that it stores the object reference of the next node. We will not use the Generics. So, let's add a node class,
+
+```java
+public class EmployeeNode {
+
+    private Employee employee;
+    private EmployeeNode next;
+
+    public EmployeeNode(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public EmployeeNode getNext() {
+        return next;
+    }
+
+    public void setNext(EmployeeNode next) {
+        this.next = next;
+    }
+
+    public String toString() {
+        return employee.toString();
+    }
+}
+```
+
+Now, let's create a class to the LinkedList. All we need to know for the linked list is the head node, that's it. From there we can traverse the entire list because every node in the list contains a link to the next node and so, let's create a class for a linked list.
+
+```java
+public class EmployeeLinkedList {
+
+    private EmployeeNode head;
+}
+```
+
+So, let's say we wanna add an item to the linked list. For the best performance, we should add items to the beginning, so we don't have to traverse the list looking for an insertion point and so, we're going to code an addToFront method. Now, let's see some operations in Singly Linked List and the time complexity
+
+```java
+public class EmployeeLinkedList {
+
+    // same code
+
+   public void addToFront(Employee employee) {
+        EmployeeNode node = new EmployeeNode(employee);
+        node.setNext(head);
+        head = node;
+        size++;
+    }
+
+}
+```
+
+So, we'll say public void addToFront and we need the employee instance that we wanna add, so we'll say EmployeeNode node equals new EmployeeNode and we just have to pass the employee and then we need to set this new node's next field. Its new node's next field is going to point at whatever head it's currently pointing at because when we add a new node to the front of the list, the current head of the list is now going to become the second node in the list and so, this new node is going to point to the current head. So, we'll say node.setNext head. And then of course the last thing we wanna do is set head to the new node.
+
+We need a way to print the list, so let's go back to our EmployeeLinkedList the method .printList();
+
+```java
+public class EmployeeLinkedList {
+
+    // same code
+
+    public void printList() {
+        EmployeeNode current = head;
+        System.out.print("HEAD -> ");
+        while (current != null) {
+            System.out.print(current);
+            System.out.print(" -> ");
+            current = current.getNext();
+        }
+        System.out.println("null");
+    }
+
+}
+```
+
+Now, let's add objects to our linked List and print
+
+```java
+public class Solution {
+    public static void main(String[] args) {
+        Employee janeJones = new Employee("Jane", "Jones", 123);
+        Employee johnDoe = new Employee("John", "Doe", 4567);
+        Employee marySmith = new Employee("Mary", "Smith", 22);
+        Employee mikeWilson = new Employee("Mike", "Wilson", 3245);
+
+        EmployeeLinkedList list = new EmployeeLinkedList();
+        list.addToFront(janeJones);
+        list.addToFront(johnDoe);
+        list.addToFront(marySmith);
+        list.addToFront(mikeWilson);
+	list.printList();
+    }
+}
+```
+
+output
+```
+HEAD -> Employee{firstName='Mike', lastName='Wilson', id=3245} -> Employee{firstName='Mary', lastName='Smith', id=22} -> Employee{firstName='John', lastName='Doe', id=4567} -> Employee{firstName='Jane', lastName='Jones', id=123} -> null
+```
+
+
+| Operation                 | Time Complexity        | Why                                                                                                                                              |
+| :------------------------ | :---------------------:| :-----------------------------------------------------------------------------------------------------------------------------------------------:|
+| add()                     | O(1) - Constant time   |  That’s because the new element just need to be chained with the last element of the Linked List.                                                |
+| add(index, element)       | O(n) - Linear Time     |  on average runs in O(n) time                                                                                                                    |
+| get()                     | O(1)                   |  searching for an element takes O(n) time.                                                                                                       |
+| remove()                  | O(n)                   |  to remove an element, we first need to find it. This operation is O(n). if is the first, .deleteFirst(), is O(1)                                                                        |
+| set()                     | O(1)                   |  The “set” method only replaces the element at the given position, so it does not resize the underlying array nor move other elements around it. |
+| indexOf()                 | O(n)                   |  It iterates through the internal array and checks each element one by one, so the time complexity for this operation always requires O(n) time. |
+| contains()                | O(n)                   |  implementation is based on indexOf(), so it’ll also run in O(n) time.                                                                           |
 
 #### <a name="chapter4part5"></a>Chapter 4 - Part 5: Doubly Linked Lists
 
