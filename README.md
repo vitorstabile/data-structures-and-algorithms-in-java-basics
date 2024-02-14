@@ -2609,7 +2609,7 @@ When we have an array of integers, we just have to store the integer value in ea
 
 <br>
 
-<div align="center"><img src="img/linkedlist1-w1180-h180.png" width=1180 height=180><br><sub>Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+<div align="center"><img src="img/linkedlist1-w1180-h180.png" width=1180 height=180><br><sub>Single Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
 
 <br>
 
@@ -2622,7 +2622,7 @@ So if you have a reference to the head, you can traverse the entire list. You wo
 
 <br>
 
-<div align="center"><img src="img/linkedlist2-w1180-h280.png" width=1180 height=280><br><sub>Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+<div align="center"><img src="img/linkedlist2-w1180-h280.png" width=1180 height=280><br><sub>Single Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
 
 <br>
 
@@ -2645,7 +2645,7 @@ And so after the insertion, this is what the list would look like. Bill's next f
 
 <br>
 
-<div align="center"><img src="img/linkedlist3-w1400-h280.png" width=1400 height=280><br><sub>Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+<div align="center"><img src="img/linkedlist3-w1400-h280.png" width=1400 height=280><br><sub>Single Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
 
 <br>
 
@@ -2653,7 +2653,7 @@ And so after the insertion, this is what the list would look like. Bill's next f
 
 <br>
 
-<div align="center"><img src="img/linkedlist3-w1400-h280.png" width=1400 height=280><br><sub>Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+<div align="center"><img src="img/linkedlist3-w1400-h280.png" width=1400 height=280><br><sub>Single Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
 
 <br>
 
@@ -2668,7 +2668,7 @@ Now in the implementation, I'll show you, when we do a deletion, we return the n
 
 <br>
 
-<div align="center"><img src="img/linkedlist2-w1180-h280.png" width=1180 height=280><br><sub>Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+<div align="center"><img src="img/linkedlist2-w1180-h280.png" width=1180 height=280><br><sub>Single Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
 
 <br>
 
@@ -3076,6 +3076,100 @@ Now, let's see some operations in Singly Linked List and the time complexity
 | Searching                     | O(n)                                |  We have to transverse the list to find the element                       |
 
 #### <a name="chapter4part6"></a>Chapter 4 - Part 6: Doubly Linked Lists
+
+A doubly linked list is a special type of linked list in which each node contains a pointer to the previous node as well as the next node of the linked list.
+
+<br>
+
+<div align="center"><img src="img/doublylinkedlist1-w1190-h290.png" width=1190 height=290><br><sub>Double Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+- Each item in the list has next and previous fields
+- The list has a head and a tail
+
+This time if we want to insert or remove a node from the end of the list we can do it in constant time because we have a pointer, or a reference, to the tail of the list.
+
+But if you want to work with nodes in the middle of the list you're gonna have the same problem that a singly linked list had. You're gonna have to traverse from the head or from the tail, find the node you wanna work with, and in the worst case, that could be a linear operation.
+
+**Insert at head**
+
+- Create new node "Bill"
+- Assign "Jane" to Bill's next field
+- Assign whatever Jane is pointing to as previous to Bill's previous field
+- Assign "Bill" to Jane's previous field
+- Assign head to "Bill"
+- O(1) time complexity
+
+<br>
+
+<div align="center"><img src="img/doublylinkedlist2-w1420-h290.png" width=1420 height=290><br><sub>Double Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+So we have a little more work to do now because we have two references that we have to manage, the next and the previous. And so if we wanted to insert Bill at the head we'd start out the same way that we did for inserting a node in a singly linked list. We're gonna create a new node for the new information. And now we need to set Bill's next and previous fields. So his next field is going to be whatever is currently being pointed to by head. So this is the same as when we did singly linked lists. And his previous field is going to point to whatever Jane's previous field is, because if, if we're inserting Bill in front of Jane, which is what we're doing, then Jane's previous field is now going to become Bill. And Bill's previous field will become whatever Jane was pointing to. Now if we're always inserting at the head, that would mean that Bill's previous field is going to point to null. And now we have to fix Jane's previous field because Bill is being inserted in front of her. And so we want her previous field to now point to Bill. And then we're going to assign the head field to Bill because Bill becomes the new node that's at the front of the list. And so essentially when we insert a node it's all about setting the references of the node we're inserting and also updating the previous field of the current head node.
+
+**Insert at tail**
+
+- Create new node "Bill"
+- Assign tail's next field to Bill's next field
+- Assign tail to Bill's previous field
+- Assign tail's next field to "Bill"
+- Assign tail to "Bill"
+- O(1) time complexity
+
+<br>
+
+<div align="center"><img src="img/doublylinkedlist3-w1420-h290.png" width=1420 height=290><br><sub>Double Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+So once again, if we want to insert Bill at the tail we'll create a new node called Bill. And we want to assign the tail's next field to Bill's next field. So Mike's next field has been updated to Bill. Bill's previous field has been set to Mike. And his next field has been set to null. Which is what Mike's next field used to be. And the tail has now been set to Bill.
+
+**Delete from head**
+
+- Assign "Jane" to "removedNode"
+- Assign John's previous field to Jane's previous field
+- Assign head to Jane's next field
+- Return "removedNode" from the method
+- O(1) time complexity
+
+<br>
+
+<div align="center"><img src="img/doublylinkedlist4-w960-h290.png" width=960 height=290><br><sub>Double Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+So let's say we want to delete from the head of the list. So we wanna delete Jane. Well let's look first at what we'd have to do. Well we're gonna assign Jane to a remove node. And then we wanna assign John's previous field to whatever Jane's previous field is pointing at because we're removing her. So we wanna take that reference and go here. And then we just need to move the head reference to John. And that effectively moves, removes Jane from the list. So we're gonna assign Jane to remove node. We're gonna assign John's previous field to Jane's previous field. We're gonna assign head to whatever is at Jane's next field. Because Jane's next field is pointing to John so we're gonna assign John to head. And then we're gonna return, remove node from the method. And if we wanted to we could clean up Jane's next field by setting it to null.
+
+**Delete from tail**
+
+- Assign "Bill" to "removedNode"
+- Assign Mike's next field to Bill's next field
+- Assign tail to Bill's previous field
+- Return "removedNode" from the method
+- O(1) time complexity
+
+<br>
+
+<div align="center"><img src="img/doublylinkedlist1-w1190-h290.png" width=1190 height=290><br><sub>Double Linked List - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+**To insert a node A between nodes B and C**
+
+- Assign A's field to B's next field
+- Assign A's previous field to C's previous field
+- Assign B's next field to A
+- Assign C's previous field to A
+- O(1) time complexity BUT we have to to find the insertion position first, so this is actually O(n)
+
+**To remove node A from between B and C**
+
+- Assign A to "removedNode"
+- Assign C's previous field to A's previous field
+- Return A from the method
+- O(1) time complexity BUT we have to find A first, so this is actually O(n)
 
 #### <a name="chapter4part7"></a>Chapter 4 - Part 7: JDK LinkedList Class
 
