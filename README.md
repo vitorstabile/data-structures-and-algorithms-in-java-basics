@@ -3171,6 +3171,470 @@ So let's say we want to delete from the head of the list. So we wanna delete Jan
 - Return A from the method
 - O(1) time complexity BUT we have to find A first, so this is actually O(n)
 
+Let's create our class that we will store
+
+```java
+public class Employee {
+
+    private String firstName;
+    private String lastName;
+    private int id;
+
+    public Employee(String firstName, String lastName, int id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        if (id != employee.id) return false;
+        if (!firstName.equals(employee.firstName)) return false;
+        return lastName.equals(employee.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = firstName.hashCode();
+        result = 31 * result + lastName.hashCode();
+        result = 31 * result + id;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", id=" + id +
+                '}';
+    }
+}
+```
+
+Let's update our class EmployeeNode, because now we have the next and the previous and implement the gets and sets
+
+```java
+public class EmployeeNode {
+
+    private Employee employee;
+    private EmployeeNode next;
+    private EmployeeNode previous;
+
+    public EmployeeNode(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public EmployeeNode getNext() {
+        return next;
+    }
+
+    public void setNext(EmployeeNode next) {
+        this.next = next;
+    }
+
+    public EmployeeNode getPrevious() {
+        return previous;
+    }
+
+    public void setPrevious(EmployeeNode previous) {
+        this.previous = previous;
+    }
+
+    public String toString() {
+        return employee.toString();
+    }
+
+}
+```
+
+Let's create the double linked list class. We have to put the tail now.
+
+```java
+public class EmployeeDoublyLinkedList {
+
+    private EmployeeNode head;
+    private EmployeeNode tail;
+    private int size;
+}
+```
+
+Now, we need to modify the add front method. So we need to make a couple of changes here. We have to check whether we're adding a node to an empty list, and if we are, we need to set the tail to that new node, and also if we're not adding into an empty list, then we need to change the current head's previous field to the node we're adding. So before we set the head, we're going to say, if head equals null, and we could call our is empty method two, but I'm gonna say head equals null to make it clear what we're doing here. If we're adding this node into an empty list, then we need to set the tail. So we'll say tail equals node. If we're not adding the node into an empty list, we don't need to worry about the tail. The tail isn't going to change. Okay, so if we're adding the node to an empty list, we set the tail to node. If the list is not empty, then we need to set the current head node's previous field to the new node. So we'll say else, head.setPrevious to the node that we're adding, and that's it.
+
+```java
+public class EmployeeDoublyLinkedList {
+
+    private EmployeeNode head;
+    private EmployeeNode tail;
+    private int size;
+
+    public void addToFront(Employee employee) {
+        EmployeeNode node = new EmployeeNode(employee);
+
+        if (head == null) {
+            tail = node;
+        }
+        else {
+            head.setPrevious(node);
+            node.setNext(head);
+        }
+
+        head = node;
+        size++;
+    }
+
+    public void printList() {
+        EmployeeNode current = head;
+        System.out.print("HEAD -> ");
+        while (current != null) {
+            System.out.print(current);
+            System.out.print(" <=> ");
+            current = current.getNext();
+        }
+        System.out.println("null");
+    }
+
+}
+```
+
+Let's insert
+
+```java
+public class Solution {
+    public static void main(String[] args) {
+        Employee janeJones = new Employee("Jane", "Jones", 123);
+        Employee johnDoe = new Employee("John", "Doe", 4567);
+        Employee marySmith = new Employee("Mary", "Smith", 22);
+        Employee mikeWilson = new Employee("Mike", "Wilson", 3245);
+
+        EmployeeDoubleLinkedList list = new EmployeeDoubleLinkedList();
+        list.addToFront(janeJones);
+        list.addToFront(johnDoe);
+        list.addToFront(marySmith);
+        list.addToFront(mikeWilson);
+        list.printList();
+    }
+}
+```
+
+output
+```
+HEAD -> Employee{firstName='Mike', lastName='Wilson', id=3245} <=> Employee{firstName='Mary', lastName='Smith', id=22} <=> Employee{firstName='John', lastName='Doe', id=4567} <=> Employee{firstName='Jane', lastName='Jones', id=123} <=> null
+```
+
+Now, let's implement the add to end
+
+```java
+public class EmployeeDoublyLinkedList {
+
+    //same code
+
+    public void addToEnd(Employee employee) {
+        EmployeeNode node = new EmployeeNode(employee);
+        if (tail == null) {
+            head = node;
+        }
+        else {
+            tail.setNext(node);
+            node.setPrevious(tail);
+        }
+
+        tail = node;
+        size++;
+    }
+
+}
+```
+
+Let's test
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        Employee janeJones = new Employee("Jane", "Jones", 123);
+        Employee johnDoe = new Employee("John", "Doe", 4567);
+        Employee marySmith = new Employee("Mary", "Smith", 22);
+        Employee mikeWilson = new Employee("Mike", "Wilson", 3245);
+
+        EmployeeDoublyLinkedList list = new EmployeeDoublyLinkedList();
+
+        list.addToFront(janeJones);
+        list.addToFront(johnDoe);
+        list.addToFront(marySmith);
+        list.addToFront(mikeWilson);
+
+        list.printList();
+        System.out.println(list.getSize());
+
+        Employee billEnd = new Employee("Bill", "End", 78);
+        list.addToEnd(billEnd);
+        list.printList();
+        System.out.println(list.getSize());
+
+    }
+}
+```
+
+output
+```
+HEAD -> Employee{firstName='Mike', lastName='Wilson', id=3245} <=> Employee{firstName='Mary', lastName='Smith', id=22} <=> Employee{firstName='John', lastName='Doe', id=4567} <=> Employee{firstName='Jane', lastName='Jones', id=123} <=> Employee{firstName='Bill', lastName='End', id=78} <=> null
+5
+```
+
+Now, let's implement if is is empty and remove from the Front and the end
+
+```java
+ public boolean isEmpty() {
+        return head == null;
+    }
+
+public EmployeeNode removeFromFront() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        EmployeeNode removedNode = head;
+
+        if (head.getNext() == null) {
+            tail = null;
+        }
+        else {
+            head.getNext().setPrevious(null);
+        }
+
+        head = head.getNext();
+        size--;
+        removedNode.setNext(null);
+        return removedNode;
+    }
+
+    public EmployeeNode removeFromEnd() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        EmployeeNode removedNode = tail;
+
+        if (tail.getPrevious() == null) {
+            head = null;
+        }
+        else {
+            tail.getPrevious().setNext(null);
+        }
+
+        tail = tail.getPrevious();
+        size--;
+        removedNode.setPrevious(null);
+        return removedNode;
+    }
+```
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        Employee janeJones = new Employee("Jane", "Jones", 123);
+        Employee johnDoe = new Employee("John", "Doe", 4567);
+        Employee marySmith = new Employee("Mary", "Smith", 22);
+        Employee mikeWilson = new Employee("Mike", "Wilson", 3245);
+
+        EmployeeDoublyLinkedList list = new EmployeeDoublyLinkedList();
+
+        list.addToFront(janeJones);
+        list.addToFront(johnDoe);
+        list.addToFront(marySmith);
+        list.addToFront(mikeWilson);
+
+        Employee billEnd = new Employee("Bill", "End", 78);
+        list.removeFromFront();
+        list.printList();
+        System.out.println(list.getSize());
+        list.removeFromEnd();
+        list.printList();
+        System.out.println(list.getSize());
+
+    }
+}
+
+output
+```
+HEAD -> Employee{firstName='Mary', lastName='Smith', id=22} <=> Employee{firstName='John', lastName='Doe', id=4567} <=> Employee{firstName='Jane', lastName='Jones', id=123} <=> null
+3
+HEAD -> Employee{firstName='Mary', lastName='Smith', id=22} <=> Employee{firstName='John', lastName='Doe', id=4567} <=> null
+2
+```
+
+The EmployeeDoublyLinkedList.class
+
+```java
+public class EmployeeDoublyLinkedList {
+
+    private EmployeeNode head;
+    private EmployeeNode tail;
+    private int size;
+
+    public void addToFront(Employee employee) {
+        EmployeeNode node = new EmployeeNode(employee);
+
+        if (head == null) {
+            tail = node;
+        }
+        else {
+            head.setPrevious(node);
+            node.setNext(head);
+        }
+
+        head = node;
+        size++;
+    }
+
+    public void addToEnd(Employee employee) {
+        EmployeeNode node = new EmployeeNode(employee);
+        if (tail == null) {
+            head = node;
+        }
+        else {
+            tail.setNext(node);
+            node.setPrevious(tail);
+        }
+
+        tail = node;
+        size++;
+    }
+
+    public EmployeeNode removeFromFront() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        EmployeeNode removedNode = head;
+
+        if (head.getNext() == null) {
+            tail = null;
+        }
+        else {
+            head.getNext().setPrevious(null);
+        }
+
+        head = head.getNext();
+        size--;
+        removedNode.setNext(null);
+        return removedNode;
+    }
+
+    public EmployeeNode removeFromEnd() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        EmployeeNode removedNode = tail;
+
+        if (tail.getPrevious() == null) {
+            head = null;
+        }
+        else {
+            tail.getPrevious().setNext(null);
+        }
+
+        tail = tail.getPrevious();
+        size--;
+        removedNode.setPrevious(null);
+        return removedNode;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return head == null;
+    }
+
+    public void printList() {
+        EmployeeNode current = head;
+        System.out.print("HEAD -> ");
+        while (current != null) {
+            System.out.print(current);
+            System.out.print(" <=> ");
+            current = current.getNext();
+        }
+        System.out.println("null");
+    }
+
+
+}
+```
+
+**Application of Doubly Linked Lists:**
+
+- It is used by web browsers for backward and forward navigation of web pages 
+- LRU ( Least Recently Used ) / MRU ( Most Recently Used ) Cache are constructed using Doubly Linked Lists. 
+- Used by various applications to maintain undo and redo functionalities. 
+- In Operating Systems, a doubly linked list is maintained by thread scheduler to keep track of processes that are being executed at that time.
+
+**Advantages of Doubly Linked Lists:**
+
+- A DLL can be traversed in both forward and backward directions. 
+- The delete operation in DLL is more efficient if a pointer to the node to be deleted is given.
+- We can quickly insert a new node before a given node
+- In a singly linked list, to delete a node, a pointer to the previous node is needed. To get this previous node, sometimes the list is traversed. In DLL, we can get the previous node using the previous pointer.
+
+**Disadvantages of Doubly Linked Lists:**
+
+- Every node of DLL Requires extra space for a previous pointer. It is possible to implement DLL with a single pointer though
+- All operations require an extra pointer previous to be maintained. For example, in insertion, we need to modify previous pointers together with the next pointers. For example in the following functions for insertions at different positions, we need 1 or 2 extra steps to set the previous pointer.
+
+Now, let's see some operations in Doubly Linked List and the time complexity
+
+| Operation                     | Time Complexity Doubly Linked List  | Why                                                                       |
+| :---------------------------- | :----------------------------------:| :------------------------------------------------------------------------:|
+| Accessing by Index            | O(n) - Linear Time                  |  We have to transverse the intere list to access the node                 |
+| Insertion at Beginning        | O(1) - Constant time                |  Because we know the location of head and insert befor the head           |
+| Insertion at End              | O(1)                                |  Because we know the location of tail and insert after the tail           |
+| Insertion at Given Position   | O(n)                                |  We have to transverse the list to find the given position and insert     |
+| Deletion at Beginning         | O(1)                                |  Because we know the location of head and delete the head                 |
+| Deletion at End               | O(1)                                |  Because we know the location of tail and insert delete the tail          |
+| Deletion at Given Position    | O(n)                                |  We have to transverse the list to find the given position and delete     |
+| Searching                     | O(n)                                |  We have to transverse the list to find the element                       |
+
 #### <a name="chapter4part7"></a>Chapter 4 - Part 7: JDK LinkedList Class
 
 ## <a name="chapter5"></a>Chapter 5: Stacks in Java
