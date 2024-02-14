@@ -26,9 +26,10 @@
     - [Chapter 4 - Part 1: Introduction to Lists](#chapter4part1)
     - [Chapter 4 - Part 2: Array Lists](#chapter4part2)
     - [Chapter 4 - Part 3: Vectors](#chapter4part3)
-    - [Chapter 4 - Part 4: Singly Linked Lists](#chapter4part4)
-    - [Chapter 4 - Part 5: Doubly Linked Lists](#chapter4part5)
-    - [Chapter 4 - Part 6: JDK LinkedList Class](#chapter4part6)
+    - [Chapter 4 - Part 4: Linked Lists](#chapter4part4)
+    - [Chapter 4 - Part 5: Singly Linked Lists](#chapter4part5)
+    - [Chapter 4 - Part 6: Doubly Linked Lists](#chapter4part6)
+    - [Chapter 4 - Part 7: JDK LinkedList Class](#chapter4part7)
 5. [Chapter 5: Stacks in Java](#chapter5)
     - [Chapter 5 - Part 1: Introduction to Stacks](#chapter5part1)
 6. [Chapter 6: Queues in Java](#chapter6)
@@ -2529,7 +2530,9 @@ public synchronized boolean add(E e) {
     }
 ```
 
-#### <a name="chapter4part4"></a>Chapter 4 - Part 4: Singly Linked Lists
+#### <a name="chapter4part4"></a>Chapter 4 - Part 4: Linked Lists
+
+#### <a name="chapter4part5"></a>Chapter 4 - Part 5: Singly Linked Lists
 
 **Linked List**
 
@@ -2616,19 +2619,19 @@ When you're working with a singly linked list, you want to insert and delete ite
 
 <br>
 
-**Node Structure**: A node in a linked list typically consists of two components:
-**Data**: It holds the actual value or data associated with the node.
-**Next Pointer**: It stores the memory address (reference) of the next node in the sequence.
-**Head and Tail**: The linked list is accessed through the head node, which points to the first node in the list. The last node in the list points to NULL or nullptr, indicating the end of the list. This node is known as the tail node.
+- **Node Structure**: A node in a linked list typically consists of two components:
+- **Data**: It holds the actual value or data associated with the node.
+- **Next Pointer**: It stores the memory address (reference) of the next node in the sequence.
+- **Head and Tail**: The linked list is accessed through the head node, which points to the first node in the list. The last node in the list points to NULL or nullptr, indicating the end of the list. This node is known as the tail node.
 
 **Why linked list data structure needed?**
 
 Here are a few advantages of a linked list that is listed below, it will help you understand why it is necessary to know.
 
-**Dynamic Data structure**: The size of memory can be allocated or de-allocated at run time based on the operation insertion or deletion.
-**Ease of Insertion/Deletion**: The insertion and deletion of elements are simpler than arrays since no elements need to be shifted after insertion and deletion, Just the address needed to be updated.
-**Efficient Memory Utilization**: As we know Linked List is a dynamic data structure the size increases or decreases as per the requirement so this avoids the wastage of memory. 
-**Implementation**: Various advanced data structures can be implemented using a linked list like a stack, queue, graph, hash maps, etc.
+- **Dynamic Data structure**: The size of memory can be allocated or de-allocated at run time based on the operation insertion or deletion.
+- **Ease of Insertion/Deletion**: The insertion and deletion of elements are simpler than arrays since no elements need to be shifted after insertion and deletion, Just the address needed to be updated.
+- **Efficient Memory Utilization**: As we know Linked List is a dynamic data structure the size increases or decreases as per the requirement so this avoids the wastage of memory. 
+- **Implementation**: Various advanced data structures can be implemented using a linked list like a stack, queue, graph, hash maps, etc.
 
 In a system, if we maintain a sorted list of IDs in an array id[] = [1000, 1010, 1050, 2000, 2040]. 
 
@@ -2999,9 +3002,9 @@ public class EmployeeLinkedList {
 }
 ```
 
-#### <a name="chapter4part5"></a>Chapter 4 - Part 5: Doubly Linked Lists
+#### <a name="chapter4part6"></a>Chapter 4 - Part 6: Doubly Linked Lists
 
-#### <a name="chapter4part6"></a>Chapter 4 - Part 6: JDK LinkedList Class
+#### <a name="chapter4part7"></a>Chapter 4 - Part 7: JDK LinkedList Class
 
 ## <a name="chapter5"></a>Chapter 5: Stacks in Java
   
