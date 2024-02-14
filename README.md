@@ -2531,6 +2531,36 @@ public synchronized boolean add(E e) {
 
 #### <a name="chapter4part4"></a>Chapter 4 - Part 4: Singly Linked Lists
 
+**Linked List**
+
+In a singly linked list, each node contains a reference to the next node in the sequence. Traversing a singly linked list is done in a forward direction.
+
+<br>
+
+<div align="center"><img src="img/singlelinkedlist1-w1013-h252.png" width=1013 height=252><br><sub>Single Linked List - (<a href='https://www.geeksforgeeks.org/what-is-linked-list/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+**Node Structure**: A node in a linked list typically consists of two components:
+**Data**: It holds the actual value or data associated with the node.
+**Next Pointer**: It stores the memory address (reference) of the next node in the sequence.
+**Head and Tail**: The linked list is accessed through the head node, which points to the first node in the list. The last node in the list points to NULL or nullptr, indicating the end of the list. This node is known as the tail node.
+
+**Why linked list data structure needed?**
+
+Here are a few advantages of a linked list that is listed below, it will help you understand why it is necessary to know.
+
+**Dynamic Data structure**: The size of memory can be allocated or de-allocated at run time based on the operation insertion or deletion.
+**Ease of Insertion/Deletion**: The insertion and deletion of elements are simpler than arrays since no elements need to be shifted after insertion and deletion, Just the address needed to be updated.
+**Efficient Memory Utilization**: As we know Linked List is a dynamic data structure the size increases or decreases as per the requirement so this avoids the wastage of memory. 
+**Implementation**: Various advanced data structures can be implemented using a linked list like a stack, queue, graph, hash maps, etc.
+
+In a system, if we maintain a sorted list of IDs in an array id[] = [1000, 1010, 1050, 2000, 2040]. 
+
+If we want to insert a new ID 1005, then to maintain the sorted order, we have to move all the elements after 1000 (excluding 1000). 
+
+Deletion is also expensive with arrays until unless some special techniques are used. For example, to delete 1010 in id[], everything after 1010 has to be moved due to this so much work is being done which affects the efficiency of the code.
+
 #### <a name="chapter4part5"></a>Chapter 4 - Part 5: Doubly Linked Lists
 
 #### <a name="chapter4part6"></a>Chapter 4 - Part 6: JDK LinkedList Class
