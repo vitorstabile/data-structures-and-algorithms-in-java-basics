@@ -3708,6 +3708,13 @@ public class Solution {
   
 #### <a name="chapter5part1"></a>Chapter 5 - Part 1: Introduction to Stacks
 
+- Abstract data type
+- LIFO - Last in, first out
+- push - adds an item as the top item on the stack
+- pop - removes the top item on the stack
+- peek - gets the top item on the stack without popping it
+- Ideal backing data structure: linked list
+
 We can see the operations in the [Java Stack Doc](https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html)
 
 Java Collection framework provides a Stack class that models and implements a Stack data structure. The class is based on the basic principle of last-in-first-out. In addition to the basic push and pop operations, the class provides three more functions of empty, search, and peek. The class can also be said to extend Vector and treats the class as a stack with the five mentioned functions. The class can also be referred to as the subclass of Vector.
