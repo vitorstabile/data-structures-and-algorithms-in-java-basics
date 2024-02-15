@@ -3708,6 +3708,8 @@ public class Solution {
   
 #### <a name="chapter5part1"></a>Chapter 5 - Part 1: Introduction to Stacks
 
+We can see the operations in the [Java Stack Doc](https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html)
+
 Java Collection framework provides a Stack class that models and implements a Stack data structure. The class is based on the basic principle of last-in-first-out. In addition to the basic push and pop operations, the class provides three more functions of empty, search, and peek. The class can also be said to extend Vector and treats the class as a stack with the five mentioned functions. The class can also be referred to as the subclass of Vector.
 
 The class supports one default constructor Stack() which is used to create an empty stack. 
@@ -3859,6 +3861,8 @@ Stack after pop operation [10, 15, 30]/
 ```
 
 **Prioritize use of  Deque over Stack**
+
+We can see the operations in the [Java Deque Doc](https://docs.oracle.com/javase/8/docs/api/java/util/Deque.html)
 
 - The Stack class in Java is a legacy class and inherits from Vector in Java. It is a thread-safe class and hence involves overhead when we do not need thread safety. It is recommended to use ArrayDeque for stack implementation as it is more efficient in a single-threaded environment.
 
