@@ -3708,6 +3708,279 @@ public class Solution {
   
 #### <a name="chapter5part1"></a>Chapter 5 - Part 1: Introduction to Stacks
 
+Java Collection framework provides a Stack class that models and implements a Stack data structure. The class is based on the basic principle of last-in-first-out. In addition to the basic push and pop operations, the class provides three more functions of empty, search, and peek. The class can also be said to extend Vector and treats the class as a stack with the five mentioned functions. The class can also be referred to as the subclass of Vector.
+
+The class supports one default constructor Stack() which is used to create an empty stack. 
+
+```java
+public class Stack<E> extends Vector<E>
+```
+
+**How to Create a Stack?**
+
+In order to create a stack, we must import java.util.stack package and use the Stack() constructor of this class. The below example creates an empty Stack.
+
+```java
+Stack<E> stack = new Stack<E>();
+```
+
+Here E is the type of Object.
+
+**Performing various operations on Stack class**
+
+- **Adding Elements**: In order to add an element to the stack, we can use the push() method. This push() operation place the element at the top of the stack.
+
+```java
+// Java program to add the
+// elements in the stack
+import java.io.*;
+import java.util.*;
+
+class StackDemo {
+
+	// Main Method
+	public static void main(String[] args)
+	{
+
+		// Default initialization of Stack
+		Stack stack1 = new Stack();
+
+		// Initialization of Stack
+		// using Generics
+		Stack<String> stack2 = new Stack<String>();
+
+		// pushing the elements
+		stack1.push("4");
+		stack1.push("All");
+		stack1.push("Geeks");
+
+		stack2.push("Geeks");
+		stack2.push("For");
+		stack2.push("Geeks");
+
+		// Printing the Stack Elements
+		System.out.println(stack1);
+		System.out.println(stack2);
+	}
+}
+```
+
+output
+```
+[4, All, Geeks]
+[Geeks, For, Geeks]
+```
+
+- **Accessing the Element**: To retrieve or fetch the first element of the Stack or the element present at the top of the Stack, we can use peek() method. The element retrieved does not get deleted or removed from the Stack.
+
+```java
+// Java program to demonstrate the accessing
+// of the elements from the stack
+import java.util.*;
+import java.io.*;
+ 
+public class StackDemo {
+ 
+      // Main Method
+    public static void main(String args[])
+    {
+        // Creating an empty Stack
+        Stack<String> stack = new Stack<String>();
+ 
+        // Use push() to add elements into the Stack
+        stack.push("Welcome");
+        stack.push("To");
+        stack.push("Geeks");
+        stack.push("For");
+        stack.push("Geeks");
+ 
+        // Displaying the Stack
+        System.out.println("Initial Stack: " + stack);
+ 
+        // Fetching the element at the head of the Stack
+        System.out.println("The element at the top of the"
+                           + " stack is: " + stack.peek());
+ 
+        // Displaying the Stack after the Operation
+        System.out.println("Final Stack: " + stack);
+    }
+}
+```
+output
+```
+Initial Stack: [Welcome, To, Geeks, For, Geeks]
+The element at the top of the stack is: Geeks
+Final Stack: [Welcome, To, Geeks, For, Geeks]
+```
+
+- **Removing Elements**: To pop an element from the stack, we can use the pop() method. The element is popped from the top of the stack and is removed from the same.
+
+```java
+// Java program to demonstrate the removing
+// of the elements from the stack
+import java.util.*;
+import java.io.*;
+ 
+public class StackDemo {
+    public static void main(String args[])
+    {
+        // Creating an empty Stack
+        Stack<Integer> stack = new Stack<Integer>();
+ 
+        // Use add() method to add elements
+        stack.push(10);
+        stack.push(15);
+        stack.push(30);
+        stack.push(20);
+        stack.push(5);
+ 
+        // Displaying the Stack
+        System.out.println("Initial Stack: " + stack);
+ 
+        // Removing elements using pop() method
+        System.out.println("Popped element: "
+                           + stack.pop());
+        System.out.println("Popped element: "
+                           + stack.pop());
+ 
+        // Displaying the Stack after pop operation
+        System.out.println("Stack after pop operation "
+                           + stack);
+    }
+}
+```
+
+output
+```
+Initial Stack: [10, 15, 30, 20, 5]
+Popped element: 5
+Popped element: 20
+Stack after pop operation [10, 15, 30]/
+```
+
+**Prioritize use of  Deque over Stack**
+
+- The Stack class in Java is a legacy class and inherits from Vector in Java. It is a thread-safe class and hence involves overhead when we do not need thread safety. It is recommended to use ArrayDeque for stack implementation as it is more efficient in a single-threaded environment.
+
+```java
+// A Java Program to show implementation
+// of Stack using ArrayDeque
+ 
+import java.util.*;
+ 
+class GFG {
+    public static void main (String[] args) {
+        Deque<Character> stack = new ArrayDeque<Character>();
+        stack.push('A');
+        stack.push('B');
+        System.out.println(stack.peek());
+        System.out.println(stack.pop());
+    }
+}
+```
+
+output
+```
+B
+B
+```
+
+- One more reason to use Deque over Stack is Deque has the ability to use streams convert to list with keeping LIFO concept applied while Stack does not.
+
+```java
+import java.util.*;
+import java.util.stream.Collectors;
+ 
+class GFG {
+    public static void main (String[] args) {
+  
+          Stack<Integer> stack = new Stack<>();
+        Deque<Integer> deque = new ArrayDeque<>();
+ 
+        stack.push(1);//1 is the top
+        deque.push(1);//1 is the top
+        stack.push(2);//2 is the top
+        deque.push(2);//2 is the top
+ 
+        List<Integer> list1 = stack.stream().collect(Collectors.toList());//[1,2]
+          System.out.println("Using Stack -");
+          for(int i = 0; i < list1.size(); i++){
+              System.out.print(list1.get(i) + " " );
+        }
+          System.out.println();
+ 
+        List<Integer> list2 = deque.stream().collect(Collectors.toList());//[2,1]
+          System.out.println("Using Deque -");
+          for(int i = 0; i < list2.size(); i++){
+              System.out.print(list2.get(i) + " " );
+        }
+          System.out.println();
+       
+    }
+}
+```
+
+output
+```
+Using Stack -
+1 2 
+Using Deque -
+2 1 
+```
+
+- Stack is a class, so it is a concrete implementation of the stack data type. Deque, on the other hand, is an interface and has several implementations with different characteristics. Therefore, you can choose a suitable deque implementation based on your requirements.
+- 
+- In the Stack class, all methods are marked with the synchronized keyword. Therefore, you can safely use Stack in a multithreaded application. For a single-threaded application, however, this synchronization is superfluous and would hurt performance. The JDK offers, on the one hand, non-thread-safe implementations that work without locks (ArrayDeque and LinkedList).
+- 
+- The order in which the Stack and Deque iterators operate differs, as the following example shows:
+
+```java
+Stack<String> stack = new Stack();
+        stack.push("A");
+        stack.push("B");
+        stack.push("C");
+
+        System.out.println("Stack: ");
+        for (String s : stack) {
+            System.out.println(s);
+        }
+
+        Deque<String> deque = new ArrayDeque();
+        deque.push("A");
+        deque.push("B");
+        deque.push("C");
+
+        System.out.println("\nDeque: ");
+        for (String s : deque) {
+            System.out.println(s);
+        }
+    }
+```
+
+output
+```
+Stack: 
+A
+B
+C
+
+Deque: 
+C
+B
+A
+```
+
+Stack's iterator iterates over the elements from bottom to top, that is, in insertion order. Deque's iterator, on the other hand, iterates from top to bottom, i.e., in removal order.
+
+To iterate over a deque in insertion order, we can retrieve a corresponding iterator via the descendingIterator() method:
+
+```java
+for (Iterator<String> iterator = deque.descendingIterator(); iterator.hasNext(); ) {
+  String s = iterator.next();
+  // ... do something with s ...
+}
+```
+
 ## <a name="chapter6"></a>Chapter 6: Queues in Java
   
 #### <a name="chapter6part1"></a>Chapter 6 - Part 1: Introduction to Queues
