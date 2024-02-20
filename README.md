@@ -3715,6 +3715,46 @@ public class Solution {
 - peek - gets the top item on the stack without popping it
 - Ideal backing data structure: linked list
 
+Here's an empty stack. There is nothing on it. So the top would be null if we were dealing with a linked list.
+
+<br>
+
+<div align="center"><img src="img/stack1-w520-h370.png" width=520 height=370><br><sub>Empty Stack - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+Then let's say we push Jane. Well, Jane will now go into the stack and she is the top item on the stack, so we have a top pointer or a top variable that's pointing to Jane.
+
+<br>
+
+<div align="center"><img src="img/stack2-w620-h320.png" width=620 height=320><br><sub>Push Jane - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+We're gonna push John and Mary sequentially, so Mary's now at the top of the stack.
+
+<br>
+
+<div align="center"><img src="img/stack3-w620-h320.png" width=620 height=320><br><sub>Last Push Mary - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+Now, if we did a pop at this point, Mary would be the popped value because Mary's at the top of the stack, she was the last item to be added to the stack, and so if we do a pop, the popped value will be Mary and the new top of the stack will be John.
+
+<br>
+
+<div align="center"><img src="img/stack4-w620-h320.png" width=620 height=320><br><sub>Pop() - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+Now, if we do a peek, the peeked value will be John, but you'll notice that John is still on the stack, so here's the state of our stack before doing the peek and after the peek, John is still on the stack but we've been able to access him. We've stored him off in some variable, so we can look at what the top item of the stack is.
+
+<br>
+
+<div align="center"><img src="img/stack5-w620-h360.png" width=620 height=320><br><sub>peekValue - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
 We can see the operations in the [Java Stack Doc](https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html)
 
 Java Collection framework provides a Stack class that models and implements a Stack data structure. The class is based on the basic principle of last-in-first-out. In addition to the basic push and pop operations, the class provides three more functions of empty, search, and peek. The class can also be said to extend Vector and treats the class as a stack with the five mentioned functions. The class can also be referred to as the subclass of Vector.
@@ -3991,6 +4031,13 @@ for (Iterator<String> iterator = deque.descendingIterator(); iterator.hasNext();
   // ... do something with s ...
 }
 ```
+
+| Operation                     | Time Complexity Stack               | Why                                                                       |
+| :---------------------------- | :----------------------------------:| :------------------------------------------------------------------------:|
+| Push a element in Stack       | O(1) - Constant time                |  We will push the element to the top of the stack                         |
+| Pop a element from the stack  | O(1)                                |  We will pop the element of the top of the stack                          |
+| Peek a element from the stack | O(1)                                |  We will peek the element of the top of the stack                         |
+| Check if is empty             | O(1)                                |  Check if the peek operation return null                                  |
 
 ## <a name="chapter6"></a>Chapter 6: Queues in Java
   
