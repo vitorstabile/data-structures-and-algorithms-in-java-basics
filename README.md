@@ -32,7 +32,9 @@
     - [Chapter 4 - Part 7: JDK LinkedList Class](#chapter4part7)
 5. [Chapter 5: Stacks in Java](#chapter5)
     - [Chapter 5 - Part 1: Introduction to Stacks](#chapter5part1)
-    - [Chapter 2 - Part 2: JDK Stack and Deque Class](#chapter5part2)
+    - [Chapter 5 - Part 2: Stack Array Implementation](#chapter5part2)
+    - [Chapter 5 - Part 3: Stack Linked List Implementation](#chapter5part3)
+    - [Chapter 2 - Part 4: JDK Stack and Deque Class](#chapter5part4)
 6. [Chapter 6: Queues in Java](#chapter6)
     - [Chapter 6 - Part 1: Introduction to Queues](#chapter6part1)
 7. [Chapter 7: Hashtables in Java](#chapter7)
@@ -3770,7 +3772,314 @@ Now, if we do a peek, the peeked value will be John, but you'll notice that John
 | Peek a element from the stack | O(1)                                |  We will peek the element of the top of the stack                         |
 | Check if is empty             | O(1)                                |  Check if the peek operation return null                                  |
 
-#### <a name="chapter5part2"></a>Chapter 5 - Part 2: JDK Stack and Deque Class
+#### <a name="chapter5part2"></a>Chapter 5 - Part 2: Stack Array Implementation
+
+Create the Employee Class
+
+```java
+public class Employee {
+
+    private String firstName;
+    private String lastName;
+    private int id;
+
+    public Employee(String firstName, String lastName, int id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        if (id != employee.id) return false;
+        if (!firstName.equals(employee.firstName)) return false;
+        return lastName.equals(employee.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = firstName.hashCode();
+        result = 31 * result + lastName.hashCode();
+        result = 31 * result + id;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", id=" + id +
+                '}';
+    }
+
+}
+```
+
+The Stack Array implementation
+
+```java
+import java.util.EmptyStackException;
+
+public class ArrayStack {
+
+    private Employee[] stack;
+    private int top;
+
+    public ArrayStack(int capacity) {
+        stack = new Employee[capacity];
+    }
+
+    public void push(Employee employee) {
+        if (top == stack.length) {
+            // need to resize the backing array
+            Employee[] newArray = new Employee[2 * stack.length];
+            System.arraycopy(stack, 0, newArray, 0, stack.length);
+            stack = newArray;
+        }
+
+        stack[top++] = employee;
+    }
+
+    public Employee pop() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+
+        Employee employee = stack[--top];
+        stack[top] = null;
+        return employee;
+    }
+
+    public Employee peek() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+
+        return stack[top - 1];
+    }
+
+    public int size() {
+        return top;
+    }
+
+    public boolean isEmpty() {
+        return top == 0;
+    }
+
+    public void printStack() {
+        for (int i = top - 1; i >= 0; i--) {
+            System.out.println(stack[i]);
+        }
+    }
+
+}
+```
+
+Operations
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        ArrayStack stack = new ArrayStack(10);
+
+        stack.push(new Employee("Jane", "Jones", 123));
+        stack.push(new Employee("John", "Doe", 4567));
+        stack.push(new Employee("Mary", "Smith", 22));
+        stack.push(new Employee("Mike", "Wilson", 3245));
+        stack.push(new Employee("Bill", "End", 78));
+
+        //stack.printStack();
+
+        System.out.println(stack.peek());
+        //stack.printStack();
+
+        System.out.println("Popped: " + stack.pop());
+        System.out.println(stack.peek());
+
+
+    }
+}
+```
+
+#### <a name="chapter5part3"></a>Chapter 5 - Part 3:  Stack Linked List Implementation
+
+Create the Employee Class
+
+```java
+public class Employee {
+
+    private String firstName;
+    private String lastName;
+    private int id;
+
+    public Employee(String firstName, String lastName, int id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        if (id != employee.id) return false;
+        if (!firstName.equals(employee.firstName)) return false;
+        return lastName.equals(employee.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = firstName.hashCode();
+        result = 31 * result + lastName.hashCode();
+        result = 31 * result + id;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", id=" + id +
+                '}';
+    }
+
+}
+```
+
+The List Stack class
+
+```java
+import java.util.LinkedList;
+import java.util.ListIterator;
+
+public class LinkedStack {
+
+    private LinkedList<Employee> stack;
+
+    public LinkedStack() {
+        stack = new LinkedList<Employee>();
+    }
+
+    public void push(Employee employee) {
+        stack.push(employee);
+    }
+
+    public Employee pop() {
+        return stack.pop();
+    }
+
+    public Employee peek() {
+        return stack.peek();
+    }
+
+    public boolean isEmpty() {
+        return stack.isEmpty();
+    }
+
+    public void printStack() {
+        ListIterator<Employee> iterator = stack.listIterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
+}
+```
+
+The operations
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        Employee janeJones = new Employee("Jane", "Jones", 123);
+        Employee johnDoe = new Employee("John", "Doe", 4567);
+        Employee marySmith = new Employee("Mary", "Smith", 22);
+        Employee mikeWilson = new Employee("Mike", "Wilson", 3245);
+        Employee billEnd = new Employee("Bill", "End", 78);
+
+        LinkedStack stack = new LinkedStack();
+        stack.push(janeJones);
+        stack.push(johnDoe);
+        stack.push(marySmith);
+        stack.push(mikeWilson);
+        stack.push(billEnd);
+
+        //stack.printStack();
+
+        //System.out.println(stack.peek());
+        //stack.printStack();
+
+        System.out.println("Popped: " + stack.pop());
+        System.out.println(stack.peek());
+
+
+
+    }
+}
+```
+
+#### <a name="chapter5part4"></a>Chapter 5 - Part 4: JDK Stack and Deque Class
 
 We can see the operations in the [Java Stack Doc](https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html)
 
