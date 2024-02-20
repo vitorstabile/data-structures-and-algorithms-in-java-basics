@@ -32,6 +32,7 @@
     - [Chapter 4 - Part 7: JDK LinkedList Class](#chapter4part7)
 5. [Chapter 5: Stacks in Java](#chapter5)
     - [Chapter 5 - Part 1: Introduction to Stacks](#chapter5part1)
+    - [Chapter 2 - Part 2: JDK Stack and Deque Class](#chapter5part2)
 6. [Chapter 6: Queues in Java](#chapter6)
     - [Chapter 6 - Part 1: Introduction to Queues](#chapter6part1)
 7. [Chapter 7: Hashtables in Java](#chapter7)
@@ -3762,6 +3763,15 @@ Now, if we do a peek, the peeked value will be John, but you'll notice that John
 - If memory is tight, an array might be a good choice
 - Linked list is ideal.
 
+| Operation                     | Time Complexity Stack               | Why                                                                       |
+| :---------------------------- | :----------------------------------:| :------------------------------------------------------------------------:|
+| Push a element in Stack       | O(1) - Constant time                |  We will push the element to the top of the stack                         |
+| Pop a element from the stack  | O(1)                                |  We will pop the element of the top of the stack                          |
+| Peek a element from the stack | O(1)                                |  We will peek the element of the top of the stack                         |
+| Check if is empty             | O(1)                                |  Check if the peek operation return null                                  |
+
+#### <a name="chapter5part2"></a>Chapter 5 - Part 2: JDK Stack and Deque Class
+
 We can see the operations in the [Java Stack Doc](https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html)
 
 Java Collection framework provides a Stack class that models and implements a Stack data structure. The class is based on the basic principle of last-in-first-out. In addition to the basic push and pop operations, the class provides three more functions of empty, search, and peek. The class can also be said to extend Vector and treats the class as a stack with the five mentioned functions. The class can also be referred to as the subclass of Vector.
@@ -4038,13 +4048,6 @@ for (Iterator<String> iterator = deque.descendingIterator(); iterator.hasNext();
   // ... do something with s ...
 }
 ```
-
-| Operation                     | Time Complexity Stack               | Why                                                                       |
-| :---------------------------- | :----------------------------------:| :------------------------------------------------------------------------:|
-| Push a element in Stack       | O(1) - Constant time                |  We will push the element to the top of the stack                         |
-| Pop a element from the stack  | O(1)                                |  We will pop the element of the top of the stack                          |
-| Peek a element from the stack | O(1)                                |  We will peek the element of the top of the stack                         |
-| Check if is empty             | O(1)                                |  Check if the peek operation return null                                  |
 
 ## <a name="chapter6"></a>Chapter 6: Queues in Java
   
