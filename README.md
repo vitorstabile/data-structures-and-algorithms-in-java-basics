@@ -3755,6 +3755,13 @@ Now, if we do a peek, the peeked value will be John, but you'll notice that John
 
 <br>
 
+**Time Complexity**
+- O(1) for push, pop, and peek, when using linked list
+- If you use an array, then push is O(n), because the array may have to be resized
+- If you know the maximum number of items that will ever be on the stack, an array can be a good choice
+- If memory is tight, an array might be a good choice
+- Linked list is ideal.
+
 We can see the operations in the [Java Stack Doc](https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html)
 
 Java Collection framework provides a Stack class that models and implements a Stack data structure. The class is based on the basic principle of last-in-first-out. In addition to the basic push and pop operations, the class provides three more functions of empty, search, and peek. The class can also be said to extend Vector and treats the class as a stack with the five mentioned functions. The class can also be referred to as the subclass of Vector.
