@@ -4365,6 +4365,45 @@ for (Iterator<String> iterator = deque.descendingIterator(); iterator.hasNext();
   
 #### <a name="chapter6part1"></a>Chapter 6 - Part 1: Introduction to Queues
 
+- Abstract data type
+- FIFO - First In, First Out
+- add - also called enqueue - add an item to the end of the queue
+- remove - also called dequeue - remove the item at the front of the queue
+- peek - get the item at the front of the queue, but don´t remove it
+
+Alright, so here's a queue and 10 is at the front, and 22 is at the back. So these items were added to the queue in the order 10, 15, 4, and 22.
+
+<br>
+
+<div align="center"><img src="img/queue1-w770-h280.png" width=770 height=280><br><sub>Queue - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+Then if we add 20, we're gonna add 20 to the back of the queue. When we add an item the front of the queue doesn't change, but the back will be now pointing to the new item.
+
+
+<br>
+
+<div align="center"><img src="img/queue2-w770-h290.png" width=770 height=290><br><sub>Queue - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+If we remove an item, we're gonna remove the item from the front. So we're gonna remove 10, and the front now points to 15. Now depending on the implementation, you might clean up the 10, but this is essentially how this works. So if you add an item the back pointer will change, and if you remove an item the front pointer will change,
+
+<br>
+
+<div align="center"><img src="img/queue3-w770-h290.png" width=770 height=290><br><sub>Queue - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+If we were now to peek, the peek value would be 15 but nothing in the queue changes, so when we peek we get the item at the front of the queue, but we don't remove it from the queue. So nothing changes, the front pointer will not change.
+
+<br>
+
+<div align="center"><img src="img/queue4-w770-h290.png" width=770 height=290><br><sub>Queue - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
 #### <a name="chapter6part2"></a>Chapter 6 - Part 2: Queues Array Implementation
 
 #### <a name="chapter6part3"></a>Chapter 6 - Part 3: Queues Circular Implementation
