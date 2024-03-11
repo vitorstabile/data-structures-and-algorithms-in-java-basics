@@ -4404,6 +4404,24 @@ If we were now to peek, the peek value would be 15 but nothing in the queue chan
 
 <br>
 
+A queue can be implemented using **Arrays** or **Linked Lists**.
+
+**Time Complexity**
+- O(1) for add() in Queue in Array and Linked List
+- O(1) for remove() in Queue in Array and Linked List
+- O(1) for peek() in Queue in Array and Linked List
+- initialize() is O(N) for array and Linked List, because we will add elements one by one.
+- isfull() is O(1) to array, because we just need to check the if the rear have element. In Linked List we have to transverse the list 
+- isEmpty() is O(1) to array and Linked List. Just check if the first element is not empty.
+
+| Operation                     | Time Complexity Stack               | Why                                                                       |
+| :---------------------------- | :----------------------------------:| :------------------------------------------------------------------------:|
+| add()                         | O(1) - Constant time                |  The element will be at the back                                          |
+| remove()                      | O(1)                                |  Remove the element in the front                                          |
+| peek()                        | O(1)                                |  We will peek the element of the front                                    |
+| isEmpty()                     | O(1)                                |  Check if the peek operation return null                                  |
+
+
 #### <a name="chapter6part2"></a>Chapter 6 - Part 2: Queues Array Implementation
 
 #### <a name="chapter6part3"></a>Chapter 6 - Part 3: Queues Circular Implementation
