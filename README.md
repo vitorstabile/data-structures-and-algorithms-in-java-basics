@@ -37,6 +37,9 @@
     - [Chapter 2 - Part 4: JDK Stack and Deque Class](#chapter5part4)
 6. [Chapter 6: Queues in Java](#chapter6)
     - [Chapter 6 - Part 1: Introduction to Queues](#chapter6part1)
+    - [Chapter 6 - Part 2: Queues Array Implementation](#chapter6part2)
+    - [Chapter 6 - Part 3: Queues Circular Implementation](#chapter6part3)
+    - [Chapter 6 - Part 4: JDK Queue Class](#chapter6part4)
 7. [Chapter 7: Hashtables in Java](#chapter7)
     - [Chapter 7 - Part 1: Introduction to Hashtables](#chapter7part1)
 8. [Chapter 8: Search Algorithms](#chapter8)
@@ -4361,6 +4364,14 @@ for (Iterator<String> iterator = deque.descendingIterator(); iterator.hasNext();
 ## <a name="chapter6"></a>Chapter 6: Queues in Java
   
 #### <a name="chapter6part1"></a>Chapter 6 - Part 1: Introduction to Queues
+
+#### <a name="chapter6part2"></a>Chapter 6 - Part 2: Queues Array Implementation
+
+#### <a name="chapter6part3"></a>Chapter 6 - Part 3: Queues Circular Implementation
+
+#### <a name="chapter6part4"></a>Chapter 6 - Part 4: JDK Queue Class
+
+We can see the operations in the [Java Queue Doc](https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html)
 
 ## <a name="chapter7"></a>Chapter 7: Hashtables in Java
   
