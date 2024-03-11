@@ -4601,9 +4601,303 @@ public class Main {
 
 #### <a name="chapter6part3"></a>Chapter 6 - Part 3: Queues Circular Implementation
 
+The Circular Queue take in count the resize problem. 
+A Circular Queue is an extended version of a normal queue where the last element of the queue is connected to the first element of the queue forming a circle.
+
+```java
+import java.util.NoSuchElementException;
+
+public class ArrayQueue {
+
+    private Employee[] queue;
+    private int front;
+    private int back;
+
+    public ArrayQueue(int capacity) {
+        queue = new Employee[capacity];
+    }
+
+    public void add(Employee employee) {
+        if (size() == queue.length - 1) {
+            Employee[] newArray = new Employee[2 * queue.length];
+            System.arraycopy(queue, 0, newArray, 0, queue.length);
+            queue = newArray;
+        }
+
+        // 0   jane
+        // 1    john
+        // 2  -   -back
+        // 3  -mike - front
+        // 4   -bill
+
+        // 0 mike
+        // 1 bill
+        // 2 jane
+        // 3 john
+        // 4 - back
+        // 5
+        // 9
+
+
+        queue[back] = employee;
+        if (back < queue.length - 1) {
+            back++;
+        }
+        else {
+            back = 0;
+        }
+    }
+
+    public Employee remove() {
+        if (size() == 0) {
+            throw new NoSuchElementException();
+        }
+
+        Employee employee = queue[front];
+        queue[front] = null;
+        front++;
+        if (size() == 0) {
+            front = 0;
+            back = 0;
+        }
+
+        return employee;
+    }
+
+    public Employee peek() {
+        if (size() == 0) {
+            throw new NoSuchElementException();
+        }
+
+        return queue[front];
+    }
+
+    public int size() {
+        return back - front;
+    }
+
+    public void printQueue() {
+        for (int i = front; i < back; i++) {
+            System.out.println(queue[i]);
+        }
+    }
+
+}
+```
+
+Now, with the new implementation
+
+```java
+import java.util.NoSuchElementException;
+
+public class ArrayQueue {
+
+    private Employee[] queue;
+    private int front;
+    private int back;
+
+    public ArrayQueue(int capacity) {
+        queue = new Employee[capacity];
+    }
+
+    public void add(Employee employee) {
+        if (size() == queue.length - 1) {
+            int numItems = size();
+            Employee[] newArray = new Employee[2 * queue.length];
+
+            System.arraycopy(queue, front, newArray, 0, queue.length - front);
+            System.arraycopy(queue, 0, newArray, queue.length - front, back);
+
+            queue = newArray;
+
+            front = 0;
+            back = numItems;
+        }
+
+        // 0   jane
+        // 1    john
+        // 2  -   -back
+        // 3  -mike - front
+        // 4   -bill
+
+        // 0 mike
+        // 1 bill
+        // 2 jane
+        // 3 john
+        // 4 - back
+        // 5
+        // 9
+
+
+        queue[back] = employee;
+        if (back < queue.length - 1) {
+            back++;
+        }
+        else {
+            back = 0;
+        }
+    }
+
+    public Employee remove() {
+        if (size() == 0) {
+            throw new NoSuchElementException();
+        }
+
+        Employee employee = queue[front];
+        queue[front] = null;
+        front++;
+        if (size() == 0) {
+            front = 0;
+            back = 0;
+        }
+        else if (front == queue.length) {
+            front = 0;
+        }
+
+        return employee;
+    }
+
+    public Employee peek() {
+        if (size() == 0) {
+            throw new NoSuchElementException();
+        }
+
+        return queue[front];
+    }
+
+    public int size() {
+        if (front <= back) {
+            return back - front;
+        }
+        else {
+            return back - front + queue.length;
+        }
+
+    }
+
+    public void printQueue() {
+        if (front <= back) {
+            for (int i = front; i < back; i++) {
+                System.out.println(queue[i]);
+            }
+        }
+        else {
+            for (int i = front; i < queue.length; i++) {
+                System.out.println(queue[i]);
+            }
+            for (int i = 0; i < back; i++) {
+                System.out.println(queue[i]);
+            }
+        }
+    }
+
+}
+```
+
 #### <a name="chapter6part4"></a>Chapter 6 - Part 4: JDK Queue Class
 
 We can see the operations in the [Java Queue Doc](https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html)
+
+We can see the operations in the [Java ArrayBlockingQueue Doc](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ArrayBlockingQueue.html)
+
+We can see the operations in the [Java ConcurrentLinkedQueue Doc](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentLinkedQueue.html)
+
+We can see the operations in the [Java PriorityQueue Doc](https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html)
+
+We can see the operations in the [Java Deque Doc](https://docs.oracle.com/javase/8/docs/api/java/util/Deque.html)
+
+We can see the operations in the [Java ArrayDeque Doc](https://docs.oracle.com/javase/8/docs/api/java/util/ArrayDeque.html)
+
+ince Queue is an interface, objects cannot be created of the type queue. We always need a class which extends this list in order to create an object. And also, after the introduction of Generics in Java 1.5, it is possible to restrict the type of object that can be stored in the Queue. This type-safe queue can be defined as:
+
+```java
+// Obj is the type of the object to be stored in Queue 
+Queue<Obj> queue = new PriorityQueue<Obj> ();
+```
+
+In Java, the Queue interface is a subtype of the Collection interface and represents a collection of elements in a specific order. It follows the first-in, first-out (FIFO) principle, which means that the elements are retrieved in the order in which they were added to the queue.
+
+The Queue interface provides several methods for adding, removing, and inspecting elements in the queue. Here are some of the most commonly used methods:
+
+- add(element): Adds an element to the rear of the queue. If the queue is full, it throws an exception.
+
+- offer(element): Adds an element to the rear of the queue. If the queue is full, it returns false.
+
+- remove(): Removes and returns the element at the front of the queue. If the queue is empty, it throws an exception.
+
+- poll(): Removes and returns the element at the front of the queue. If the queue is empty, it returns null.
+
+- element(): Returns the element at the front of the queue without removing it. If the queue is empty, it throws an exception.
+
+- peek(): Returns the element at the front of the queue without removing it. If the queue is empty, it returns null.
+
+**add elements**
+
+```java
+// Java program to add elements
+// to a Queue
+
+import java.util.*;
+
+public class GFG {
+
+	public static void main(String args[])
+	{
+		Queue<String> pq = new PriorityQueue<>();
+
+		pq.add("Geeks");
+		pq.add("For");
+		pq.add("Geeks");
+
+		System.out.println(pq);
+	}
+}
+
+```
+
+```
+[For, Geeks, Geeks]
+```
+
+**remove elements**
+
+```java
+// Java program to remove elements
+// from a Queue
+
+import java.util.*;
+
+public class GFG {
+
+	public static void main(String args[])
+	{
+		Queue<String> pq = new PriorityQueue<>();
+
+		pq.add("Geeks");
+		pq.add("For");
+		pq.add("Geeks");
+
+		System.out.println("Initial Queue " + pq);
+
+		pq.remove("Geeks");
+
+		System.out.println("After Remove " + pq);
+
+		System.out.println("Poll Method " + pq.poll());
+
+		System.out.println("Final Queue " + pq);
+	}
+}
+
+
+```
+
+```
+Initial Queue [For, Geeks, Geeks]
+After Remove [For, Geeks]
+Poll Method For
+Final Queue [Geeks]
+```
 
 ## <a name="chapter7"></a>Chapter 7: Hashtables in Java
   
