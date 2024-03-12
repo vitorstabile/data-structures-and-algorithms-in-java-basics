@@ -42,6 +42,7 @@
     - [Chapter 6 - Part 4: JDK Queue Class](#chapter6part4)
 7. [Chapter 7: Hashtables in Java](#chapter7)
     - [Chapter 7 - Part 1: Introduction to Hashtables](#chapter7part1)
+    - [Chapter 7 - Part 2: Hashtables Array Implementation](#chapter7part2)
 8. [Chapter 8: Search Algorithms](#chapter8)
     - [Chapter 8 - Part 1: Introduction to Search Algorithms](#chapter8part1)
 9. [Chapter 9: Trees in Java](#chapter9)
@@ -4902,6 +4903,215 @@ Final Queue [Geeks]
 ## <a name="chapter7"></a>Chapter 7: Hashtables in Java
   
 #### <a name="chapter7part1"></a>Chapter 7 - Part 1: Introduction to Hashtables
+
+- Abstract data type
+- Provide access to data using keys
+- Key doesn't have to be an integer
+- Consist of key/value pairs - data types don't have to match
+- Optimized for retrieval (when you know the key)
+- Associative array is one type of hash table
+- Hash table also know as dictionaries and maps.
+
+**Hashing**
+
+- Maps keys of any data type to an integer.
+- Hash function maps keys to int
+- In Java, hash function is Object.hashCode()
+- Collision occurs when more than one value has the same hashed value (Ex: Use the length of last name of Employee as key like Mary Jane and Lee John, both have the same length of 4. This will cause a collision)
+
+Now it's possible that the hashing method may produce the same integer for more than one value. And when that happens, it's known as a collision.
+So, in our case, let's say, as I mentioned, we're going to use the last name of our employee as the key. Well if we have more than one employee with the last name Jones, then when we go to add Jane Jones to the hash table, Jones will be hashed to an integer.
+
+And if we went to add Mike Jones to the hash table, Jones will be hashed to an integer, and they're gonna get the same results. So their hashed key/values are going to be the same integer. And when the happens, it's known as a collision.
+
+**Load Factor**
+
+- Tell us how full a hash table is
+- Load factor =# of items / capacity = size / capacity
+- Load factor is used to decide when to resize the array backing the hash table
+- Don't want load factor too low (lots of empty space)
+- Don't want load factor too high (will increase the likehood of collisions)
+- Can play a role in determining the time complexity for retrievel
+
+So let's say we're backing the hash table with an array. The load factor would tell us how full the array is. And we can get that by dividing the number of items by the capacity. Which is essentially, the size over the capacity.
+
+So if we had an array of 10 backing our hash table, and we had five employees currently in the hash table, the load factor would be 0.5. So that tells us that our array is half full. 
+
+So the load factor is used to decide when to resize the array, backing the hash table.
+
+**Add to a Hash Table backed by an array**
+
+- 1: Provide a key/value pair
+- 2: Use a hash function to hash the key to an int value
+- 3: Store the value at the hashed key value - this is the index into the array
+
+So to add to a hash table backed by an array, we would provide the key/value pair, and then we would use a hash function, or in Java's case, we'd say a hash method, to hash the key to an int value.
+
+So let's say we wanna add Jane Jones and we provide the key Jones, we would have a hash function that hashes Jones to an int value, and then we would store Jane Jones at the hash key/value.
+
+And so, if Jones hashed to the integer four, we would store Jane Jones at index four in the array that's backing the hash table.
+
+**Add "Jane Jones" with the key of "Jones"**
+
+- 1: Use a hash function to map "Jones" to an int - let's assume we get the value 4
+- 2: Store "Jane Jones" at array[4]
+
+So as I just went through, if we wanted to add Jane Jones with the key of Jones, we use a hash function to map Jones to an int. And we'll assume we get the value four and that we'd store Jane Jones at array four.
+
+**Retrieve a value from a hash table**
+
+- 1: Provide the key
+- 2: Use the same hash function to hash the key to an int value
+- 3: Retrieve the value stored at the hashed key value
+
+Now when we want it to retrieve the employee with the key Jones, we would provide the key. And obviously, it's got to be the same key you used when you added the object, or it's not gonna work. And then we're going to hash the key again. And obviously, you have to use the same hash function that you're using to add values, otherwise, it's not gonna work. And so we'll provide the key Jones. We'll use the same hash function to hash the key to an int value, and we would get four. And then we'd go and get the item that's stored at position four in the array.
+
+**Retrieve the employee with the key "Jones"**
+
+- 1: Provide the key "Jones"
+- 2: Use the same hash function to map "Jones" to an int - let's assume we get the value 4
+- 3: Retrieve the value at array[4] -> "Jane Jones"
+
+And then to get the employee with the key Jones, we'd provide the key, we'd use the same hash function to map Jones to an int, and we should get four, 'cause we're using the same hash function. And so we just go to array index four, and that would get us Jane Jones back.
+
+#### <a name="chapter7part2"></a>Chapter 7 - Part 2: Hashtables Array Implementation
+
+Create the Employee Class
+
+```java
+public class Employee {
+
+    private String firstName;
+    private String lastName;
+    private int id;
+
+    public Employee(String firstName, String lastName, int id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        if (id != employee.id) return false;
+        if (!firstName.equals(employee.firstName)) return false;
+        return lastName.equals(employee.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = firstName.hashCode();
+        result = 31 * result + lastName.hashCode();
+        result = 31 * result + id;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", id=" + id +
+                '}';
+    }
+
+
+}
+```
+
+Simple Hashtable implementation
+
+```java
+public class SimpleHashtable {
+
+    private Employee[] hashtable;
+
+    public SimpleHashtable() {
+        hashtable = new Employee[10];
+    }
+
+    public void put(String key, Employee employee) {
+        int hashedKey = hashKey(key);
+        if (hashtable[hashedKey] != null) {
+            System.out.println("Sorry, there's already an employee at position " + hashedKey);
+        }
+        else {
+            hashtable[hashedKey] = employee;
+        }
+    }
+
+    public Employee get(String key) {
+        int hashedKey = hashKey(key);
+        return hashtable[hashedKey];
+    }
+
+    private int hashKey(String key) {
+        return key.length() % hashtable.length;
+    }
+
+    public void printHashtable() {
+        for (int i = 0; i < hashtable.length; i++) {
+            System.out.println(hashtable[i]);
+        }
+    }
+
+}
+```
+
+Operations
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        Employee janeJones = new Employee("Jane", "Jones", 123);
+        Employee johnDoe = new Employee("John", "Doe", 4567);
+        Employee marySmith = new Employee("Mary", "Smith", 22);
+        Employee mikeWilson = new Employee("Mike", "Wilson", 3245);
+        Employee billEnd = new Employee("Bill", "End", 78);
+
+        SimpleHashtable ht = new SimpleHashtable();
+        ht.put("Jones", janeJones);
+        ht.put("Doe", johnDoe);
+        ht.put("Wilson", mikeWilson);
+        ht.put("Smith", marySmith);
+
+        //ht.printHashtable();
+
+        System.out.println("Retrieve key Wilson: " + ht.get("Wilson"));
+
+    }
+}
+```
 
 ## <a name="chapter8"></a>Chapter 8: Search Algorithms
   
