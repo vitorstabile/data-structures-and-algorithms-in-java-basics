@@ -5160,9 +5160,482 @@ public class Main {
 
 #### <a name="chapter7part3"></a>Chapter 7 - Part 3: Linear Probing
 
+So we're gonna take a look at two common stategies for handling collisions.
+
+**The first one is called open addressing:**
+
+So with open addressing what we do is if we try to put an employee into the table and we find out that there's already an employee at the slot where we wanna put the new employee, then we look for another position in the array.
+
+If we go back to our main method here, when we call put with Mary Smith, we know that Smith hashes to five and we know that Jane Jones is already at position five.
+
+So what we would do is say, okay, position five is full, so let's look for another position in the array.
+
+There are different ways that we can look for other positions.
+
+**We're going to use what's called linear probing.**
+
+With linear probing, when we discover that a position for a hash key value is already occupied, we increment the hashed value by one, and then we check the resulting index.
+
+So in our case, when we come to put in Mary Smith we would discover that, oops, hashtable position five is already occupied, and so we're gonna increment five to six and then we'll check hashtable six.
+
+And if that's already occupied, we'll increment to seven, and we'll keep doing that until we find an empty slot, or we've check the entire hashtable. If the hastable is full then we can't add the employee into the hashtable.
+
+So it's called linear probing, because each time we increment the index we're doing it in a linear fashion, and every increment of the index is called a probe.
+
+So if we have to increment the index once before we find an empty position, then we had to use one probe. If we have to increment the index three times before we find an empty position, then we had to use three probes, and obviously the lower the number of probes the better.
+
+We need to create a new class called StoredEmploye because we need to update the get method, because is retrieving not the key we looking for
+
+```java
+public class StoredEmployee {
+
+    public String key;
+    public Employee employee;
+
+    public StoredEmployee(String key, Employee employee) {
+        this.key = key;
+        this.employee = employee;
+    }
+}
+```
+
+```java
+public class SimpleHashtable {
+
+    private StoredEmployee[] hashtable;
+
+    public SimpleHashtable() {
+        hashtable = new StoredEmployee[10];
+    }
+
+    public void put(String key, Employee employee) {
+        int hashedKey = hashKey(key);
+        if (occupied(hashedKey)) {
+            int stopIndex = hashedKey;
+            if (hashedKey == hashtable.length - 1) {
+                hashedKey = 0;
+            }
+            else {
+                hashedKey++;
+            }
+
+            while (occupied(hashedKey) && hashedKey != stopIndex) {
+                hashedKey = (hashedKey + 1) % hashtable.length;
+            }
+        }
+
+        if (occupied(hashedKey)) {
+            System.out.println("Sorry, there's already an employee at position " + hashedKey);
+        }
+        else {
+            hashtable[hashedKey] = new StoredEmployee(key, employee);
+        }
+    }
+
+    public Employee get(String key) {
+        int hashedKey = findKey(key);
+        if (hashedKey == -1) {
+            return null;
+        }
+        return hashtable[hashedKey].employee;
+    }
+
+    private int hashKey(String key) {
+        return key.length() % hashtable.length;
+    }
+
+    private int findKey(String key) {
+        int hashedKey = hashKey(key);
+        if (hashtable[hashedKey] != null &&
+                hashtable[hashedKey].key.equals(key)) {
+            return hashedKey;
+        }
+
+        int stopIndex = hashedKey;
+        if (hashedKey == hashtable.length - 1) {
+            hashedKey = 0;
+        }
+        else {
+            hashedKey++;
+        }
+
+        while (hashedKey != stopIndex &&
+                hashtable[hashedKey] != null &&
+                !hashtable[hashedKey].key.equals(key)) {
+            hashedKey = (hashedKey + 1) % hashtable.length;
+        }
+
+        if (stopIndex == hashedKey) {
+            return -1;
+        }
+        else {
+            return hashedKey;
+        }
+
+    }
+
+    private boolean occupied(int index) {
+        return hashtable[index] != null;
+    }
+
+    public void printHashtable() {
+        for (int i = 0; i < hashtable.length; i++) {
+            if (hashtable[i] == null) {
+                System.out.println("empty");
+            }
+            else {
+                System.out.println("Position " + i + ": " +hashtable[i].employee);
+            }
+        }
+    }
+
+}
+```
+
+Main method
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        Employee janeJones = new Employee("Jane", "Jones", 123);
+        Employee johnDoe = new Employee("John", "Doe", 4567);
+        Employee marySmith = new Employee("Mary", "Smith", 22);
+        Employee mikeWilson = new Employee("Mike", "Wilson", 3245);
+        Employee billEnd = new Employee("Bill", "End", 78);
+
+        SimpleHashtable ht = new SimpleHashtable();
+        ht.put("Jones", janeJones);
+        ht.put("Doe", johnDoe);
+        ht.put("Wilson", mikeWilson);
+        ht.put("Smith", marySmith);
+
+        ht.printHashtable();
+
+        System.out.println("Retrieve key Wilson: " + ht.get("Wilson"));
+        System.out.println("Retrieve key Smith: " + ht.get("Smith"));
+
+        ht.remove("Wilson");
+        ht.remove("Jones");
+        ht.printHashtable();
+
+        System.out.println("Retrieve key Smith: " + ht.get("Smith"));
+
+
+
+    }
+
+}
+```
+
 #### <a name="chapter7part4"></a>Chapter 7 - Part 4: Linear Probing - Removing Items
 
+Let's modify the implementation to remove a item
+
+```java
+public class SimpleHashtable {
+
+    private StoredEmployee[] hashtable;
+
+    public SimpleHashtable() {
+        hashtable = new StoredEmployee[10];
+    }
+
+    public void put(String key, Employee employee) {
+        int hashedKey = hashKey(key);
+        if (occupied(hashedKey)) {
+            int stopIndex = hashedKey;
+            if (hashedKey == hashtable.length - 1) {
+                hashedKey = 0;
+            }
+            else {
+                hashedKey++;
+            }
+
+            while (occupied(hashedKey) && hashedKey != stopIndex) {
+                hashedKey = (hashedKey + 1) % hashtable.length;
+            }
+        }
+
+        if (occupied(hashedKey)) {
+            System.out.println("Sorry, there's already an employee at position " + hashedKey);
+        }
+        else {
+            hashtable[hashedKey] = new StoredEmployee(key, employee);
+        }
+    }
+
+    public Employee get(String key) {
+        int hashedKey = findKey(key);
+        if (hashedKey == -1) {
+            return null;
+        }
+        return hashtable[hashedKey].employee;
+    }
+
+    public Employee remove(String key) {
+        int hashedKey = findKey(key);
+        if (hashedKey == -1) {
+            return null;
+        }
+
+        Employee employee = hashtable[hashedKey].employee;
+        hashtable[hashedKey] = null;
+        return employee;
+    }
+
+    private int hashKey(String key) {
+        return key.length() % hashtable.length;
+    }
+
+    private int findKey(String key) {
+        int hashedKey = hashKey(key);
+        if (hashtable[hashedKey] != null &&
+                hashtable[hashedKey].key.equals(key)) {
+            return hashedKey;
+        }
+
+        int stopIndex = hashedKey;
+        if (hashedKey == hashtable.length - 1) {
+            hashedKey = 0;
+        }
+        else {
+            hashedKey++;
+        }
+
+        while (hashedKey != stopIndex &&
+                hashtable[hashedKey] != null &&
+                !hashtable[hashedKey].key.equals(key)) {
+            hashedKey = (hashedKey + 1) % hashtable.length;
+        }
+
+        if (hashtable[hashedKey] != null &&
+                hashtable[hashedKey].key.equals(key)) {
+            return hashedKey;
+        }
+        else {
+            return -1;
+        }
+
+    }
+
+    private boolean occupied(int index) {
+        return hashtable[index] != null;
+    }
+
+    public void printHashtable() {
+        for (int i = 0; i < hashtable.length; i++) {
+            if (hashtable[i] == null) {
+                System.out.println("empty");
+            }
+            else {
+                System.out.println("Position " + i + ": " +hashtable[i].employee);
+            }
+        }
+    }
+
+}
+```
+
+Main Method
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        Employee janeJones = new Employee("Jane", "Jones", 123);
+        Employee johnDoe = new Employee("John", "Doe", 4567);
+        Employee marySmith = new Employee("Mary", "Smith", 22);
+        Employee mikeWilson = new Employee("Mike", "Wilson", 3245);
+        Employee billEnd = new Employee("Bill", "End", 78);
+
+        SimpleHashtable ht = new SimpleHashtable();
+        ht.put("Jones", janeJones);
+        ht.put("Doe", johnDoe);
+        ht.put("Wilson", mikeWilson);
+        ht.put("Smith", marySmith);
+
+        ht.printHashtable();
+
+        System.out.println("Retrieve key Wilson: " + ht.get("Wilson"));
+        System.out.println("Retrieve key Smith: " + ht.get("Smith"));
+
+        ht.remove("Wilson");
+        ht.remove("Jones");
+        ht.printHashtable();
+
+        System.out.println("Retrieve key Smith: " + ht.get("Smith"));
+
+
+
+    }
+
+}
+```
+
 #### <a name="chapter7part5"></a>Chapter 7 - Part 5: Linear Probing - Rehashing
+
+At least the implementation has a bug and that is that when we remove employees we set the position to null but that means that when we're doing our linear probing we're not going to be able to find some of our items for example Mary Smith.
+
+When we put Mary Smith into the hash table Jane Jones was occupying position 5 and Mike Wilson was occupying position 6 and so we had to use two probes to find position 7 but then we delete Jane and Mike.
+
+And so when we come to get Mary and we're doing our fine key in this loop here we drop out of the loop as soon as we hit a null position.
+
+And we're gonna hit that null position right away and so that means we can't find Mary anymore. And so there are two ways that you can solve this problem. You can on a remove you can rehash
+
+all of the items that are already in the hash table. So you can say okay we're gonna start with a new hash table so you'd create a new hash table and then you're going to loop through the existing arraigned you're gonna rehash all the values because after we've deleted Jane that would move Mary into position five right?
+
+Because when we do the rehashing when we come to Mary we're gonna hash her key which is going to end up being five and in the new hash table position five would be empty.
+
+```java
+public class SimpleHashtable {
+
+    private StoredEmployee[] hashtable;
+
+    public SimpleHashtable() {
+        hashtable = new StoredEmployee[10];
+    }
+
+    public void put(String key, Employee employee) {
+        int hashedKey = hashKey(key);
+        if (occupied(hashedKey)) {
+            int stopIndex = hashedKey;
+            if (hashedKey == hashtable.length - 1) {
+                hashedKey = 0;
+            }
+            else {
+                hashedKey++;
+            }
+
+            while (occupied(hashedKey) && hashedKey != stopIndex) {
+                hashedKey = (hashedKey + 1) % hashtable.length;
+            }
+        }
+
+        if (occupied(hashedKey)) {
+            System.out.println("Sorry, there's already an employee at position " + hashedKey);
+        }
+        else {
+            hashtable[hashedKey] = new StoredEmployee(key, employee);
+        }
+    }
+
+    public Employee get(String key) {
+        int hashedKey = findKey(key);
+        if (hashedKey == -1) {
+            return null;
+        }
+        return hashtable[hashedKey].employee;
+    }
+
+    public Employee remove(String key) {
+        int hashedKey = findKey(key);
+        if (hashedKey == -1) {
+            return null;
+        }
+
+        Employee employee = hashtable[hashedKey].employee;
+        hashtable[hashedKey] = null;
+
+        StoredEmployee[] oldHashtable = hashtable;
+        hashtable = new StoredEmployee[oldHashtable.length];
+        for (int i = 0; i < oldHashtable.length; i++) {
+            if (oldHashtable[i] != null) {
+                put(oldHashtable[i].key, oldHashtable[i].employee);
+            }
+        }
+
+        return employee;
+    }
+
+    private int hashKey(String key) {
+        return key.length() % hashtable.length;
+    }
+
+    private int findKey(String key) {
+        int hashedKey = hashKey(key);
+        if (hashtable[hashedKey] != null &&
+                hashtable[hashedKey].key.equals(key)) {
+            return hashedKey;
+        }
+
+        int stopIndex = hashedKey;
+        if (hashedKey == hashtable.length - 1) {
+            hashedKey = 0;
+        }
+        else {
+            hashedKey++;
+        }
+
+        while (hashedKey != stopIndex &&
+                hashtable[hashedKey] != null &&
+                !hashtable[hashedKey].key.equals(key)) {
+            hashedKey = (hashedKey + 1) % hashtable.length;
+        }
+
+        if (hashtable[hashedKey] != null &&
+                hashtable[hashedKey].key.equals(key)) {
+            return hashedKey;
+        }
+        else {
+            return -1;
+        }
+
+    }
+
+    private boolean occupied(int index) {
+        return hashtable[index] != null;
+    }
+
+    public void printHashtable() {
+        for (int i = 0; i < hashtable.length; i++) {
+            if (hashtable[i] == null) {
+                System.out.println("empty");
+            }
+            else {
+                System.out.println("Position " + i + ": " +hashtable[i].employee);
+            }
+        }
+    }
+
+}
+```
+
+Main Method
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        Employee janeJones = new Employee("Jane", "Jones", 123);
+        Employee johnDoe = new Employee("John", "Doe", 4567);
+        Employee marySmith = new Employee("Mary", "Smith", 22);
+        Employee mikeWilson = new Employee("Mike", "Wilson", 3245);
+        Employee billEnd = new Employee("Bill", "End", 78);
+
+        SimpleHashtable ht = new SimpleHashtable();
+        ht.put("Jones", janeJones);
+        ht.put("Doe", johnDoe);
+        ht.put("Wilson", mikeWilson);
+        ht.put("Smith", marySmith);
+
+        ht.printHashtable();
+
+        System.out.println("Retrieve key Wilson: " + ht.get("Wilson"));
+        System.out.println("Retrieve key Smith: " + ht.get("Smith"));
+
+        ht.remove("Wilson");
+        ht.remove("Jones");
+        ht.printHashtable();
+
+        System.out.println("Retrieve key Smith: " + ht.get("Smith"));
+
+
+
+    }
+
+}
+```
 
 #### <a name="chapter7part6"></a>Chapter 7 - Part 6: Chaining
 
