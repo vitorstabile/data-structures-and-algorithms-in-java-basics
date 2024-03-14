@@ -4904,6 +4904,10 @@ Final Queue [Geeks]
   
 #### <a name="chapter7part1"></a>Chapter 7 - Part 1: Introduction to Hashtables
 
+Hash Table is a data structure which stores data in an associative manner. In a hash table, data is stored in an array format, where each data value has its own unique index value. Access of data becomes very fast if we know the index of the desired data.
+
+Thus, it becomes a data structure in which insertion and search operations are very fast irrespective of the size of the data. Hash Table uses an array as a storage medium and uses hash technique to generate an index where an element is to be inserted or is to be located from.
+
 - Abstract data type
 - Provide access to data using keys
 - Key doesn't have to be an integer
@@ -4914,6 +4918,26 @@ Final Queue [Geeks]
 
 **Hashing**
 
+Hashing is a technique to convert a range of key values into a range of indexes of an array. We're going to use modulo operator to get a range of key values. Consider an example of hash table of size 20, and the following items are to be stored. Item are in the (key,value) format.
+
+<br>
+
+<div align="center"><img src="img/hashing-w600-h166.png" width=600 height=166><br><sub>Hashing - (<a href='https://www.tutorialspoint.com/data_structures_algorithms/hash_data_structure.htm'>Work by Tutorial Point</a>) </sub></div>
+
+<br>
+
+| Sr.No.  | Key    | Hash              |  Array Index   |
+| :------ | :-----:| :----------------:|:--------------:|
+| 1       | 1      |  1 % 20 = 1       | 1              |
+| 2       | 2      |  2 % 20 = 2       | 2              |
+| 3       | 42     |  42 % 20 = 2      | 2              |
+| 4       | 4      |  4 % 20 = 4       | 4              |
+| 5       | 12     |  12 % 20 = 12     | 12             |
+| 6       | 14     |  14 % 20 = 14     | 14             |
+| 7       | 17     |  17 % 20 = 17     | 17             |
+| 8       | 13     |  13 % 20 = 13     | 13             |
+| 9       | 17     |  37 % 20 = 17     | 17             |
+
 - Maps keys of any data type to an integer.
 - Hash function maps keys to int
 - In Java, hash function is Object.hashCode()
@@ -4923,6 +4947,22 @@ Now it's possible that the hashing method may produce the same integer for more 
 So, in our case, let's say, as I mentioned, we're going to use the last name of our employee as the key. Well if we have more than one employee with the last name Jones, then when we go to add Jane Jones to the hash table, Jones will be hashed to an integer.
 
 And if we went to add Mike Jones to the hash table, Jones will be hashed to an integer, and they're gonna get the same results. So their hashed key/values are going to be the same integer. And when the happens, it's known as a collision.
+
+**Linear Probing**
+
+As we can see, it may happen that the hashing technique is used to create an already used index of the array. In such a case, we can search the next empty location in the array by looking into the next cell until we find an empty cell. This technique is called linear probing.
+
+| Sr.No.  | Key    | Hash              |  Array Index   | After Linear Probing, Array Index   |
+| :------ | :-----:| :----------------:|:--------------:| :----------------------------------:|
+| 1       | 1      |  1 % 20 = 1       | 1              | 1                                   |
+| 2       | 2      |  2 % 20 = 2       | 2              | 2                                   |
+| 3       | 42     |  42 % 20 = 2      | 2              | 3                                   |
+| 4       | 4      |  4 % 20 = 4       | 4              | 4                                   |
+| 5       | 12     |  12 % 20 = 12     | 12             | 12                                  |
+| 6       | 14     |  14 % 20 = 14     | 14             | 14                                  |
+| 7       | 17     |  17 % 20 = 17     | 17             | 17                                  |
+| 8       | 13     |  13 % 20 = 13     | 13             | 13                                  |
+| 9       | 17     |  37 % 20 = 17     | 17             | 18                                  |
 
 **Load Factor**
 
