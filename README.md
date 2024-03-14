@@ -5740,74 +5740,86 @@ public class StoredEmployee {
 }
 ```
 
-The employee class
+The ChainedHashtable class
 
 ```java
-public class Employee {
+import java.util.LinkedList;
+import java.util.ListIterator;
 
-    private String firstName;
-    private String lastName;
-    private int id;
+public class ChainedHashtable {
 
-    public Employee(String firstName, String lastName, int id) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.id = id;
+    private LinkedList<StoredEmployee>[] hashtable;
+
+    public ChainedHashtable() {
+        hashtable = new LinkedList[10];
+        for (int i = 0; i < hashtable.length; i++) {
+            hashtable[i] = new LinkedList<StoredEmployee>();
+        }
     }
 
-    public String getFirstName() {
-        return firstName;
+    public void put(String key, Employee employee) {
+        int hashedKey = hashKey(key);
+        hashtable[hashedKey].add(new StoredEmployee(key, employee));
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public Employee get(String key) {
+        int hashedKey = hashKey(key);
+        ListIterator<StoredEmployee> iterator = hashtable[hashedKey].listIterator();
+        StoredEmployee employee = null;
+        while (iterator.hasNext()) {
+            employee = iterator.next();
+            if (employee.key.equals(key)) {
+                return employee.employee;
+            }
+        }
+
+        return null;
     }
 
-    public String getLastName() {
-        return lastName;
+    public Employee remove(String key) {
+        int hashedKey = hashKey(key);
+        ListIterator<StoredEmployee> iterator = hashtable[hashedKey].listIterator();
+        StoredEmployee employee = null;
+        int index = -1;
+        while (iterator.hasNext()) {
+            employee = iterator.next();
+            index++;
+            if (employee.key.equals(key)) {
+                break;
+            }
+        }
+
+        if (employee == null) {
+            return null;
+        }
+        else {
+            hashtable[hashedKey].remove(index);
+            return employee.employee;
+        }
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    private int hashKey(String key) {
+        //return key.length() % hashtable.length;
+
+        return Math.abs(key.hashCode() % hashtable.length);
     }
 
-    public int getId() {
-        return id;
+    public void printHashtable() {
+        for (int i = 0; i < hashtable.length; i++) {
+            if (hashtable[i].isEmpty()) {
+                System.out.println("Position " + i + ": empty");
+            }
+            else {
+                System.out.print("Position " + i + ": ");
+                ListIterator<StoredEmployee> iterator = hashtable[i].listIterator();
+                while (iterator.hasNext()) {
+                    System.out.print(iterator.next().employee);
+                    System.out.print("->");
+                }
+                System.out.println("null");
+            }
+        }
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Employee employee = (Employee) o;
-
-        if (id != employee.id) return false;
-        if (!firstName.equals(employee.firstName)) return false;
-        return lastName.equals(employee.lastName);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = firstName.hashCode();
-        result = 31 * result + lastName.hashCode();
-        result = 31 * result + id;
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", id=" + id +
-                '}';
-    }
-
 
 }
 ```
