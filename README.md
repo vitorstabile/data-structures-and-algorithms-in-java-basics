@@ -5639,6 +5639,8 @@ public class Main {
 
 #### <a name="chapter7part6"></a>Chapter 7 - Part 6: Chaining
 
+
+
 #### <a name="chapter7part7"></a>Chapter 7 - Part 7: JDK Hashtable Class
 
 ## <a name="chapter8"></a>Chapter 8: Search Algorithms
