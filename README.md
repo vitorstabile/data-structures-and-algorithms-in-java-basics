@@ -5639,7 +5639,208 @@ public class Main {
 
 #### <a name="chapter7part6"></a>Chapter 7 - Part 6: Chaining
 
+The second strategy for dealing with collisions and it's called chaining and it's a lot simpler than linear probing.
 
+When we use chaining, instead of storing the value directly into the array, each array position contains a linked list.
+
+And so, for our example, instead of storing the employees or StoredEmployee instances, we would store a linked list and if we go to add an employee and the key that we use has a hashed value that collides with the hashed value for another key, well, that's okay, because at that position in the array, there's a linked list and linked lists don't have any boundaries.
+
+They're not bounded by size and so, we can just go ahead and add that second employee into the linked list at that array position.
+
+So, we never have the concept of oops, sorry, this array position is already filled and so, we don't have to worry about incrementing indices and all that stuff.
+
+Now, of course the drawback is there's a linked list at every position and so, when you go to retrieve, or delete an item, you have to search the linked list to find the item with the key you're interested in but if you have a good hashing function and if you have a good load factor, then these linked lists will typically be short.
+
+The employee class
+
+```java
+
+public class Employee {
+
+    private String firstName;
+    private String lastName;
+    private int id;
+
+    public Employee(String firstName, String lastName, int id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        if (id != employee.id) return false;
+        if (!firstName.equals(employee.firstName)) return false;
+        return lastName.equals(employee.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = firstName.hashCode();
+        result = 31 * result + lastName.hashCode();
+        result = 31 * result + id;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", id=" + id +
+                '}';
+    }
+
+
+}
+```
+
+StoredEmploye Class
+
+```java
+public class StoredEmployee {
+
+    public String key;
+    public Employee employee;
+
+    public StoredEmployee(String key, Employee employee) {
+        this.key = key;
+        this.employee = employee;
+    }
+
+}
+```
+
+The employee class
+
+```java
+public class Employee {
+
+    private String firstName;
+    private String lastName;
+    private int id;
+
+    public Employee(String firstName, String lastName, int id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        if (id != employee.id) return false;
+        if (!firstName.equals(employee.firstName)) return false;
+        return lastName.equals(employee.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = firstName.hashCode();
+        result = 31 * result + lastName.hashCode();
+        result = 31 * result + id;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", id=" + id +
+                '}';
+    }
+
+
+}
+```
+
+The main method
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        Employee janeJones = new Employee("Jane", "Jones", 123);
+        Employee johnDoe = new Employee("John", "Doe", 4567);
+        Employee marySmith = new Employee("Mary", "Smith", 22);
+        Employee mikeWilson = new Employee("Mike", "Wilson", 3245);
+
+        ChainedHashtable ht = new ChainedHashtable();
+        ht.put("Jones", janeJones);
+        ht.put("Doe", johnDoe);
+        ht.put("Wilson", mikeWilson);
+        ht.put("Smith", marySmith);
+
+        ht.printHashtable();
+
+//        System.out.println("Retrieve key Smith: " + ht.get("Smith"));
+//
+//        ht.remove("Doe");
+//        ht.remove("Jones");
+//        ht.printHashtable();
+//
+
+    }
+}
+```
 
 #### <a name="chapter7part7"></a>Chapter 7 - Part 7: JDK Hashtable Class
 
