@@ -43,6 +43,11 @@
 7. [Chapter 7: Hashtables in Java](#chapter7)
     - [Chapter 7 - Part 1: Introduction to Hashtables](#chapter7part1)
     - [Chapter 7 - Part 2: Hashtables Array Implementation](#chapter7part2)
+    - [Chapter 7 - Part 3: Linear Probing](#chapter7part3)
+    - [Chapter 7 - Part 4: Linear Probing - Removing Items](#chapter7part4)
+    - [Chapter 7 - Part 5: Linear Probing - Rehashing](#chapter7part5)
+    - [Chapter 7 - Part 6: Chaining](#chapter7part6)
+    - [Chapter 7 - Part 7: JDK Hashtable Class](#chapter7part7)
 8. [Chapter 8: Search Algorithms](#chapter8)
     - [Chapter 8 - Part 1: Introduction to Search Algorithms](#chapter8part1)
 9. [Chapter 9: Trees in Java](#chapter9)
@@ -5152,6 +5157,16 @@ public class Main {
     }
 }
 ```
+
+#### <a name="chapter7part3"></a>Chapter 7 - Part 3: Linear Probing
+
+#### <a name="chapter7part4"></a>Chapter 7 - Part 4: Linear Probing - Removing Items
+
+#### <a name="chapter7part5"></a>Chapter 7 - Part 5: Linear Probing - Rehashing
+
+#### <a name="chapter7part6"></a>Chapter 7 - Part 6: Chaining
+
+#### <a name="chapter7part7"></a>Chapter 7 - Part 7: JDK Hashtable Class
 
 ## <a name="chapter8"></a>Chapter 8: Search Algorithms
   
