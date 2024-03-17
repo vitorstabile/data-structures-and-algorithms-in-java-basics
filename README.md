@@ -6875,6 +6875,203 @@ public class Main {
 
 #### <a name="chapter9part5"></a>Chapter 9 - Part 5: Binary Search Tree - Get, Min, Max
 
+Let's create the TreeNode
+
+```java
+public class TreeNode {
+
+    private int data;
+    private TreeNode leftChild;
+    private TreeNode rightChild;
+
+    public TreeNode(int data) {
+        this.data = data;
+    }
+
+    public void insert(int value) {
+        if (value == data) {
+            return;
+        }
+
+        if (value < data) {
+            if (leftChild == null) {
+                leftChild = new TreeNode(value);
+            }
+            else {
+                leftChild.insert(value);
+            }
+        }
+        else {
+            if (rightChild == null) {
+                rightChild = new TreeNode(value);
+            }
+            else {
+                rightChild.insert(value);
+            }
+        }
+    }
+
+    public TreeNode get(int value) {
+        if (value == data) {
+            return this;
+        }
+
+        if (value < data) {
+            if (leftChild != null) {
+                return leftChild.get(value);
+            }
+        }
+        else {
+            if (rightChild != null) {
+                return rightChild.get(value);
+            }
+        }
+
+        return null;
+    }
+
+    public int min() {
+        if (leftChild == null) {
+            return data;
+        }
+        else {
+            return leftChild.min();
+        }
+    }
+
+    public int max() {
+        if (rightChild == null) {
+            return data;
+        }
+        else {
+            return rightChild.max();
+        }
+    }
+
+    public void traverseInOrder() {
+        if (leftChild != null) {
+            leftChild.traverseInOrder();
+        }
+        System.out.print(data + ", ");
+        if (rightChild != null) {
+            rightChild.traverseInOrder();
+        }
+    }
+
+    public int getData() {
+        return data;
+    }
+
+    public void setData(int data) {
+        this.data = data;
+    }
+
+    public TreeNode getLeftChild() {
+        return leftChild;
+    }
+
+    public void setLeftChild(TreeNode leftChild) {
+        this.leftChild = leftChild;
+    }
+
+    public TreeNode getRightChild() {
+        return rightChild;
+    }
+
+    public void setRightChild(TreeNode rightChild) {
+        this.rightChild = rightChild;
+    }
+
+    public String toString() {
+        return "Data = " + data;
+    }
+}
+
+```
+
+Implement the Tree
+
+```java
+public class Tree {
+
+    private TreeNode root;
+
+    public void insert(int value) {
+        if (root == null) {
+            root = new TreeNode(value);
+        }
+        else {
+            root.insert(value);
+        }
+    }
+
+    public TreeNode get(int value) {
+        if (root != null) {
+            return root.get(value);
+        }
+
+        return null;
+    }
+
+    public int min() {
+        if (root == null) {
+            return Integer.MIN_VALUE;
+        }
+        else {
+            return root.min();
+        }
+    }
+
+    public int max() {
+        if (root == null) {
+            return Integer.MAX_VALUE;
+        }
+        else {
+            return root.max();
+        }
+    }
+
+    public void traverseInOrder() {
+        if (root != null) {
+            root.traverseInOrder();
+        }
+    }
+
+}
+```
+
+The operations
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        Tree intTree = new Tree();
+	    intTree.insert(25);
+	    intTree.insert(20);
+	    intTree.insert(15);
+	    intTree.insert(27);
+	    intTree.insert(30);
+	    intTree.insert(29);
+	    intTree.insert(26);
+	    intTree.insert(22);
+	    intTree.insert(32);
+	    intTree.insert(17);
+
+//        intTree.traverseInOrder();
+//        System.out.println();
+//
+//        System.out.println(intTree.get(27));
+//        System.out.println(intTree.get(17));
+//        System.out.println(intTree.get(8888));
+
+        System.out.println(intTree.min());
+        System.out.println(intTree.max());
+    }
+}
+```
+
 #### <a name="chapter9part6"></a>Chapter 9 - Part 6: Binary Search Tree - Delete
 
 #### <a name="chapter9part7"></a>Chapter 9 - Part 7: Trees in JDK
