@@ -48,6 +48,7 @@
     - [Chapter 7 - Part 5: Linear Probing - Rehashing](#chapter7part5)
     - [Chapter 7 - Part 6: Chaining](#chapter7part6)
     - [Chapter 7 - Part 7: JDK Hashtable Class](#chapter7part7)
+    - [Chapter 7 - Part 8: Bucket Sort](#chapter7part8)
 8. [Chapter 8: Search Algorithms](#chapter8)
     - [Chapter 8 - Part 1: Introduction to Search Algorithms](#chapter8part1)
 9. [Chapter 9: Trees in Java](#chapter9)
@@ -5887,7 +5888,10 @@ We can see the operations in the [Java Hashtable Doc](https://docs.oracle.com/ja
 We can see the operations in the [Java ConcurrentHashMap Doc](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentHashMap.html)
 
 ```java
-Employee janeJones = new Employee("Jane", "Jones", 123);
+public class Main {
+
+    public static void main(String[] args) {
+        Employee janeJones = new Employee("Jane", "Jones", 123);
         Employee johnDoe = new Employee("John", "Doe", 4567);
         Employee marySmith = new Employee("Mary", "Smith", 22);
         Employee mikeWilson = new Employee("Mike", "Wilson", 3245);
@@ -5913,6 +5917,9 @@ Employee janeJones = new Employee("Jane", "Jones", 123);
 //        }
 
         hashMap.forEach((k, v) -> System.out.println("Key = " + k + ", Employee = " + v));
+
+    }
+}
 ```
 
 **Performing Various Operations on HashMap**
@@ -6068,6 +6075,161 @@ public class TraversalTheHashMap {
 Key: vaibhav Value: 20
 Key: vishal Value: 10
 Key: sachin Value: 30
+```
+
+#### <a name="chapter7part8"></a>Chapter 7 - Part 8: Bucket Sort
+
+Bucket sort is a sorting technique that involves dividing elements into various groups, or buckets. These buckets are formed by uniformly distributing the elements. Once the elements are divided into buckets, they can be sorted using any other sorting algorithm. Finally, the sorted elements are gathered together in an ordered fashion.
+
+- Uses hashing
+- Makes assumptions about the data, like radix and counting sort
+- Because it makes assumptions, can sort in O(n) time
+- Performs best when hashed values of items being sorted are evenly distributed, so there aren't many collisions
+
+**Steps**
+
+- Distribute the items into buckets based on their hashed values (scattering phase)
+- Sort the items in each bucket
+- Merge the buckets - can just concatenate them (gathering phase)
+
+A generalization of counting sort
+
+The values in bucket X must be greater than the values in bucket X - 1 and less than the values in bucket X + 1
+
+This means that the hash function we use must meet this requirement
+
+**How does Bucket Sort work?**
+
+- To apply bucket sort on the input array [0.78, 0.17, 0.39, 0.26, 0.72, 0.94, 0.21, 0.12, 0.23, 0.68], we follow these steps:
+
+- **Step 1:** Create an array of size 10, where each slot represents a bucket.
+
+<br>
+
+<div align="center"><img src="img/bucketsort1-w1000-h500.png" width=1000 height=500><br><sub> - (<a href='https://www.geeksforgeeks.org/bucket-sort-2/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+
+**Step 2:** Insert elements into the buckets from the input array based on their range.
+
+Inserting elements into the buckets:
+
+- Take each element from the input array.
+- Multiply the element by the size of the bucket array (10 in this case). For example, for element 0.23, we get 0.23 * 10 = 2.3.
+- Convert the result to an integer, which gives us the bucket index. In this case, 2.3 is converted to the integer 2.
+- Insert the element into the bucket corresponding to the calculated index.
+- Repeat these steps for all elements in the input array.
+
+<br>
+
+<div align="center"><img src="img/bucketsort2-w1000-h500.png" width=1000 height=500><br><sub> - (<a href='https://www.geeksforgeeks.org/bucket-sort-2/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+**Step 3:** Sort the elements within each bucket. In this example, we use quicksort (or any stable sorting algorithm) to sort the elements within each bucket.
+
+Sorting the elements within each bucket:
+
+- Apply a stable sorting algorithm (e.g., Bubble Sort, Merge Sort) to sort the elements within each bucket.
+- The elements within each bucket are now sorted.
+
+<br>
+
+<div align="center"><img src="img/bucketsort3-w1000-h500.png" width=1000 height=500><br><sub> - (<a href='https://www.geeksforgeeks.org/bucket-sort-2/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+**Step 4:** Gather the elements from each bucket and put them back into the original array.
+
+Gathering elements from each bucket:
+
+- Iterate through each bucket in order.
+- Insert each individual element from the bucket into the original array.
+- Once an element is copied, it is removed from the bucket.
+- Repeat this process for all buckets until all elements have been gathered.
+
+<br>
+
+<div align="center"><img src="img/bucketsort4-w1000-h500.png" width=1000 height=500><br><sub> - (<a href='https://www.geeksforgeeks.org/bucket-sort-2/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+**Step 5:** The original array now contains the sorted elements.
+
+The final sorted array using bucket sort for the given input is [0.12, 0.17, 0.21, 0.23, 0.26, 0.39, 0.68, 0.72, 0.78, 0.94].
+
+<br>
+
+<div align="center"><img src="img/bucketsort5-w1000-h500.png" width=1000 height=500><br><sub> - (<a href='https://www.geeksforgeeks.org/bucket-sort-2/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+**Complexity Analysis of Bucket Sort Algorithm**
+
+Time Complexity: O(n2),
+
+- If we assume that insertion in a bucket takes O(1) time then steps 1 and 2 of the above algorithm clearly take O(n) time.
+- The O(1) is easily possible if we use a linked list to represent a bucket.
+- Step 4 also takes O(n) time as there will be n items in all buckets.
+- The main step to analyze is step 3. This step also takes O(n) time on average if all numbers are uniformly distributed.
+
+**Implementation**
+
+```java
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Vector;
+
+public class Main {
+
+    public static void main(String[] args) {
+	    int[] intArray = { 54, 46, 83, 66, 95, 92, 43 };
+
+        bucketSort(intArray);
+
+        for (int i = 0; i < intArray.length; i++) {
+            System.out.println(intArray[i]);
+        }
+    }
+
+    public static void bucketSort(int[] input) {
+        List<Integer>[] buckets = new List[10];
+
+        for (int i = 0; i < buckets.length; i++) {
+            // using linked lists for the buckets
+            //buckets[i] = new LinkedList<Integer>();
+
+            // using arraylists as the buckets
+            buckets[i] = new ArrayList<Integer>();
+        }
+
+        for (int i = 0; i < input.length; i++) {
+            buckets[hash(input[i])].add(input[i]);
+        }
+
+        for (List bucket: buckets) {
+            Collections.sort(bucket);
+        }
+
+        int j = 0;
+        for (int i = 0; i < buckets.length; i++) {
+            for (int value: buckets[i]) {
+                input[j++] = value;
+            }
+        }
+    }
+
+    private static int hash(int value) {
+        return value / 10;
+    }
+
+
+}
+
 ```
 
 ## <a name="chapter8"></a>Chapter 8: Search Algorithms
