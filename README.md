@@ -6326,6 +6326,58 @@ public class Main {
 ```
 
 #### <a name="chapter8part2"></a>Chapter 8 - Part 2: Binary Search Algorithm
+
+Binary Search is defined as a searching algorithm used in a sorted array by repeatedly dividing the search interval in half. The idea of binary search is to use the information that the array is sorted and reduce the time complexity to O(log N). 
+
+**Conditions for when to apply Binary Search in a Data Structure:**
+
+- The data structure must be sorted.
+- Access to any element of the data structure takes constant time.
+
+**Binary Search Algorithm:**
+
+- Divide the search space into two halves by finding the middle index “mid”.
+
+<br>
+
+<div align="center"><img src="img/binarysearch1-w768-h285.png" width=768 height=285><br><sub> - (<a href='https://www.geeksforgeeks.org/binary-search/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- Compare the middle element of the search space with the key.
+- If the key is found at middle element, the process is terminated.
+- If the key is not found at middle element, choose which half will be used as the next search space.
+  - If the key is smaller than the middle element, then the left side is used for next search.
+  - If the key is larger than the middle element, then the right side is used for next search.
+- This process is continued until the key is found or the total search space is exhausted.
+
+Consider an array arr[] = {2, 5, 8, 12, 16, 23, 38, 56, 72, 91}, and the target = 23.
+
+**First Step:** Calculate the mid and compare the mid element with the key. If the key is less than mid element, move to left and if it is greater than the mid then move search space to the right.
+
+- Key (i.e., 23) is greater than current mid element (i.e., 16). The search space moves to the right.
+
+<br>
+
+<div align="center"><img src="img/binarysearch2-w1000-h370.png" width=1000 height=370><br><sub> - (<a href='https://www.geeksforgeeks.org/binary-search/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- Key is less than the current mid 56. The search space moves to the left.
+
+<br>
+
+<div align="center"><img src="img/binarysearch3-w1000-h370.png" width=1000 height=370><br><sub> - (<a href='https://www.geeksforgeeks.org/binary-search/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+**Second Step:** If the key matches the value of the mid element, the element is found and stop search.
+
+<br>
+
+<div align="center"><img src="img/binarysearch4-w1000-h370.png" width=1000 height=370><br><sub> - (<a href='https://www.geeksforgeeks.org/binary-search/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
 	
 ## <a name="chapter9"></a>Chapter 9: Trees in Java
   
