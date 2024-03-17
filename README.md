@@ -6602,6 +6602,22 @@ Now let's say we came in and we wanna find the value of 18. So we'd come in, we 
 
 So we come down to the left child, 18 equals 18. Boom, we're done, we found 18 in just three steps, and so it's called a binary search tree because it's naturally organised so that you can do a binary search just by comparing values against a node and then depending on the result, going to the left or going to the right and so each time, you're cutting the values in half, the values you have to search.
 
+**How to Insert a value in a Binary Search Tree:**
+
+A new key is always inserted at the leaf by maintaining the property of the binary search tree. We start searching for a key from the root until we hit a leaf node. Once a leaf node is found, the new node is added as a child of the leaf node. The below steps are followed while we try to insert a node into a binary search tree:
+
+- Check the value to be inserted (say X) with the value of the current node (say val) we are in:
+  - If X is less than val move to the left subtree.
+  - Otherwise, move to the right subtree.
+ 
+- Once the leaf node is reached, insert X to its right or left based on the relation between X and the leaf node’s value.
+
+<br>
+
+<div align="center"><img src="img/binarysearchtreeinsert-w400-h255.gif" width=400 height=255><br><sub> - (<a href='https://commons.wikimedia.org/wiki/File:Binary-search-tree-insertion-animation.gif'>Work by Penjee</a>) </sub></div>
+
+<br>
+
 
 #### <a name="chapter9part3"></a>Chapter 9 - Part 3: Binary Search Tree - Insertion
 
