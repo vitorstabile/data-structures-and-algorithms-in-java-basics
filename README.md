@@ -5856,6 +5856,45 @@ public class Main {
 
 #### <a name="chapter7part7"></a>Chapter 7 - Part 7: JDK Hashtable Class
 
+We can see the operations in the [Java Map Doc](https://docs.oracle.com/javase/8/docs/api/java/util/Map.html)
+
+We can see the operations in the [Java HashMap Doc](https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html)
+
+We can see the operations in the [Java LinkedHashMap Doc](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html)
+
+We can see the operations in the [Java Hashtable Doc](https://docs.oracle.com/javase/8/docs/api/java/util/Hashtable.html)
+
+We can see the operations in the [Java ConcurrentHashMap Doc](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ConcurrentHashMap.html)
+
+```java
+Employee janeJones = new Employee("Jane", "Jones", 123);
+        Employee johnDoe = new Employee("John", "Doe", 4567);
+        Employee marySmith = new Employee("Mary", "Smith", 22);
+        Employee mikeWilson = new Employee("Mike", "Wilson", 3245);
+
+        Map<String, Employee> hashMap = new HashMap<String, Employee>();
+        hashMap.put("Jones", janeJones);
+        hashMap.put("Doe", johnDoe);
+        hashMap.put("Smith", marySmith);
+        //Employee employee = hashMap.put("Doe", mikeWilson);
+        Employee employee = hashMap.putIfAbsent("Doe", mikeWilson);
+        System.out.println(employee);
+
+        System.out.println(hashMap.getOrDefault("someone", mikeWilson));
+
+        System.out.println(hashMap.remove("Jones"));
+
+//        System.out.println(hashMap.containsKey("Doe"));
+//        System.out.println(hashMap.containsValue(janeJones));
+
+//        Iterator<Employee> iterator = hashMap.values().iterator();
+//        while (iterator.hasNext()) {
+//            System.out.println(iterator.next());
+//        }
+
+        hashMap.forEach((k, v) -> System.out.println("Key = " + k + ", Employee = " + v));
+```
+
 ## <a name="chapter8"></a>Chapter 8: Search Algorithms
   
 #### <a name="chapter8part1"></a>Chapter 8 - Part 1: Introduction to Search Algorithms
