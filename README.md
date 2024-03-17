@@ -54,6 +54,12 @@
     - [Chapter 8 - Part 2: Binary Search Algorithm](#chapter8part2)
 9. [Chapter 9: Trees in Java](#chapter9)
     - [Chapter 9 - Part 1: Introduction to Trees](#chapter9part1)
+    - [Chapter 9 - Part 2: Binary Search Tree](#chapter9part2)
+    - [Chapter 9 - Part 3: Binary Search Tree - Insertion](#chapter9part3)
+    - [Chapter 9 - Part 4: Binary Search Tree - Traversal](#chapter9part4)
+    - [Chapter 9 - Part 5: Binary Search Tree - Get, Min, Max](#chapter9part5)
+    - [Chapter 9 - Part 6: Binary Search Tree - Delete](#chapter9part6)
+    - [Chapter 9 - Part 7: Trees in JDK](#chapter9part7)
 10. [Chapter 10: Heaps in Java](#chapter10)
     - [Chapter 10 - Part 1: Introduction to Heaps](#chapter10part1)
 11. [Chapter 11: Sets in Java](#chapter11)
@@ -6557,6 +6563,18 @@ Here,
 **Ternary Tree:** A Ternary Tree is a tree data structure in which each node has at most three child nodes, usually distinguished as “left”, “mid” and “right”.
 
 **N-ary Tree or Generic Tree:** Generic trees are a collection of nodes where each node is a data structure that consists of records and a list of references to its children(duplicate references are not allowed). Unlike the linked list, each node stores the address of multiple nodes.
+
+#### <a name="chapter9part2"></a>Chapter 9 - Part 2: Binary Search Tree
+
+#### <a name="chapter9part3"></a>Chapter 9 - Part 3: Binary Search Tree - Insertion
+
+#### <a name="chapter9part4"></a>Chapter 9 - Part 4: Binary Search Tree - Traversal
+
+#### <a name="chapter9part5"></a>Chapter 9 - Part 5: Binary Search Tree - Get, Min, Max
+
+#### <a name="chapter9part6"></a>Chapter 9 - Part 6: Binary Search Tree - Delete
+
+#### <a name="chapter9part7"></a>Chapter 9 - Part 7: Trees in JDK
 
 ## <a name="chapter10"></a>Chapter 10: Heaps in Java
   
