@@ -6875,6 +6875,18 @@ public class Main {
 
 #### <a name="chapter9part5"></a>Chapter 9 - Part 5: Binary Search Tree - Get, Min, Max
 
+- Let’s say we want to search for the number X, We start at the root. Then:
+  - We compare the value to be searched with the value of the root.
+    - If it’s equal we are done with the search if it’s smaller we know that we need to go to the left subtree because in a binary search tree all the elements in the left subtree are smaller and all the elements in the right subtree are larger.
+  - Repeat the above step till no more traversal is possible
+  - If at any iteration, key is found, return True. Else False.
+ 
+<br>
+
+<div align="center"><img src="img/binarysearchtreesearch-w450-h378.gif" width=450 height=378><br><sub> - (<a href='https://upload.wikimedia.org/wikipedia/commons/9/9b/Binary_search_tree_example.gif'>Work by Penjee</a>) </sub></div>
+
+<br>
+
 Let's create the TreeNode
 
 ```java
