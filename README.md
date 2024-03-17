@@ -6470,6 +6470,94 @@ public class Main {
   
 #### <a name="chapter9part1"></a>Chapter 9 - Part 1: Introduction to Trees
 
+- Every item in the tree is a node
+- The node at the top of the tree is the root
+- Every non-root node has one and only one parent
+- A leaf node has no children
+- A singleton tree has only one node-the root
+
+A tree data structure is a hierarchical structure that is used to represent and organize data in a way that is easy to navigate and search. It is a collection of nodes that are connected by edges and has a hierarchical relationship between the nodes. 
+
+The topmost node of the tree is called the root, and the nodes below it are called the child nodes. Each node can have multiple child nodes, and these child nodes can also have their own child nodes, forming a recursive structure.
+
+This data structure is a specialized method to organize and store data in the computer to be used more effectively. It consists of a central node, structural nodes, and sub-nodes, which are connected via edges. We can also say that tree data structure has roots, branches, and leaves connected with one another.
+
+<br>
+
+<div align="center"><img src="img/tree1-w1070-h536.png" width=1070 height=536><br><sub> - (<a href='https://www.geeksforgeeks.org/introduction-to-tree-data-structure-and-algorithm-tutorials/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+**Basic Terminologies In Tree Data Structure:**
+
+-** Parent Node:** The node which is a predecessor of a node is called the parent node of that node. {B} is the parent node of {D, E}.
+- **Child Node:** The node which is the immediate successor of a node is called the child node of that node. Examples: {D, E} are the child nodes of {B}.
+- **Root Node:** The topmost node of a tree or the node which does not have any parent node is called the root node. {A} is the root node of the tree. A non-empty tree must contain exactly one root node and exactly one path from the root to all other nodes of the tree.
+- **Leaf Node or External Node:** The nodes which do not have any child nodes are called leaf nodes. {K, L, M, N, O, P, G} are the leaf nodes of the tree.
+- **Ancestor of a Node:** Any predecessor nodes on the path of the root to that node are called Ancestors of that node. {A,B} are the ancestor nodes of the node {E}
+- **Descendant:** A node x is a descendant of another node y if and only if y is an ancestor of y.
+- **Sibling:** Children of the same parent node are called siblings. {D,E} are called siblings.
+- **Level of a node:** The count of edges on the path from the root node to that node. The root node has level 0.
+- **Internal node:** A node with at least one child is called Internal Node.
+- **Neighbour of a Node:** Parent or child nodes of that node are called neighbors of that node.
+- **Subtree:** Any node of the tree along with its descendant.
+
+**Representation of Tree Data Structure:**
+
+A tree consists of a root, and zero or more subtrees T1, T2, … , Tk such that there is an edge from the root of the tree to the root of each subtree.
+
+<br>
+
+<div align="center"><img src="img/tree2-w701-h422.png" width=701 height=422><br><sub> - (<a href='https://www.geeksforgeeks.org/introduction-to-tree-data-structure-and-algorithm-tutorials/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+**Representation of a Node in Tree Data Structure:**
+
+```java
+struct Node
+{
+   int data;
+   struct Node *first_child;
+   struct Node *second_child;
+   struct Node *third_child;
+   .
+   .
+   .
+   struct Node *nth_child;
+};
+```
+
+**Example of Tree data structure**
+
+<br>
+
+<div align="center"><img src="img/tree3-w341-h311.png" width=341 height=311><br><sub> - (<a href='https://www.geeksforgeeks.org/introduction-to-tree-data-structure-and-algorithm-tutorials/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+Here,
+
+- Node 1 is the root node
+- 1 is the parent of 2 and 3
+- 2 and 3 are the siblings
+- 4, 5, 6, and 7 are the leaf nodes
+- 1 and 2 are the ancestors of 5
+
+**Types of Tree data structures:**
+
+<br>
+
+<div align="center"><img src="img/tree4-w768-h384.png" width=768 height=384><br><sub> - (<a href='https://www.geeksforgeeks.org/introduction-to-tree-data-structure-and-algorithm-tutorials/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+**Binary tree:** In a binary tree, each node can have a maximum of two children linked to it. Some common types of binary trees include full binary trees, complete binary trees, balanced binary trees, and degenerate or pathological binary trees.
+
+**Ternary Tree:** A Ternary Tree is a tree data structure in which each node has at most three child nodes, usually distinguished as “left”, “mid” and “right”.
+
+**N-ary Tree or Generic Tree:** Generic trees are a collection of nodes where each node is a data structure that consists of records and a list of references to its children(duplicate references are not allowed). Unlike the linked list, each node stores the address of multiple nodes.
+
 ## <a name="chapter10"></a>Chapter 10: Heaps in Java
   
 #### <a name="chapter10part1"></a>Chapter 10 - Part 1: Introduction to Heaps
