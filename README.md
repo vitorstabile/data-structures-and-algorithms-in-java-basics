@@ -5019,6 +5019,26 @@ Now when we want it to retrieve the employee with the key Jones, we would provid
 
 And then to get the employee with the key Jones, we'd provide the key, we'd use the same hash function to map Jones to an int, and we should get four, 'cause we're using the same hash function. And so we just go to array index four, and that would get us Jane Jones back.
 
+**Time Complexity**
+In Java, on the other hand, have an average constant time complexity for accessing elements by key, but in the worst-case scenario, the time complexity can be linear due to hash collisions. Hash collisions occur when two or more keys map to the same index in the hash table, causing a linear search through the list of values stored at that index to find the desired value. To mitigate the impact of hash collisions, the hash function should distribute the keys evenly across the indices in the hash table.
+
+The keys of a Hash Table are an array behind the scenes that can be accessed by a hash code. That’s why we have the time complexity of O(1) when there is no hash collision.
+
+When there is a hash collision, the key, and value will be inserted in a LinkedList. Then the time complexity to search an element by the key will be O(n).
+
+Insertion (worst): O(n), where n is the size of the hash map. This occurs when there are many hash collisions, leading to linear probing or other collision resolution strategies that may involve traversing the entire hash map.
+
+Lookup and Deletion (worst): O(n), for the same reason as insertion.
+
+| Operation                     | Time Complexity Hash Table          | Why                                                                                                                                                                               |
+| :---------------------------- | :----------------------------------:| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| Key Access                    | O(1) Average, O(n) Worst Case       |  The key is hashed to find the index, and the value at that index is returned. Collision resolution may be applied if needed.                                                     |
+| Lookup                        | O(1) Average, O(n) Worst Case       |  The key is hashed to find the index, and the value at that index is returned. Collision resolution may be applied if needed.                                                     |
+| Search                        | O(n) Worst Case                     |  To search a value (not the key) into a Hash Table we will have the time complexity of O(n).                                                                                      |
+| Insertion                     | O(1) Average, O(n) Worst Case       |  The key-value pair is hashed, and the resulting index is used to store the value in the corresponding slot. If a collision occurs, the collision resolution strategy is applied. |
+| Deletion                      | O(1) Average, O(n) Worst Case       |  The key is hashed to find the index, and the item at that index is removed. Collision resolution may be necessary.                                                               |
+
+
 #### <a name="chapter7part2"></a>Chapter 7 - Part 2: Hashtables Array Implementation
 
 Create the Employee Class
@@ -5893,6 +5913,161 @@ Employee janeJones = new Employee("Jane", "Jones", 123);
 //        }
 
         hashMap.forEach((k, v) -> System.out.println("Key = " + k + ", Employee = " + v));
+```
+
+**Performing Various Operations on HashMap**
+
+- **Adding Elements in HashMap in Java**
+
+```java
+// Java program to add elements
+// to the HashMap
+import java.io.*;
+import java.util.*;
+
+class AddElementsToHashMap {
+	public static void main(String args[])
+	{
+		// No need to mention the
+		// Generic type twice
+		HashMap<Integer, String> hm1 = new HashMap<>();
+
+		// Initialization of a HashMap
+		// using Generics
+		HashMap<Integer, String> hm2
+			= new HashMap<Integer, String>();
+
+		// Add Elements using put method
+		hm1.put(1, "Geeks");
+		hm1.put(2, "For");
+		hm1.put(3, "Geeks");
+
+		hm2.put(1, "Geeks");
+		hm2.put(2, "For");
+		hm2.put(3, "Geeks");
+
+		System.out.println("Mappings of HashMap hm1 are : "
+						+ hm1);
+		System.out.println("Mapping of HashMap hm2 are : "
+						+ hm2);
+	}
+}
+```
+
+```
+Mappings of HashMap hm1 are : {1=Geeks, 2=For, 3=Geeks}
+Mapping of HashMap hm2 are : {1=Geeks, 2=For, 3=Geeks}
+```
+
+- **Changing Elements in HashMap in Java**
+
+```java
+// Java program to change
+// elements of HashMap
+
+import java.io.*;
+import java.util.*;
+class ChangeElementsOfHashMap {
+	public static void main(String args[])
+	{
+
+		// Initialization of a HashMap
+		HashMap<Integer, String> hm
+			= new HashMap<Integer, String>();
+
+		// Change Value using put method
+		hm.put(1, "Geeks");
+		hm.put(2, "Geeks");
+		hm.put(3, "Geeks");
+
+		System.out.println("Initial Map " + hm);
+
+		hm.put(2, "For");
+
+		System.out.println("Updated Map " + hm);
+	}
+}
+```
+
+```
+Initial Map {1=Geeks, 2=Geeks, 3=Geeks}
+Updated Map {1=Geeks, 2=For, 3=Geeks}
+```
+
+- **Removing Element from Java HashMap**
+
+```java
+// Java program to remove
+// elements from HashMap
+
+import java.io.*;
+import java.util.*;
+class RemoveElementsOfHashMap{
+	public static void main(String args[])
+	{
+		// Initialization of a HashMap
+		Map<Integer, String> hm
+			= new HashMap<Integer, String>();
+
+		// Add elements using put method
+		hm.put(1, "Geeks");
+		hm.put(2, "For");
+		hm.put(3, "Geeks");
+		hm.put(4, "For");
+
+		// Initial HashMap
+		System.out.println("Mappings of HashMap are : "
+						+ hm);
+
+		// remove element with a key
+		// using remove method
+		hm.remove(4);
+
+		// Final HashMap
+		System.out.println("Mappings after removal are : "
+						+ hm);
+	}
+}
+```
+
+```
+Mappings of HashMap are : {1=Geeks, 2=For, 3=Geeks, 4=For}
+Mappings after removal are : {1=Geeks, 2=For, 3=Geeks}
+```
+
+- **Traversal of Java HashMap**
+
+```java
+// Java program to traversal a
+// Java.util.HashMap
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class TraversalTheHashMap {
+	public static void main(String[] args)
+	{
+		// initialize a HashMap
+		HashMap<String, Integer> map = new HashMap<>();
+
+		// Add elements using put method
+		map.put("vishal", 10);
+		map.put("sachin", 30);
+		map.put("vaibhav", 20);
+
+		// Iterate the map using
+		// for-each loop
+		for (Map.Entry<String, Integer> e : map.entrySet())
+			System.out.println("Key: " + e.getKey()
+							+ " Value: " + e.getValue());
+	}
+}
+```
+
+```
+Key: vaibhav Value: 20
+Key: vishal Value: 10
+Key: sachin Value: 30
 ```
 
 ## <a name="chapter8"></a>Chapter 8: Search Algorithms
