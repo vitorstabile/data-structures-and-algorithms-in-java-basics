@@ -6098,6 +6098,11 @@ The values in bucket X must be greater than the values in bucket X - 1 and less 
 
 This means that the hash function we use must meet this requirement
 
+- Not in-place
+- Stability will depend on sort algorithm used to sort the buckets - ideally, you want a stable sort
+- To achieve O(n), must have only one item per bucket
+- Insertion sort is often used to sort the buckets, because it is fast whem the number of items is small
+
 **How does Bucket Sort work?**
 
 - To apply bucket sort on the input array [0.78, 0.17, 0.39, 0.26, 0.72, 0.94, 0.21, 0.12, 0.23, 0.68], we follow these steps:
