@@ -6580,7 +6580,7 @@ Here,
 
 <br>
 
-<div align="center"><img src="img/binarysearchtree-w560-h560.png" width=5608 height=560><br><sub> - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+<div align="center"><img src="img/binarysearchtree-w560-h560.png" width=560 height=560><br><sub> - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
 
 <br>
 
@@ -6621,7 +6621,257 @@ A new key is always inserted at the leaf by maintaining the property of the bina
 
 #### <a name="chapter9part3"></a>Chapter 9 - Part 3: Binary Search Tree - Insertion
 
+Let's create the TreeNode
+
+```java
+public class TreeNode {
+
+    private int data;
+    private TreeNode leftChild;
+    private TreeNode rightChild;
+
+    public void insert(int value) {
+        if (value == data) {
+            return;
+        }
+
+        if (value < data) {
+            if (leftChild == null) {
+                leftChild = new TreeNode(value);
+            }
+            else {
+                leftChild.insert(value);
+            }
+        }
+        else {
+            if (rightChild == null) {
+                rightChild = new TreeNode(value);
+            }
+            else {
+                rightChild.insert(value);
+            }
+        }
+    }
+
+    public TreeNode(int data) {
+        this.data = data;
+    }
+
+    public int getData() {
+        return data;
+    }
+
+    public void setData(int data) {
+        this.data = data;
+    }
+
+    public TreeNode getLeftChild() {
+        return leftChild;
+    }
+
+    public void setLeftChild(TreeNode leftChild) {
+        this.leftChild = leftChild;
+    }
+
+    public TreeNode getRightChild() {
+        return rightChild;
+    }
+
+    public void setRightChild(TreeNode rightChild) {
+        this.rightChild = rightChild;
+    }
+}
+```
+
+Implement the Tree
+
+```java
+public class Tree {
+
+    private TreeNode root;
+
+    public void insert(int value) {
+        if (root == null) {
+            root = new TreeNode(value);
+        }
+        else {
+            root.insert(value);
+        }
+    }
+
+
+}
+```
+
+The operations
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+	    Tree intTree = new Tree();
+	    intTree.insert(25);
+	    intTree.insert(20);
+	    intTree.insert(15);
+	    intTree.insert(27);
+	    intTree.insert(30);
+	    intTree.insert(29);
+	    intTree.insert(26);
+	    intTree.insert(22);
+	    intTree.insert(32);
+		
+    }
+}
+```
+
 #### <a name="chapter9part4"></a>Chapter 9 - Part 4: Binary Search Tree - Traversal
+
+- **Level:** visit nodes on each level
+- **Pre-order:** visit the root of every subtree first
+- **Post-order:** visit the root of every subtree last
+- **In-order:** visit left child, then root, then right child
+
+<br>
+
+<div align="center"><img src="img/treelevel-w471-h371.png" width=471 height=371><br><sub> - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+- Pre-order Traversal of the above tree: 1-2-4-5-3-6-7
+
+So now we have pre-order, and with pre-order we always visit the root of a subtree first.
+
+- In-order Traversal of the above tree: 4-2-5-1-6-3-7
+
+Okay, so with an in-order traversal, we completely visit the left side and then we visit the root and then we completely visit the right side.
+
+- Post-order Traversal of the above tree: 4-5-2-6-7-3-1
+
+And finally, we have post-order. We had pre-order back here where we visited the root first or the node, and then the left and then the right. In post-order the root goes last, and so you visit the entire left subtree for a node and then the entire right subtree for the node and finally you hit the node.
+
+- Level-order Traversal of the above tree: 1-2-3-4-5-6-7
+
+And for the level traversal we start at level zero and then we move to level one and we move from left to right, and then we go to level two and we move from left to right, and we go to three and we move from left to right.
+
+Let's create the TreeNode
+
+```java
+public class TreeNode {
+
+    private int data;
+    private TreeNode leftChild;
+    private TreeNode rightChild;
+
+    public void insert(int value) {
+        if (value == data) {
+            return;
+        }
+
+        if (value < data) {
+            if (leftChild == null) {
+                leftChild = new TreeNode(value);
+            }
+            else {
+                leftChild.insert(value);
+            }
+        }
+        else {
+            if (rightChild == null) {
+                rightChild = new TreeNode(value);
+            }
+            else {
+                rightChild.insert(value);
+            }
+        }
+    }
+
+    public void traverseInOrder() {
+        if (leftChild != null) {
+            leftChild.traverseInOrder();
+        }
+        System.out.print(data + ", ");
+        if (rightChild != null) {
+            rightChild.traverseInOrder();
+        }
+    }
+
+    public TreeNode(int data) {
+        this.data = data;
+    }
+
+    public int getData() {
+        return data;
+    }
+
+    public void setData(int data) {
+        this.data = data;
+    }
+
+    public TreeNode getLeftChild() {
+        return leftChild;
+    }
+
+    public void setLeftChild(TreeNode leftChild) {
+        this.leftChild = leftChild;
+    }
+
+    public TreeNode getRightChild() {
+        return rightChild;
+    }
+
+    public void setRightChild(TreeNode rightChild) {
+        this.rightChild = rightChild;
+    }
+}
+```
+
+Implement the Tree
+
+```java
+public class Tree {
+
+    private TreeNode root;
+
+    public void insert(int value) {
+        if (root == null) {
+            root = new TreeNode(value);
+        }
+        else {
+            root.insert(value);
+        }
+    }
+
+    public void traverseInOrder() {
+        if (root != null) {
+            root.traverseInOrder();
+        }
+    }
+
+
+}
+```
+
+The operations
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+	    Tree intTree = new Tree();
+	    intTree.insert(25);
+	    intTree.insert(20);
+	    intTree.insert(15);
+	    intTree.insert(27);
+	    intTree.insert(30);
+	    intTree.insert(29);
+	    intTree.insert(26);
+	    intTree.insert(22);
+	    intTree.insert(32);
+
+	    intTree.traverseInOrder();
+    }
+}
+```
 
 #### <a name="chapter9part5"></a>Chapter 9 - Part 5: Binary Search Tree - Get, Min, Max
 
