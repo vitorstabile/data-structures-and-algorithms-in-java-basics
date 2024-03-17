@@ -59,7 +59,8 @@
     - [Chapter 9 - Part 4: Binary Search Tree - Traversal](#chapter9part4)
     - [Chapter 9 - Part 5: Binary Search Tree - Get, Min, Max](#chapter9part5)
     - [Chapter 9 - Part 6: Binary Search Tree - Delete](#chapter9part6)
-    - [Chapter 9 - Part 7: Trees in JDK](#chapter9part7)
+    - [Chapter 9 - Part 7: Self-Balancing Binary Search Trees](#chapter9part7)
+    - [Chapter 9 - Part 8: Trees in JDK](#chapter9part8)
 10. [Chapter 10: Heaps in Java](#chapter10)
     - [Chapter 10 - Part 1: Introduction to Heaps](#chapter10part1)
 11. [Chapter 11: Sets in Java](#chapter11)
@@ -7585,7 +7586,72 @@ public class Main {
 }
 ```
 
-#### <a name="chapter9part7"></a>Chapter 9 - Part 7: Trees in JDK
+#### <a name="chapter9part7"></a>Chapter 9 - Part 7: Self-Balancing Binary Search Trees
+
+Self-Balancing Binary Search Trees are height-balanced binary search trees that automatically keep the height as small as possible when insertion and deletion operations are performed on the tree. 
+
+The height is typically maintained in order of logN so that all operations take O(logN) time on average. 
+
+Examples: The most common examples of self-balancing binary search trees are 
+
+- AVL Tree
+- Red Black Tree and 
+- Splay Tree
+
+**AVL Tree:**
+
+An AVL tree defined as a self-balancing Binary Search Tree (BST) where the difference between heights of left and right subtrees for any node cannot be more than one.
+
+<br>
+
+<div align="center"><img src="img/avltree-w423-h402.png" width=423 height=402><br><sub> - (<a href='https://www.geeksforgeeks.org/self-balancing-binary-search-trees/?ref=lbp'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+Basic operations on AVL Tree include:
+
+- Insertion
+- Searching
+- Deletion
+
+**Red-Black Tree:**
+
+Red-Black tree is a self-balancing binary search tree in which every node is colored with either red or black. The root and leaf nodes (i.e., NULL nodes) are always marked as black.
+
+<br>
+
+<div align="center"><img src="img/redblacktree-w891-h470.png" width=891 height=470><br><sub> - (<a href='https://www.geeksforgeeks.org/self-balancing-binary-search-trees/?ref=lbp'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- **Root property:** The root is black.
+- **External property:** Every leaf (Leaf is a NULL child of a node) is black in Red-Black tree.
+- **Internal property:** The children of a red node are black. Hence possible parent of red node is a black node.
+- **Depth property:** All the leaves have the same black depth.
+- **Path property:** Every simple path from the root to descendant leaf node contains the same number of black nodes
+
+**Splay Tree:**
+
+Splay is a self-balancing binary search tree. The basic idea behind splay trees is to bring the most recently accessed or inserted element to the root of the tree by performing a sequence of tree rotations, called splaying.
+
+Basic operations that are performed in a splay tree are:
+
+- Insertion
+- Searching
+- Deletion
+- Rotation (There are two types of rotation in a Splay tree named zig rotation and zag rotation)
+
+| Metric                                  | Red-Black Tree                            | AVL Tree                                    |  Splay Tree                                          |
+| :-------------------------------------- | :----------------------------------------:| :------------------------------------------:|:----------------------------------------------------:|
+| Insertion in worst case                 | O(logN)                                   |  O(logN)                                    | Amortized O(logN)                                    |
+| Maximum height of tree                  | 2*log(n)                                  |  1.44*log(n)                                | O(n)                                                 |
+| Search in worst case                    | O(logN), Moderate                         |  O(logN), Faster                            | Amortized O(logN), Slower                            |
+| Efficient Implementation requires       | Three pointers with color bit per node    |  Two pointers with balance factor per node  | Only two pointers with no extra information          |
+| Deletion in  worst case                 | O(logN)                                   |  O(logN)                                    | Amortized O(logN)                                    |
+| Mostly used                             | As universal data structure               |  When frequent lookups are required         | When same element is retrieved again and again       |
+| Real world Application                  | Database Transactions                     |  Multiset, Multimap, Map, Set, etc.         | Cache implementation, Garbage collection Algorithms  |
+
+#### <a name="chapter9part8"></a>Chapter 9 - Part 8: Trees in JDK
 
 We can see the operations in the [Java TreeMap Doc](https://docs.oracle.com/javase/8/docs/api/java/util/TreeMap.html)
 
