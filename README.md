@@ -6378,6 +6378,93 @@ Consider an array arr[] = {2, 5, 8, 12, 16, 23, 38, 56, 72, 91}, and the target 
 <div align="center"><img src="img/binarysearch4-w1000-h370.png" width=1000 height=370><br><sub> - (<a href='https://www.geeksforgeeks.org/binary-search/'>Work by Geeks for Geeks</a>) </sub></div>
 
 <br>
+
+**Time Complexity:**
+
+- Best Case: O(1)
+- Average Case: O(log N)
+- Worst Case: O(log N)
+
+**Advantages of Binary Search:**
+
+- Binary search is faster than linear search, especially for large arrays.
+- More efficient than other searching algorithms with a similar time complexity, such as interpolation search or exponential search.
+- Binary search is well-suited for searching large datasets that are stored in external memory, such as on a hard drive or in the cloud.
+
+**Drawbacks of Binary Search:**
+
+- The array should be sorted.
+- Binary search requires that the data structure being searched be stored in contiguous memory locations. 
+- Binary search requires that the elements of the array be comparable, meaning that they must be able to be ordered.
+
+**Applications of Binary Search:**
+
+- Binary search can be used as a building block for more complex algorithms used in machine learning, such as algorithms for training neural networks or finding the optimal hyperparameters for a model.
+- It can be used for searching in computer graphics such as algorithms for ray tracing or texture mapping.
+- It can be used for searching a database.
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        int[] intArray = { -22, -15, 1, 7, 20, 35, 55 };
+
+        System.out.println(iterativeBinarySearch(intArray, -15));
+        System.out.println(iterativeBinarySearch(intArray, 35));
+        System.out.println(iterativeBinarySearch(intArray, 8888));
+        System.out.println(iterativeBinarySearch(intArray, 1));
+
+        System.out.println(recursiveBinarySearch(intArray, -15));
+        System.out.println(recursiveBinarySearch(intArray, 35));
+        System.out.println(recursiveBinarySearch(intArray, 8888));
+        System.out.println(recursiveBinarySearch(intArray, 1));
+    }
+
+    public static int iterativeBinarySearch(int[] input, int value) {
+        int start = 0;
+        int end = input.length;
+
+        while (start < end) {
+            int midpoint = (start + end) / 2;
+            System.out.println("midpoint = " + midpoint);
+            if (input[midpoint] == value) {
+                return midpoint;
+            }
+            else if (input[midpoint] < value) {
+                start = midpoint + 1;
+            }
+            else {
+                end = midpoint;
+            }
+        }
+
+        return -1;
+    }
+
+    public static int recursiveBinarySearch(int[] input, int value) {
+        return recursiveBinarySearch(input, 0, input.length, value);
+    }
+
+    public static int recursiveBinarySearch(int[] input, int start, int end, int value) {
+        if (start >= end) {
+            return -1;
+        }
+
+        int midpoint = (start + end) / 2;
+        System.out.println("midpoint = " + midpoint);
+
+        if (input[midpoint] == value) {
+            return midpoint;
+        }
+        else if (input[midpoint] < value) {
+            return recursiveBinarySearch(input, midpoint + 1, end, value);
+        }
+        else {
+            return recursiveBinarySearch(input, start, midpoint, value);
+        }
+    }
+}
+```
 	
 ## <a name="chapter9"></a>Chapter 9: Trees in Java
   
