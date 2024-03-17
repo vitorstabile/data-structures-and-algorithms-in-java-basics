@@ -50,7 +50,8 @@
     - [Chapter 7 - Part 7: JDK Hashtable Class](#chapter7part7)
     - [Chapter 7 - Part 8: Bucket Sort](#chapter7part8)
 8. [Chapter 8: Search Algorithms](#chapter8)
-    - [Chapter 8 - Part 1: Introduction to Search Algorithms](#chapter8part1)
+    - [Chapter 8 - Part 1: Linear Search Algorithm](#chapter8part1)
+    - [Chapter 8 - Part 2: Binary Search Algorithm](#chapter8part2)
 9. [Chapter 9: Trees in Java](#chapter9)
     - [Chapter 9 - Part 1: Introduction to Trees](#chapter9part1)
 10. [Chapter 10: Heaps in Java](#chapter10)
@@ -6239,7 +6240,9 @@ public class Main {
 
 ## <a name="chapter8"></a>Chapter 8: Search Algorithms
   
-#### <a name="chapter8part1"></a>Chapter 8 - Part 1: Introduction to Search Algorithms
+#### <a name="chapter8part1"></a>Chapter 8 - Part 1: Linear Search Algorithm
+
+#### <a name="chapter8part2"></a>Chapter 8 - Part 2: Binary Search Algorithm
 	
 ## <a name="chapter9"></a>Chapter 9: Trees in Java
   
