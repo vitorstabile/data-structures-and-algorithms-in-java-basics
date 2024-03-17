@@ -6566,6 +6566,43 @@ Here,
 
 #### <a name="chapter9part2"></a>Chapter 9 - Part 2: Binary Search Tree
 
+- Every node has 0,1 or 2 children
+- Children are referred to as left child as right child
+- In practice, we use binary search trees
+
+**Binary Search Tree (BST)**
+
+- Can perform insertions, deletions, and retrievals in O(logn) time
+- The left child always has a smaller value than its parent
+- The right child always has a larger value than its parent
+- This means everything to the left of the root is less than the value of the root, and everything to the right of the root is greater than the value of the root
+- Because of that, we can do a binary search
+
+<br>
+
+<div align="center"><img src="img/binarysearchtree-w560-h560.png" width=5608 height=560><br><sub> - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+So essentially, binary search trees are ideal for doing binary searches and that's why they're called binary search trees. And because of that characteristic as well, we can do insertions, deletions and retrievals.
+
+That's searching for a value, so that's obviously O(logn). We can do those in O(logn) time because it only ever takes us O(logn) steps to find the insertion point or to find the value we want to delete or retrieve.
+
+And so this is a binary search tree, so the root is 15.
+
+Everything to the left of the root is smaller than 15 and everything to the right of the root is larger than 15 and this has to hold true for every node in the tree.
+
+So if look at three, three has one child, two, and two is less than three, and so two has to go to the left.
+
+If we put two here, this would not be a binary search tree because it would violate the rule that everything to the left has to be less than, and everything to the right has to be greater than.
+
+22 is greater than 15, so it goes to the right. 18 is less than 22, so it goes to the left. 19 is greater than 18, so it goes to the right and 25 is greater than 22, and so it goes to the right, and so this meets the requirements of a binary search tree.
+
+Now let's say we came in and we wanna find the value of 18. So we'd come in, we compare 18 to 15, while 18 is larger than 15 so we know it has to be to the right of the root, so we go down to the right child. 18 is less than 22, so we know it has to be to the left of this node because everything on the left is less than 22.
+
+So we come down to the left child, 18 equals 18. Boom, we're done, we found 18 in just three steps, and so it's called a binary search tree because it's naturally organised so that you can do a binary search just by comparing values against a node and then depending on the result, going to the left or going to the right and so each time, you're cutting the values in half, the values you have to search.
+
+
 #### <a name="chapter9part3"></a>Chapter 9 - Part 3: Binary Search Tree - Insertion
 
 #### <a name="chapter9part4"></a>Chapter 9 - Part 4: Binary Search Tree - Traversal
