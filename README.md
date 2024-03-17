@@ -6242,6 +6242,89 @@ public class Main {
   
 #### <a name="chapter8part1"></a>Chapter 8 - Part 1: Linear Search Algorithm
 
+**How Does Linear Search Algorithm Work?**
+
+In Linear Search Algorithm
+
+- Every element is considered as a potential match for the key and checked for the same.
+- If any element is found equal to the key, the search is successful and the index of that element is returned.
+- If no element is found equal to the key, the search yields “No match found”.
+
+For example: Consider the array arr[] = {10, 50, 30, 70, 80, 20, 90, 40} and key = 30
+
+**Step 1:** Start from the first element (index 0) and compare key with each element (arr[i]).
+
+Comparing key with first element arr[0]. SInce not equal, the iterator moves to the next element as a potential match.
+
+<br>
+
+<div align="center"><img src="img/linearsearch1-w1000-h370.png" width=1000 height=500><br><sub> - (<a href='https://www.geeksforgeeks.org/linear-search/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+Comparing key with next element arr[1]. SInce not equal, the iterator moves to the next element as a potential match.
+
+<br>
+
+<div align="center"><img src="img/linearsearch2-w1000-h370.png" width=1000 height=500><br><sub> - (<a href='https://www.geeksforgeeks.org/linear-search/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+**Step 2:** Now when comparing arr[2] with key, the value matches. So the Linear Search Algorithm will yield a successful message and return the index of the element when key is found (here 2).
+
+<br>
+
+<div align="center"><img src="img/linearsearch3-w1000-h370.png" width=1000 height=500><br><sub> - (<a href='https://www.geeksforgeeks.org/linear-search/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+**Time Complexity**
+
+**Best Case:** In the best case, the key might be present at the first index. So the best case complexity is O(1)
+**Worst Case:** In the worst case, the key might be present at the last index i.e., opposite to the end from which the search has started in the list. So the worst-case complexity is O(N) where N is the size of the list.
+**Average Case:** O(N)
+
+**Advantages of Linear Search:**
+
+- Linear search can be used irrespective of whether the array is sorted or not. It can be used on arrays of any data type.
+- Does not require any additional memory.
+- It is a well-suited algorithm for small datasets.
+
+**Drawbacks of Linear Search:**
+
+- Linear search has a time complexity of O(N), which in turn makes it slow for large datasets.
+- Not suitable for large arrays.
+
+**When to use Linear Search?**
+
+- When we are dealing with a small dataset.
+- When you are searching for a dataset stored in contiguous memory.
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        int[] intArray = { 20, 35, -15, 7, 55, 1, -22 };
+
+        System.out.println(linearSearch(intArray, -15));
+        System.out.println(linearSearch(intArray, 1));
+        System.out.println(linearSearch(intArray, 8888));
+        System.out.println(linearSearch(intArray, -22));
+
+    }
+
+    public static int linearSearch(int[] input, int value) {
+        for (int i = 0; i < input.length; i++) {
+            if (input[i] == value) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+}
+```
+
 #### <a name="chapter8part2"></a>Chapter 8 - Part 2: Binary Search Algorithm
 	
 ## <a name="chapter9"></a>Chapter 9: Trees in Java
