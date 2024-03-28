@@ -63,6 +63,7 @@
     - [Chapter 9 - Part 8: Trees in JDK](#chapter9part8)
 10. [Chapter 10: Heaps in Java](#chapter10)
     - [Chapter 10 - Part 1: Introduction to Heaps](#chapter10part1)
+    - [Chapter 10 - Part 2: Storing a Heaps as Arrays](#chapter10part2)
 11. [Chapter 11: Sets in Java](#chapter11)
     - [Chapter 11 - Part 1: Introduction to Sets](#chapter11part1)
 
@@ -7851,6 +7852,8 @@ This operation returns and deletes the maximum element and minimum element from 
 - Not suitable for searching for an element other than maximum/minimum (O(n) in worst case)
 - Extra memory overhead to maintain heap structure
 - Slower than other data structures like arrays and linked lists for non-priority queue operations.
+
+#### <a name="chapter10part2"></a>Chapter 10 - Part 2: Storing a Heaps as Arrays
 
 ## <a name="chapter11"></a>Chapter 11: Sets in Java
   
