@@ -7700,6 +7700,42 @@ A Heap is a special Tree-based Data Structure in which the tree is a complete bi
 - Heapify: process of converting a binary tree into a heap - this often has to be done after an insertion or deletion
 - No required ordering between siblings
 
+The example above is not a heap, because the maximum value is not at the root
+
+```
+           15
+      /        \
+     22         4
+   /           /  \
+  19         18    3
+              \
+               14
+```
+
+The example above is not a heap, because is not a complete binary tree, because the element 19 is missing a child
+
+```
+           22
+      /        \
+     19         18
+   /           /  \
+  3           15   14
+              \
+               4
+```
+
+The example above is a heap
+
+```
+           22
+      /        \
+     19         18
+   /   \        /  \
+  15    3      14   4
+  /            
+12             
+```
+
 **Operations Supported by Heap:**
 
 - Operations supported by min – heap and max – heap are same. The difference is just that min-heap contains minimum element at root of the tree and max – heap contains maximum element at the root of the tree.
