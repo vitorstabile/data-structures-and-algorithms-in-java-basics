@@ -7661,6 +7661,47 @@ We can see the operations in the [Java TreeSet Doc](https://docs.oracle.com/java
   
 #### <a name="chapter10part1"></a>Chapter 10 - Part 1: Introduction to Heaps
 
+A Heap is a special Tree-based Data Structure in which the tree is a complete binary tree.
+
+- A complete binary tree
+- Must satisfy the heap property
+- Max heap: Every parent is greater than or equal to its children
+- Min heap: Every parent is less than or equal to its children
+
+**Types of heaps**
+
+- Max-Heap
+  - In this heap, the value of the root node must be the greatest among all its child nodes and the same thing must be done for its left and right sub-tree also.
+  - The total number of comparisons required in the max heap is according to the height of the tree. The height of the complete binary tree is always logn; therefore, the time complexity would also be O(logn).
+
+- Min-Heap
+  - In this heap, the value of the root node must be the smallest among all its child nodes and the same thing must be done for its left and right sub-tree also.
+  - In this heap, the value of the root node must be the smallest among all its child nodes and the same thing must be done for its left and right sub-tree also.
+ 
+<br>
+
+<div align="center"><img src="img/minmaxheap-w1000-h600.png" width=1000 height=600><br><sub> - (<a href='https://www.geeksforgeeks.org/introduction-to-heap-data-structure-and-algorithm-tutorials/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+**Properties of Heap**
+
+- Heap has the following Properties:
+  - **Complete Binary Tree**: A heap tree is a complete binary tree, meaning all levels of the tree are fully filled except possibly the last level, which is filled from left to right. This property ensures that the tree is efficiently represented using an array.
+  - **Heap Property**: This property ensures that the minimum (or maximum) element is always at the root of the tree according to the heap type.
+  - **Parent-Child Relationship**: The relationship between a parent node at index ‘i’ and its children is given by the formulas: left child at index 2i+1 and right child at index 2i+2 for 0-based indexing of node numbers.
+  - **Efficient Insertion and Removal**: Insertion and removal operations in heap trees are efficient. New elements are inserted at the next available position in the bottom-rightmost level, and the heap property is restored by comparing the element with its parent and swapping if necessary. Removal of the root element involves replacing it with the last element and heapifying down.
+  - **Efficient Access to Extremal Elements**: The minimum or maximum element is always at the root of the heap, allowing constant-time access.
+
+- A binary heap must be a complete tree
+- Children are added at each level from left to right
+- Usually implemented as arrays
+- The maximum or minimum value will always be at the root of the tree - the advantage of using heap
+- Heapify: process of converting a binary tree into a heap - this often has to be done after an insertion or deletion
+- No required ordering between siblings
+
+
+
 ## <a name="chapter11"></a>Chapter 11: Sets in Java
   
 #### <a name="chapter11part1"></a>Chapter 11 - Part 1: Introduction to Sets
