@@ -7700,7 +7700,121 @@ A Heap is a special Tree-based Data Structure in which the tree is a complete bi
 - Heapify: process of converting a binary tree into a heap - this often has to be done after an insertion or deletion
 - No required ordering between siblings
 
+**Operations Supported by Heap:**
 
+- Operations supported by min – heap and max – heap are same. The difference is just that min-heap contains minimum element at root of the tree and max – heap contains maximum element at the root of the tree.
+
+**Heapify:**
+
+It is the process to rearrange the elements to maintain the property of heap data structure. It is done when a certain node creates an imbalance in the heap due to some operations on that node. It takes O(log N) to balance the tree. 
+
+- For max-heap, it balances in such a way that the maximum element is the root of that binary tree and
+- For min-heap, it balances in such a way that the minimum element is the root of that binary tree.
+
+- **Insertion:**
+
+- If we insert a new element into the heap since we are adding a new element into the heap so it will distort the properties of the heap so we need to perform the heapify operation so that it maintains the property of the heap.
+- This operation also takes O(logN) time.
+
+**Examples:**
+
+Assume initially heap(taking max-heap) is as follows
+
+```
+           8
+      /        \
+     4          5
+   /  \    
+  1    2     
+```
+
+Now if we insert 10 into the heap
+
+```
+           8
+      /        \
+     4          5
+   /  \        /
+  1    2     10 
+```
+
+After heapify operation final heap will be look like this
+
+```
+          10
+      /        \
+     4          8
+   /  \        /
+  1    2     5 
+```
+
+- **Delete:**
+
+- If we delete the element from the heap it always deletes the root element of the tree and replaces it with the last element of the tree.
+- Since we delete the root element from the heap it will distort the properties of the heap so we need to perform heapify operations so that it maintains the property of the heap.
+- It takes O(logN) time.
+
+**Examples:**
+
+Assume initially heap(taking max-heap) is as follows
+
+```
+           15
+      /        \
+     5          7
+   /  \    
+  2    3     
+```
+
+Now if we delete 15 into the heap it will be replaced by leaf node of the tree for temporary.
+
+```
+           3
+      /        \
+     5          7
+   /     
+  2         
+```
+
+After heapify operation final heap will be look like this
+
+```
+           7
+      /        \
+     5          3
+   /     
+  2         
+```
+
+- **getMax (For max-heap) or getMin (For min-heap):**
+
+It finds the maximum element or minimum element for max-heap and min-heap respectively and as we know minimum and maximum elements will always be the root node itself for min-heap and max-heap respectively. It takes O(1) time.
+
+- **removeMin or removeMax:**
+
+This operation returns and deletes the maximum element and minimum element from the max-heap and min-heap respectively. In short, it deletes the root element of the heap binary tree.
+
+**Applications of Heap Data Structure:**
+
+- **Priority Queues:** Priority queues can be efficiently implemented using Binary Heap because it supports insert(), delete() and extractmax(), decreaseKey() operations in O(log N) time.
+
+- **Binomial Heap** and **Fibonacci Heap** are variations of Binary Heap. These variations perform union also in O(log N) time which is an O(N) operation in Binary Heap.
+
+- Order statistics: The Heap data structure can be used to efficiently find the kth smallest (or largest) element in an array. You can see this gfg article to know more about the kth smallest or largest element.
+
+**Advantages of Heaps:**
+
+- Fast access to maximum/minimum element (O(1))
+- Efficient Insertion and Deletion operations (O(log n))
+- Flexible size
+- Can be efficiently implemented as an array
+- Suitable for real-time applications
+
+**Disadvantages of Heaps:**
+
+- Not suitable for searching for an element other than maximum/minimum (O(n) in worst case)
+- Extra memory overhead to maintain heap structure
+- Slower than other data structures like arrays and linked lists for non-priority queue operations.
 
 ## <a name="chapter11"></a>Chapter 11: Sets in Java
   
