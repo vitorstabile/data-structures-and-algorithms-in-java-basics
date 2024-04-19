@@ -71,6 +71,7 @@
     - [Chapter 10 - Part 7: Heap - Heap Sort](#chapter10part7)
 11. [Chapter 11: Sets in Java](#chapter11)
     - [Chapter 11 - Part 1: Introduction to Sets](#chapter11part1)
+    - [Chapter 11 - Part 2: Sets in JDK](#chapter11part2)
 
 ## <a name="chapter1"></a>Chapter 1: Introducing
   
@@ -8657,3 +8658,15 @@ public class Main {
 ## <a name="chapter11"></a>Chapter 11: Sets in Java
   
 #### <a name="chapter11part1"></a>Chapter 11 - Part 1: Introduction to Sets
+
+The set interface is present in java.util package and extends the Collection interface. It is an unordered collection of objects in which duplicate values cannot be stored. It is an interface that implements the mathematical set. This interface contains the methods inherited from the Collection interface and adds a feature that restricts the insertion of the duplicate elements. There are two interfaces that extend the set implementation namely SortedSet and NavigableSet.
+
+#### <a name="chapter11part2"></a>Chapter 11 - Part 2: Sets in JDK
+
+We can see the operations in the [Java Sets Doc](https://docs.oracle.com/javase/8/docs/api/java/util/Set.html)
+
+We can see the operations in the [Java HashSet Doc](https://docs.oracle.com/javase/8/docs/api/java/util/HashSet.html)
+
+We can see the operations in the [Java LinkedHashSet Doc](https://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashSet.html)
+
+We can see the operations in the [Java TreeSet Doc](https://docs.oracle.com/javase/8/docs/api/java/util/TreeSet.html)
