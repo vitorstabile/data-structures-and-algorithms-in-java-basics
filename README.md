@@ -7888,11 +7888,480 @@ parent = floor((3-1)/2) = 1 -> 19
 
 #### <a name="chapter10part3"></a>Chapter 10 - Part 3: Heap - Insert
 
+- Always add new items to the end of the array
+- Then we have to fix the heap (heapify)
+- We compare the new item against its parent
+- If the item is greater than its parent, we swap it with its parent
+- We then rinse and repeat
+
+In the example above, let's insert the number 20 in this heap above.
+
+```
+           22
+      /        \
+     19         18
+   /   \        /  \
+  15    3      14   4
+  /            
+12             
+```
+
+If we insert 20 in this heap, this will be inserted in the 15 node. With this, the structure will not be a heap anymore, because 20 is greater than 15.
+
+```
+           22
+      /        \
+     19         18
+   /   \        /  \
+  15    3      14   4
+  / \           
+12   20
+```
+
+So let's compare 20 with his parents. With this, let's swap 20 to 15
+
+```
+           22
+      /        \
+     19         18
+   /   \        /  \
+  20    3      14   4
+  / \           
+12   15
+```
+
+Now, let's compare 20 with his parent. 20 is greater than 19, so let's swap
+
+```
+           22
+      /        \
+     20         18
+   /   \        /  \
+  19    3      14   4
+  / \           
+12   15
+```
+
+Now, let's compare 20 with his parent. 22 is greater than 20, só the process of heapfy finished
+
+Let's implement a Heap in Java
+
+```java
+public class Heap {
+
+    private int[] heap;
+    private int size;
+
+    public Heap(int capacity) {
+        heap = new int[capacity];
+    }
+
+    public void insert(int value) {
+        if (isFull()) {
+            throw new IndexOutOfBoundsException("Heap is full");
+        }
+
+        heap[size] = value;
+
+        fixHeapAbove(size);
+        size++;
+    }
+
+    private void fixHeapAbove(int index) {
+        int newValue = heap[index];
+        while (index > 0 && newValue > heap[getParent(index)]) {
+            heap[index] = heap[getParent(index)];
+            index = getParent(index);
+        }
+
+        heap[index] = newValue;
+    }
+
+    public boolean isFull() {
+        return size == heap.length;
+    }
+
+    public int getParent(int index) {
+        return (index - 1) / 2;
+    }
+
+}
+```
 #### <a name="chapter10part4"></a>Chapter 10 - Part 4: Heap - Delete
+
+- Must choose a replacement value
+- Will take the rightmost value, so that the tree remains complete
+- Then we must heapify the heap
+- When replacement value is greater than parent, fix heap above. Otherwise, fix heap below.
+- Fix heap above - same as insert. Swap replacement value with parent
+- Fix heap below - swap the replacement value with the larger of its two children
+- Rinse and repeat in both cases until the replacement value is in its correct position
+- Will only need to fix up or down, not both
+
+**Fix heap below**
+
+In the example above, let's imagine we want to delete 75.
+
+```
+          80
+      /        \
+     75         60
+   /   \        /  \
+  68    55     40   52
+  /            
+67             
+```
+
+In this case, the replacement value will be 67, because always gonna be the rightmost leaf at the bottom level. This is because if we took another value, we will not have a complete tree
+
+```
+          80
+      /        \
+     67         60
+   /   \        /  \
+  68    55     40   52
+```
+
+Now, we have to make the heapify the tree, because this is not a heap, because 68 is greater than 67.
+
+```
+          80
+      /        \
+     68         60
+   /   \        /  \
+  67    55     40   52
+```
+
+**Fix heap above**
+
+In the example above, let's imagine we want to delete 40.
+
+```
+          80
+      /        \
+     75         60
+   /   \        /  \
+  68    55     40   52
+  /            
+67             
+```
+
+In this case, the replacement value will be 67, because always gonna be the rightmost leaf at the bottom level. This is because if we took another value, we will not have a complete tree
+
+```
+          80
+      /        \
+     75         60
+   /   \        /  \
+  68    55     67   52            
+```
+
+Now, we have to make the heapify the tree, because this is not a heap, because 67 is greater than 60.
+
+```
+          80
+      /        \
+     75         67
+   /   \        /  \
+  68    55     60   52            
+```
+
+Implement Delete Heap in the Heap Class
+
+```java
+public class Heap {
+
+    private int[] heap;
+    private int size;
+
+    public Heap(int capacity) {
+        heap = new int[capacity];
+    }
+
+    public void insert(int value) {
+        if (isFull()) {
+            throw new IndexOutOfBoundsException("Heap is full");
+        }
+
+        heap[size] = value;
+
+        fixHeapAbove(size);
+        size++;
+    }
+
+    public int delete(int index) {
+        if (isEmpty()) {
+            throw new IndexOutOfBoundsException("Heap is empty");
+        }
+
+        int parent = getParent(index);
+        int deletedValue = heap[index];
+
+        heap[index] = heap[size - 1];
+
+        if (index == 0 || heap[index] < heap[parent]) {
+            fixHeapBelow(index, size - 1);
+        }
+        else {
+            fixHeapAbove(index);
+        }
+
+        size--;
+
+        return deletedValue;
+
+    }
+
+    private void fixHeapAbove(int index) {
+        int newValue = heap[index];
+        while (index > 0 && newValue > heap[getParent(index)]) {
+            heap[index] = heap[getParent(index)];
+            index = getParent(index);
+        }
+
+        heap[index] = newValue;
+    }
+
+    private void fixHeapBelow(int index, int lastHeapIndex) {
+        int childToSwap;
+
+        while (index <= lastHeapIndex) {
+            int leftChild = getChild(index, true);
+            int rightChild = getChild(index, false);
+            if (leftChild <= lastHeapIndex) {
+                if (rightChild > lastHeapIndex) {
+                    childToSwap = leftChild;
+                }
+                else {
+                    childToSwap = (heap[leftChild] > heap[rightChild] ? leftChild : rightChild);
+                }
+
+                if (heap[index] < heap[childToSwap]) {
+                    int tmp = heap[index];
+                    heap[index] = heap[childToSwap];
+                    heap[childToSwap] = tmp;
+                }
+                else {
+                    break;
+                }
+
+                index = childToSwap;
+            }
+            else {
+                break;
+            }
+        }
+    }
+
+    public void printHeap() {
+        for (int i = 0; i < size; i++) {
+            System.out.print(heap[i]);
+            System.out.print(", ");
+        }
+        System.out.println();
+    }
+
+    public boolean isFull() {
+        return size == heap.length;
+    }
+
+    public int getParent(int index) {
+        return (index - 1) / 2;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public int getChild(int index, boolean left) {
+        return 2 * index + (left ? 1 : 2);
+    }
+
+}
+```
+
+Let's make some insertions and deletions
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        Heap heap = new Heap(10);
+
+        heap.insert(80);
+        heap.insert(75);
+        heap.insert(60);
+        heap.insert(68);
+        heap.insert(55);
+        heap.insert(40);
+        heap.insert(52);
+        heap.insert(67);
+
+        heap.printHeap();
+
+        heap.delete(0);
+        heap.printHeap();
+    }
+}
+```
 
 #### <a name="chapter10part5"></a>Chapter 10 - Part 5: Heap - Peak
 
+The peek method is when we want to look at the root method
+
+```java
+public class Heap {
+
+    private int[] heap;
+    private int size;
+
+    public Heap(int capacity) {
+        heap = new int[capacity];
+    }
+
+    public void insert(int value) {
+        if (isFull()) {
+            throw new IndexOutOfBoundsException("Heap is full");
+        }
+
+        heap[size] = value;
+
+        fixHeapAbove(size);
+        size++;
+    }
+
+    public int peek() {
+        if (isEmpty()) {
+            throw new IndexOutOfBoundsException("Heap is empty");
+        }
+
+        return heap[0];
+    }
+
+    public int delete(int index) {
+        if (isEmpty()) {
+            throw new IndexOutOfBoundsException("Heap is empty");
+        }
+
+        int parent = getParent(index);
+        int deletedValue = heap[index];
+
+        heap[index] = heap[size - 1];
+
+        if (index == 0 || heap[index] < heap[parent]) {
+            fixHeapBelow(index, size - 1);
+        }
+        else {
+            fixHeapAbove(index);
+        }
+
+        size--;
+
+        return deletedValue;
+
+    }
+
+    private void fixHeapAbove(int index) {
+        int newValue = heap[index];
+        while (index > 0 && newValue > heap[getParent(index)]) {
+            heap[index] = heap[getParent(index)];
+            index = getParent(index);
+        }
+
+        heap[index] = newValue;
+    }
+
+    private void fixHeapBelow(int index, int lastHeapIndex) {
+        int childToSwap;
+
+        while (index <= lastHeapIndex) {
+            int leftChild = getChild(index, true);
+            int rightChild = getChild(index, false);
+            if (leftChild <= lastHeapIndex) {
+                if (rightChild > lastHeapIndex) {
+                    childToSwap = leftChild;
+                }
+                else {
+                    childToSwap = (heap[leftChild] > heap[rightChild] ? leftChild : rightChild);
+                }
+
+                if (heap[index] < heap[childToSwap]) {
+                    int tmp = heap[index];
+                    heap[index] = heap[childToSwap];
+                    heap[childToSwap] = tmp;
+                }
+                else {
+                    break;
+                }
+
+                index = childToSwap;
+            }
+            else {
+                break;
+            }
+        }
+    }
+
+    public void printHeap() {
+        for (int i = 0; i < size; i++) {
+            System.out.print(heap[i]);
+            System.out.print(", ");
+        }
+        System.out.println();
+    }
+
+    public boolean isFull() {
+        return size == heap.length;
+    }
+
+    public int getParent(int index) {
+        return (index - 1) / 2;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public int getChild(int index, boolean left) {
+        return 2 * index + (left ? 1 : 2);
+    }
+
+}
+```
+
+Test
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        Heap heap = new Heap(10);
+
+        heap.insert(80);
+        heap.insert(75);
+        heap.insert(60);
+        heap.insert(68);
+        heap.insert(55);
+        heap.insert(40);
+        heap.insert(52);
+        heap.insert(67);
+
+        heap.printHeap();
+
+        System.out.println(heap.peek());
+
+        heap.delete(0);
+        heap.printHeap();
+
+        System.out.println(heap.peek());
+
+    }
+}
+```
+
 #### <a name="chapter10part6"></a>Chapter 10 - Part 6: Heap - Priority Queues
+
+
 
 #### <a name="chapter10part7"></a>Chapter 10 - Part 7: Heap - Heap Sort
 
