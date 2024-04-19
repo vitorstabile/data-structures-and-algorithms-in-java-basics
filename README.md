@@ -64,6 +64,11 @@
 10. [Chapter 10: Heaps in Java](#chapter10)
     - [Chapter 10 - Part 1: Introduction to Heaps](#chapter10part1)
     - [Chapter 10 - Part 2: Storing a Heaps as Arrays](#chapter10part2)
+    - [Chapter 10 - Part 3: Heap - Insert](#chapter10part3)
+    - [Chapter 10 - Part 4: Heap - Delete](#chapter10part4)
+    - [Chapter 10 - Part 5: Heap - Peak](#chapter10part5)
+    - [Chapter 10 - Part 6: Heap - Priority Queues](#chapter10part6)
+    - [Chapter 10 - Part 7: Heap - Heap Sort](#chapter10part7)
 11. [Chapter 11: Sets in Java](#chapter11)
     - [Chapter 11 - Part 1: Introduction to Sets](#chapter11part1)
 
@@ -7854,6 +7859,42 @@ This operation returns and deletes the maximum element and minimum element from 
 - Slower than other data structures like arrays and linked lists for non-priority queue operations.
 
 #### <a name="chapter10part2"></a>Chapter 10 - Part 2: Storing a Heaps as Arrays
+
+- We can store binary heaps as arrays
+- We put the root at array[0]
+- We then traverse each level from left to right, and so the left child of the root would go into array[1], its right child would to into array[2], etc
+
+<br>
+
+<div align="center"><img src="img/heaptoarray-w733-h618.png" width=733 height=618><br><sub> - (<a href='https://github.com/vitorstabile'>Work by Vitor Garcia</a>) </sub></div>
+
+<br>
+
+**Formula**
+
+For the node at array[i]:
+
+left child = 2i+1
+right child = 2i+2
+
+parent = floor((i-1)/2)
+
+Ex: For 15 -> i = 3
+
+left child = 2*3+1 = 7 -> 12
+right child = 2*3+2 = 8 -> Don't Have
+
+parent = floor((3-1)/2) = 1 -> 19
+
+#### <a name="chapter10part3"></a>Chapter 10 - Part 3: Heap - Insert
+
+#### <a name="chapter10part4"></a>Chapter 10 - Part 4: Heap - Delete
+
+#### <a name="chapter10part5"></a>Chapter 10 - Part 5: Heap - Peak
+
+#### <a name="chapter10part6"></a>Chapter 10 - Part 6: Heap - Priority Queues
+
+#### <a name="chapter10part7"></a>Chapter 10 - Part 7: Heap - Heap Sort
 
 ## <a name="chapter11"></a>Chapter 11: Sets in Java
   
