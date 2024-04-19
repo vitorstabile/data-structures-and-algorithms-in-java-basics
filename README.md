@@ -66,7 +66,7 @@
     - [Chapter 10 - Part 2: Storing a Heaps as Arrays](#chapter10part2)
     - [Chapter 10 - Part 3: Heap - Insert](#chapter10part3)
     - [Chapter 10 - Part 4: Heap - Delete](#chapter10part4)
-    - [Chapter 10 - Part 5: Heap - Peak](#chapter10part5)
+    - [Chapter 10 - Part 5: Heap - Peek](#chapter10part5)
     - [Chapter 10 - Part 6: Heap - Priority Queues](#chapter10part6)
     - [Chapter 10 - Part 7: Heap - Heap Sort](#chapter10part7)
 11. [Chapter 11: Sets in Java](#chapter11)
@@ -8205,7 +8205,7 @@ public class Main {
 }
 ```
 
-#### <a name="chapter10part5"></a>Chapter 10 - Part 5: Heap - Peak
+#### <a name="chapter10part5"></a>Chapter 10 - Part 5: Heap - Peek
 
 The peek method is when we want to look at the root method
 
@@ -8361,10 +8361,299 @@ public class Main {
 
 #### <a name="chapter10part6"></a>Chapter 10 - Part 6: Heap - Priority Queues
 
+A really common use of heaps is to use them as what's called a priority queue.
 
+Now remember queues are usually first-in, first-out. Items are removed from the queue in the order that they're added.
+
+But what if we wanted to change that slightly and say that we always want to access the highest priority item.
+
+And so, rather than always removing the items in the order they were added, when we add an item we assign it a priority and when we go to remove an item the highest priority item is the one that's removed.
+
+We can see the operations in the [Java Priority Queue Doc](https://docs.oracle.com/javase/8/docs/api/java/util/PriorityQueue.html)
+
+A PriorityQueue is used when the objects are supposed to be processed based on the priority. It is known that a Queue follows the First-In-First-Out algorithm, but sometimes the elements of the queue are needed to be processed according to the priority, that’s when the PriorityQueue comes into play.
+
+The PriorityQueue is based on the priority heap. The elements of the priority queue are ordered according to the natural ordering, or by a Comparator provided at queue construction time, depending on which constructor is used.  
+
+A few important points on Priority Queue are as follows: 
+
+- PriorityQueue doesn’t permit null.
+- We can’t create a PriorityQueue of Objects that are non-comparable
+- PriorityQueue are unbound queues.
+- The head of this queue is the least element with respect to the specified ordering. If multiple elements are tied for the least value, the head is one of those elements — ties are broken arbitrarily.
+- Since PriorityQueue is not thread-safe, java provides PriorityBlockingQueue class that implements the BlockingQueue interface to use in a java multithreading environment.
+- The queue retrieval operations poll,  remove,  peek, and element access the element at the head of the queue.
+- It provides O(log(n)) time for add and poll methods.
+- It inherits methods from AbstractQueue, AbstractCollection, Collection, and Object class.
+
+```java
+import java.util.PriorityQueue;
+
+public class Main {
+
+    public static void main(String[] args) {
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
+
+        pq.add(25);
+        pq.add(-22);
+        pq.add(1343);
+        pq.add(54);
+        pq.add(0);
+        pq.add(-3492);
+        pq.add(429);
+
+//        System.out.println(pq.peek());
+//        System.out.println(pq.remove());
+//        System.out.println(pq.peek());
+//        System.out.println(pq.poll());
+//        System.out.println(pq.peek());
+        System.out.println(pq.remove(54));
+
+        Object[] ints = pq.toArray();
+        for (Object num: ints) {
+            System.out.println(num);
+        }
+
+        //System.out.println(pq.peek());
+        pq.add(-1);
+        //System.out.println(pq.peek());
+    }
+}
+```
 
 #### <a name="chapter10part7"></a>Chapter 10 - Part 7: Heap - Heap Sort
 
+This algorithm only works with heaps
+
+- We know the root has the largest value
+- Swap root with last element in the array
+- Heapfy the tree, but exclude the last node
+- After heapfy, second largest element is at the root
+- Rinse and repeat
+
+To understand heap sort more clearly, let’s take an unsorted array and try to sort it using heap sort.
+Consider the array: arr[] = {4, 10, 3, 5, 1}.
+
+**Build Complete Binary Tree**: Build a complete binary tree from the array.
+
+<br>
+
+<div align="center"><img src="img/heapsort1-w1000-h470.png" width=1000 height=470><br><sub> - (<a href='https://www.geeksforgeeks.org/heap-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+**Transform into max heap**: After that, the task is to construct a tree from that unsorted array and try to convert it into max heap.
+
+- To transform a heap into a max-heap, the parent node should always be greater than or equal to the child nodes
+  - Here, in this example, as the parent node 4 is smaller than the child node 10, thus, swap them to build a max-heap.
+- Now, 4 as a parent is smaller than the child 5, thus swap both of these again and the resulted heap and array should be like this:
+
+<br>
+
+<div align="center"><img src="img/heapsort2-w1000-h470.png" width=1000 height=470><br><sub> - (<a href='https://www.geeksforgeeks.org/heap-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+**Perform heap sort**: Remove the maximum element in each step (i.e., move it to the end position and remove that) and then consider the remaining elements and transform it into a max heap.
+
+- Delete the root element (10) from the max heap. In order to delete this node, try to swap it with the last node, i.e. (1). After removing the root element, again heapify it to convert it into max heap.
+
+- Resulted heap and array should look like this:
+
+<br>
+
+<div align="center"><img src="img/heapsort3-w1000-h470.png" width=1000 height=470><br><sub> - (<a href='https://www.geeksforgeeks.org/heap-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- Repeat the above steps and it will look like the following:
+
+<br>
+
+<div align="center"><img src="img/heapsort4-w1000-h470.png" width=1000 height=470><br><sub> - (<a href='https://www.geeksforgeeks.org/heap-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+- Now remove the root (i.e. 3) again and perform heapify.
+
+<br>
+
+<div align="center"><img src="img/heapsort5-w1000-h470.png" width=1000 height=470><br><sub> - (<a href='https://www.geeksforgeeks.org/heap-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+Now when the root is removed once again it is sorted. and the sorted array will be like arr[] = {1, 3, 4, 5, 10}.
+
+<br>
+
+<div align="center"><img src="img/heapsort6-w1000-h470.png" width=1000 height=470><br><sub> - (<a href='https://www.geeksforgeeks.org/heap-sort/'>Work by Geeks for Geeks</a>) </sub></div>
+
+<br>
+
+Let's implement
+
+```java
+public class Heap {
+
+    private int[] heap;
+    private int size;
+
+    public Heap(int capacity) {
+        heap = new int[capacity];
+    }
+
+    public void insert(int value) {
+        if (isFull()) {
+            throw new IndexOutOfBoundsException("Heap is full");
+        }
+
+        heap[size] = value;
+
+        fixHeapAbove(size);
+        size++;
+    }
+
+    public int peek() {
+        if (isEmpty()) {
+            throw new IndexOutOfBoundsException("Heap is empty");
+        }
+
+        return heap[0];
+    }
+
+    public int delete(int index) {
+        if (isEmpty()) {
+            throw new IndexOutOfBoundsException("Heap is empty");
+        }
+
+        int parent = getParent(index);
+        int deletedValue = heap[index];
+
+        heap[index] = heap[size - 1];
+
+        if (index == 0 || heap[index] < heap[parent]) {
+            fixHeapBelow(index, size - 1);
+        }
+        else {
+            fixHeapAbove(index);
+        }
+
+        size--;
+
+        return deletedValue;
+
+    }
+
+    public void sort() {
+        int lastHeapIndex = size - 1;
+        for (int i = 0; i < lastHeapIndex; i++) {
+            int tmp = heap[0];
+            heap[0] = heap[lastHeapIndex - i];
+            heap[lastHeapIndex - i] = tmp;
+
+            fixHeapBelow(0, lastHeapIndex - i - 1);
+        }
+    }
+
+    private void fixHeapAbove(int index) {
+        int newValue = heap[index];
+        while (index > 0 && newValue > heap[getParent(index)]) {
+            heap[index] = heap[getParent(index)];
+            index = getParent(index);
+        }
+
+        heap[index] = newValue;
+    }
+
+    private void fixHeapBelow(int index, int lastHeapIndex) {
+        int childToSwap;
+
+        while (index <= lastHeapIndex) {
+            int leftChild = getChild(index, true);
+            int rightChild = getChild(index, false);
+            if (leftChild <= lastHeapIndex) {
+                if (rightChild > lastHeapIndex) {
+                    childToSwap = leftChild;
+                }
+                else {
+                    childToSwap = (heap[leftChild] > heap[rightChild] ? leftChild : rightChild);
+                }
+
+                if (heap[index] < heap[childToSwap]) {
+                    int tmp = heap[index];
+                    heap[index] = heap[childToSwap];
+                    heap[childToSwap] = tmp;
+                }
+                else {
+                    break;
+                }
+
+                index = childToSwap;
+            }
+            else {
+                break;
+            }
+        }
+    }
+
+    public void printHeap() {
+        for (int i = 0; i < size; i++) {
+            System.out.print(heap[i]);
+            System.out.print(", ");
+        }
+        System.out.println();
+    }
+
+    public boolean isFull() {
+        return size == heap.length;
+    }
+
+    public int getParent(int index) {
+        return (index - 1) / 2;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public int getChild(int index, boolean left) {
+        return 2 * index + (left ? 1 : 2);
+    }
+
+}
+```
+
+Test
+
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        Heap heap = new Heap(10);
+
+        heap.insert(80);
+        heap.insert(75);
+        heap.insert(60);
+        heap.insert(68);
+        heap.insert(55);
+        heap.insert(40);
+        heap.insert(52);
+        heap.insert(67);
+
+        heap.printHeap();
+
+        //System.out.println(heap.peek());
+
+        heap.delete(0);
+        heap.printHeap();
+
+        //System.out.println(heap.peek());
+
+        heap.sort();
+        heap.printHeap();
+    }
+}
+```
 ## <a name="chapter11"></a>Chapter 11: Sets in Java
   
 #### <a name="chapter11part1"></a>Chapter 11 - Part 1: Introduction to Sets
